@@ -9,7 +9,7 @@ An online E-store system built in Java 11=> and angular.js
 - Krysta Lestico (krl4721)
 - Joseph O'Neil (jmo8310)
 - Aayan Sayed (aas1128)
-- Jack Speron (jts9328)
+- Jack Speroni (jts9328)
 
 
 ## Prerequisites
