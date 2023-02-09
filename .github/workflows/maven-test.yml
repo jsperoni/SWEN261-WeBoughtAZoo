@@ -1,0 +1,37 @@
+# This workflow will build a Java project with Maven, and cache/restore any dependencies to improve the workflow execution time
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-java-with-maven
+
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+
+name: Java CI with Maven
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up JDK 11
+      uses: actions/setup-java@v3
+      with:
+        java-version: '11'
+        distribution: 'temurin'
+        cache: maven
+    # Tests (this will run every test 3 times, but checks for a different thing each time)
+    - name: Maven comprehensive test
+      run: mvn clean test jacoco:report --file estore-api/pom.xml
+    - name: Maven tiered tests in isolation
+      run: mvn exec:exec@tests-and-coverage --file estore-api/pom.xml
+    - name: Maven test covereage chech
+      run: mvn clean verify --file estore-api/pom.xml
+
