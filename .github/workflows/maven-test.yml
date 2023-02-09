@@ -6,7 +6,7 @@
 # separate terms of service, privacy policy, and support
 # documentation.
 
-name: Java CI with Maven
+name: Maven Testing and Coverage
 
 on:
   push:
@@ -32,6 +32,6 @@ jobs:
       run: mvn clean test jacoco:report --file estore-api/pom.xml
     - name: Maven tiered tests in isolation
       run: mvn exec:exec@tests-and-coverage --file estore-api/pom.xml
-    - name: Maven test covereage chech
+    - name: Maven test covereage check
       run: mvn clean verify --file estore-api/pom.xml
 
