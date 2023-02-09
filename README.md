@@ -6,7 +6,7 @@ An online E-store system built in Java 11=> and angular.js
 ## Team
 
 - Bobby Dhanoolal (bkd7911)
-- Krysta Lestico (krl4721)
+- Krysta Lestico  (krl4721)
 - Joseph O'Neil (jmo8310)
 - Aayan Sayed (aas1128)
 - Jack Speroni (jts9328)
