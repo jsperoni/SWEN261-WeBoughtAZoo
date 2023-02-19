@@ -151,9 +151,18 @@ public class AnimalController {
      */
     @DeleteMapping("/{id}")
     public ResponseEntity<Animal> deleteAnimal(@PathVariable int id) {
-        LOG.info("DELETE /animals/" + id);
+        LOG.info("DELETE /heroes/" + id);
 
-        // Replace below with your implementation
-        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+        try {
+
+            if (animalDao.deleteAnimal(id))
+                return new ResponseEntity<>(HttpStatus.OK);
+            else
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        catch(IOException e) {
+            LOG.log(Level.SEVERE,e.getLocalizedMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 }
