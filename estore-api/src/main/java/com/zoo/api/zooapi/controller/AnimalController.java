@@ -134,7 +134,18 @@ public class AnimalController {
         LOG.info("POST /animals " + animal);
 
         // Replace below with your implementation
-        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+        try {
+            if(animalDao.getAnimal(animal.getId()) == null){
+                Animal animalNew = animalDao.createAnimal(animal);
+                return new ResponseEntity<Animal>(animalNew,HttpStatus.CREATED);
+            } else{
+                return new ResponseEntity<Animal>(HttpStatus.CONFLICT);
+            }
+        }
+        catch(IOException e) {
+            LOG.log(Level.SEVERE,e.getLocalizedMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     /**
@@ -151,7 +162,18 @@ public class AnimalController {
         LOG.info("PUT /animals " + animal);
 
         // Replace below with your implementation
-        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+        try {
+            if(animalDao.getAnimal(animal.getId()) == null){
+                return new ResponseEntity<Animal>(HttpStatus.NOT_FOUND);
+            } else{
+                Animal animalNew = animalDao.updateAnimal(animal);
+                return new ResponseEntity<Animal>(animalNew,HttpStatus.OK);
+            }
+        }
+        catch(IOException e) {
+            LOG.log(Level.SEVERE,e.getLocalizedMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     /**
