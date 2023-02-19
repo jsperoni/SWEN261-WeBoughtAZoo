@@ -80,9 +80,17 @@ public class AnimalController {
     @GetMapping("")
     public ResponseEntity<Animal[]> getAnimals() {
         LOG.info("GET /animals");
-
-        // Replace below with your implementation
-        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+        try {
+            Animal[] animal = animalDao.getAnimals();
+            if (animal != null)
+                return new ResponseEntity<Animal[]>(animal, HttpStatus.OK);
+            else 
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+            catch(IOException e) {
+                LOG.log(Level.SEVERE,e.getLocalizedMessage());
+                return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     /**
