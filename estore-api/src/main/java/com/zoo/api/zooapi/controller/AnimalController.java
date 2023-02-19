@@ -137,7 +137,11 @@ public class AnimalController {
         try {
             if(animalDao.getAnimal(animal.getId()) == null){
                 Animal animalNew = animalDao.createAnimal(animal);
-                return new ResponseEntity<Animal>(animalNew,HttpStatus.CREATED);
+                if (animalNew != null) {
+                    return new ResponseEntity<Animal>(animalNew,HttpStatus.CREATED);
+                } else {
+                    return new ResponseEntity<Animal>(HttpStatus.CONFLICT);
+                }
             } else{
                 return new ResponseEntity<Animal>(HttpStatus.CONFLICT);
             }
@@ -163,11 +167,11 @@ public class AnimalController {
 
         // Replace below with your implementation
         try {
-            if(animalDao.getAnimal(animal.getId()) == null){
-                return new ResponseEntity<Animal>(HttpStatus.NOT_FOUND);
-            } else{
-                Animal animalNew = animalDao.updateAnimal(animal);
-                return new ResponseEntity<Animal>(animalNew,HttpStatus.OK);
+            Animal animalNew = animalDao.updateAnimal(animal);
+            if (animalNew == null)
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            else {
+                return new ResponseEntity<>(animalNew, HttpStatus.OK);
             }
         }
         catch(IOException e) {
