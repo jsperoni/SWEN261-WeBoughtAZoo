@@ -100,12 +100,18 @@ public class AnimalController {
      */
     @GetMapping("/")
     public ResponseEntity<Animal[]> searchAnimals(@RequestParam String name) {
-        LOG.info("GET /animals/?name="+name);
+        LOG.info("GET /heroes/?name="+name);
 
-        // Replace below with your implementation
-        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+        try{
+            Animal animalsarray[] = animalDao.findAnimals(name);
+            return new ResponseEntity<Animal[]>(animalsarray, HttpStatus.OK);
+        } 
+        catch(IOException e){
+        LOG.log(Level.SEVERE,e.getLocalizedMessage());
+        return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            
+        }
     }
-
     /**
      * Creates a {@linkplain Animal animal} with the provided animal object
      * 
