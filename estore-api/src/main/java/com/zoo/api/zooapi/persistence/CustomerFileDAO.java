@@ -1,10 +1,12 @@
 package com.zoo.api.zooapi.persistence;
 
 import com.zoo.api.zooapi.model.Customer;
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.util.logging.Logger;
 
+@Component
 public class CustomerFileDAO implements CustomerDAO {
     private static final Logger LOG = Logger.getLogger(CustomerFileDAO.class.getName());
 
