@@ -2,28 +2,31 @@ package com.zoo.api.zooapi.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.logging.Logger;
 
 public class ShoppingCart {
     private static final Logger LOG = Logger.getLogger(ShoppingCart.class.getName());
 
     @JsonProperty("customer_id") private int customerId;
-    @JsonProperty("animals") private ArrayList<Integer> animals;
+    @JsonProperty("animals") private HashSet<Integer> animals;
 
-    public ShoppingCart(@JsonProperty("customer_id") int customerId, @JsonProperty("animals") ArrayList<Integer> animals) {
+    public ShoppingCart(@JsonProperty("customer_id") int customerId, @JsonProperty("animals") HashSet<Integer> animals) {
         this.customerId = customerId;
         this.animals = animals;
     }
 
-    public int getCustomerId() {return customerId;}
+    public ShoppingCart(int customerId) {
+        this(customerId, new HashSet<>());
+    }
 
-    public void setCustomerId(int customerId) {this.customerId = customerId;}
+    public int getCustomerId() {return customerId;}
 
     public int[] getAnimals() {
         int[] animals = new int[this.animals.size()];
-        for (int i = 0; i < this.animals.size(); i++) {
-            animals[i] = this.animals.get(i);
+        int i = 0;
+        for (int animalId : this.animals) {
+            animals[i++] = animalId;
         }
         return animals;
     }
@@ -33,12 +36,23 @@ public class ShoppingCart {
     }
 
     public boolean removeAnimal(int animalId) {
-        int index = this.animals.indexOf(animalId);
-        if (index == -1) {
+        if (!this.animals.contains(animalId)) {
             return false;
         }
-        this.animals.remove(index);
+        this.animals.remove(animalId);
         return true;
+    }
+
+    public boolean containsAnimal(int animalId) {
+        return this.animals.contains(animalId);
+    }
+
+    public void clearAnimals() {
+        this.animals.clear();
+    }
+
+    public boolean isEmpty() {
+        return this.animals.isEmpty();
     }
 
     @Override
