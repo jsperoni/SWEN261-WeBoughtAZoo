@@ -39,9 +39,10 @@ public class CustomerControlerTest {
     @Test
     public void testGetCustomer() throws IOException {  // getCustomer may throw IOException
         // Setup
-        String[] personal = {"6000 Reynolds Drive, 14623", "7743647789"};
+        String[] personal = {"6000 Reynolds Drive", "14623", "7743647789"};
         String[] card = {"John Doe", "1111111111111111", "01/23", "111", "14623"};
-        Customer customer = new Customer(99,"Galactic-Agent","password", personal, card);
+        String[] history = {"Bongo", "Lightning", "Zeus", "Apollo", "Scooby"};
+        Customer customer = new Customer(99,"Galactic-Agent","password", personal, card, history);
         // When the same id is passed in, our mock Customer DAO will return the Customer object
         when(mockCustomerDAO.getCustomer(customer.getId())).thenReturn(customer);
 
@@ -90,9 +91,10 @@ public class CustomerControlerTest {
     @Test
     public void testCreateCustomer() throws IOException {  // createCustomer may throw IOException
         // Setup
-        String[] personal = {"6000 Reynolds Drive, 14623", "7743647789"};
+        String[] personal = {"6000 Reynolds Drive", "14623", "7743647789"};
         String[] card = {"John Doe", "1111111111111111", "01/23", "111", "14623"};
-        Customer customer = new Customer(99,"Wi-Fire","password", personal, card);
+        String[] history = {"Bongo", "Lightning", "Zeus", "Apollo", "Scooby"};
+        Customer customer = new Customer(99,"Wi-Fire","password", personal, card, history);
         // when createCustomer is called, return true simulating successful
         // creation and save
         when(mockCustomerDAO.createCustomer(customer)).thenReturn(customer);
@@ -108,9 +110,10 @@ public class CustomerControlerTest {
     @Test
     public void testCreateCustomerFailed() throws IOException {  // createCustomer may throw IOException
         // Setup
-        String[] personal = {"6000 Reynolds Drive, 14623", "7743647789"};
+        String[] personal = {"6000 Reynolds Drive", "14623", "7743647789"};
         String[] card = {"John Doe", "1111111111111111", "01/23", "111", "14623"};
-        Customer customer = new Customer(99,"Bolt","password", personal, card);
+        String[] history = {"Bongo", "Lightning", "Zeus", "Apollo", "Scooby"};
+        Customer customer = new Customer(99,"Bolt","password", personal, card, history);
         // when createCustomer is called, return false simulating failed
         // creation and save
         when(mockCustomerDAO.createCustomer(customer)).thenReturn(null);
@@ -125,9 +128,10 @@ public class CustomerControlerTest {
     @Test
     public void testCreateCustomerHandleException() throws IOException {  // createCustomer may throw IOException
         // Setup
-        String[] personal = {"6000 Reynolds Drive, 14623", "7743647789"};
+        String[] personal = {"6000 Reynolds Drive", "14623", "7743647789"};
         String[] card = {"John Doe", "1111111111111111", "01/23", "111", "14623"};
-        Customer customer = new Customer(99,"Ice Gladiator","password", personal, card);
+        String[] history = {"Bongo", "Lightning", "Zeus", "Apollo", "Scooby"};
+        Customer customer = new Customer(99,"Ice Gladiator","password", personal, card, history);
 
         // When createCustomer is called on the Mock Customer DAO, throw an IOException
         doThrow(new IOException()).when(mockCustomerDAO).createCustomer(customer);
@@ -142,9 +146,10 @@ public class CustomerControlerTest {
     @Test
     public void testUpdateCustomer() throws IOException { // updateCustomer may throw IOException
         // Setup
-        String[] personal = {"6000 Reynolds Drive, 14623", "7743647789"};
+        String[] personal = {"6000 Reynolds Drive", "14623", "7743647789"};
         String[] card = {"John Doe", "1111111111111111", "01/23", "111", "14623"};
-        Customer customer = new Customer(99,"Wi-Fire","password", personal, card);
+        String[] history = {"Bongo", "Lightning", "Zeus", "Apollo", "Scooby"};
+        Customer customer = new Customer(99,"Wi-Fire","password", personal, card, history);
         // when updateCustomer is called, return true simulating successful
         // update and save
         when(mockCustomerDAO.updateCustomer(customer)).thenReturn(customer);
@@ -162,9 +167,10 @@ public class CustomerControlerTest {
     @Test
     public void testUpdateCustomerFailed() throws IOException { // updateCustomer may throw IOException
         // Setup
-        String[] personal = {"6000 Reynolds Drive, 14623", "7743647789"};
+        String[] personal = {"6000 Reynolds Drive", "14623", "7743647789"};
         String[] card = {"John Doe", "1111111111111111", "01/23", "111", "14623"};
-        Customer customer = new Customer(99,"Galactic Agent","password", personal, card);
+        String[] history = {"Bongo", "Lightning", "Zeus", "Apollo", "Scooby"};
+        Customer customer = new Customer(99,"Galactic Agent","password", personal, card, history);
         // when updateCustomer is called, return true simulating successful
         // update and save
         when(mockCustomerDAO.updateCustomer(customer)).thenReturn(null);
@@ -179,9 +185,10 @@ public class CustomerControlerTest {
     @Test
     public void testUpdateCustomerHandleException() throws IOException { // updateCustomer may throw IOException
         // Setup
-        String[] personal = {"6000 Reynolds Drive, 14623", "7743647789"};
+        String[] personal = {"6000 Reynolds Drive", "14623", "7743647789"};
         String[] card = {"John Doe", "1111111111111111", "01/23", "111", "14623"};
-        Customer customer = new Customer(99,"Galactic-Agent","password", personal, card);
+        String[] history = {"Bongo", "Lightning", "Zeus", "Apollo", "Scooby"};
+        Customer customer = new Customer(99,"Galactic-Agent","password", personal, card, history);
         // When updateCustomer is called on the Mock Customer DAO, throw an IOException
         doThrow(new IOException()).when(mockCustomerDAO).updateCustomer(customer);
 
@@ -196,10 +203,11 @@ public class CustomerControlerTest {
     public void testGetCustomeres() throws IOException { // getCustomeres may throw IOException
         // Setup
         Customer[] customers = new Customer[2];
-        String[] personal = {"6000 Reynolds Drive, 14623", "7743647789"};
+        String[] personal = {"6000 Reynolds Drive", "14623", "7743647789"};
         String[] card = {"John Doe", "1111111111111111", "01/23", "111", "14623"};
-        customers[0] = new Customer(99,"Bolt","password", personal, card);
-        customers[1] = new Customer(100,"The-Great-Iguana","password", personal, card);
+        String[] history = {"Bongo", "Lightning", "Zeus", "Apollo", "Scooby"};
+        customers[0] = new Customer(99,"Bolt","password", personal, card, history);
+        customers[1] = new Customer(100,"The-Great-Iguana","password", personal, card, history);
         // When getCustomeres is called return the customers created above
         when(mockCustomerDAO.getCustomers()).thenReturn(customers);
 
@@ -229,10 +237,11 @@ public class CustomerControlerTest {
         // Setup
         String searchString = "Jo";
         Customer[] customers = new Customer[2];
-        String[] personal = {"6000 Reynolds Drive, 14623", "7743647789"};
+        String[] personal = {"6000 Reynolds Drive", "14623", "7743647789"};
         String[] card = {"John Doe", "1111111111111111", "01/23", "111", "14623"};
-        customers[0] = new Customer(99,"Galactic-Agent","password", personal, card);
-        customers[1] = new Customer(100,"Ice Gladiator","password", personal, card);
+        String[] history = {"Bongo", "Lightning", "Zeus", "Apollo", "Scooby"};
+        customers[0] = new Customer(99,"Galactic-Agent","password", personal, card, history);
+        customers[1] = new Customer(100,"Ice Gladiator","password", personal, card, history);
         // When findCustomeres is called with the search string, return the two
         /// customers above
         when(mockCustomerDAO.findCustomers(searchString)).thenReturn(customers);
