@@ -211,7 +211,7 @@ public class CustomerControlerTest {
     @Test
     public void testSearchCustomeres() throws IOException { // findCustomeres may throw IOException
         // Setup
-        String searchString = "la";
+        String searchString = "Jo";
         Customer[] customers = new Customer[2];
         customers[0] = new Customer(99,"Galactic-Agent","password");
         customers[1] = new Customer(100,"Ice Gladiator","password");
