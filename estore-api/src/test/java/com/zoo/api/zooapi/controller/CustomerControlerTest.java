@@ -276,7 +276,7 @@ public class CustomerControlerTest {
         when(mockCustomerDAO.deleteCustomer(customerId)).thenReturn(true);
 
         // Invoke
-        ResponseEntity<Customer> response = customerController.deleteCustomer(customerId);
+        ResponseEntity<Boolean> response = customerController.deleteCustomer(customerId);
 
         // Analyze
         assertEquals(HttpStatus.OK,response.getStatusCode());
@@ -290,7 +290,7 @@ public class CustomerControlerTest {
         when(mockCustomerDAO.deleteCustomer(customerId)).thenReturn(false);
 
         // Invoke
-        ResponseEntity<Customer> response = customerController.deleteCustomer(customerId);
+        ResponseEntity<Boolean> response = customerController.deleteCustomer(customerId);
 
         // Analyze
         assertEquals(HttpStatus.NOT_FOUND,response.getStatusCode());
@@ -304,7 +304,7 @@ public class CustomerControlerTest {
         doThrow(new IOException()).when(mockCustomerDAO).deleteCustomer(customerId);
 
         // Invoke
-        ResponseEntity<Customer> response = customerController.deleteCustomer(customerId);
+        ResponseEntity<Boolean> response = customerController.deleteCustomer(customerId);
 
         // Analyze
         assertEquals(HttpStatus.INTERNAL_SERVER_ERROR,response.getStatusCode());

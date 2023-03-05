@@ -119,7 +119,7 @@ public class CustomerFileDAOTest {
         assertNotNull(result);
         Customer actual = customerFileDAO.getCustomer(customer.getId());
         assertEquals(actual.getId(),customer.getId());
-        assertEquals(actual.getName(),customer.getName());
+        assertEquals(actual.getUsername(),customer.getUsername());
     }
 
     @Test
