@@ -10,11 +10,16 @@ public class Customer {
     @JsonProperty("id") private int id;
     @JsonProperty("username") private String username;
     @JsonProperty("password") private String password; // Security is not a concern for this project
+    @JsonProperty("personal") private String[] personal;
+    @JsonProperty("card") private String[] card;
 
-    public Customer(@JsonProperty("id") int id, @JsonProperty("username") String username, @JsonProperty("password") String password) {
+    public Customer(@JsonProperty("id") int id, @JsonProperty("username") String username, @JsonProperty("password") String password,
+            @JsonProperty("personal") String[] personal, @JsonProperty("card") String[] card) {
         this.id = id;
         this.username = username;
         this.password = password;
+        this.personal = personal;
+        this.card = card;
     }
 
     public int getId() {return id;}
@@ -26,6 +31,14 @@ public class Customer {
     public void setPassword(String password) {this.password = password;}
 
     public String getPassword() {return password;}
+
+    public String[] getPersonal() {return this.personal;}
+
+    public void setPersonal(String[] personal) {this.personal = personal;}
+
+    public String[] getCard() {return this.card;}
+
+    public void setCard(String[] card) {this.card = card;}
 
     @Override
     public String toString() {
