@@ -18,13 +18,17 @@ public class CustomerTest {
         int expected_id = 99;
         String expected_username = "Wi-Fire";
         String expected_password = "Password";
+        String[] expected_personal = {"6000 Reynolds Drive, 14623", "7743647789"};
+        String[] expected_card = {"John Doe", "1111111111111111", "01/23", "111", "14623"};
         // Invoke
-        Customer customer = new Customer(expected_id, expected_username, expected_password);
+        Customer customer = new Customer(expected_id, expected_username, expected_password, expected_personal, expected_card);
 
         // Analyze
         assertEquals(expected_id,customer.getId());
         assertEquals(expected_username,customer.getUsername());
         assertEquals(expected_username,customer.getPassword());
+        assertEquals(expected_personal,customer.getPersonal());
+        assertEquals(expected_card,customer.getCard());
     }
 
     @Test
@@ -33,7 +37,9 @@ public class CustomerTest {
         int id = 99;
         String username = "Wi-Fire";
         String password = "password";
-        Customer customer = new Customer(id, username, password);
+        String[] personal = {"6000 Reynolds Drive, 14623", "7743647789"};
+        String[] card = {"John Doe", "1111111111111111", "01/23", "111", "14623"};
+        Customer customer = new Customer(id, username, password, personal, card);
 
         String expected_username = "Galactic Agent";
 
@@ -50,7 +56,9 @@ public class CustomerTest {
         int id = 99;
         String username = "Wi-Fire";
         String password = "password";
-        Customer customer = new Customer(id, username, password);
+        String[] personal = {"6000 Reynolds Drive, 14623", "7743647789"};
+        String[] card = {"John Doe", "1111111111111111", "01/23", "111", "14623"};
+        Customer customer = new Customer(id, username, password, personal, card);
 
         String expected_password = "password";
 
@@ -61,14 +69,34 @@ public class CustomerTest {
         assertEquals(expected_password,customer.getPassword());
     }
     @Test
+    public void testPersonal() {
+        // Setup
+        int id = 99;
+        String username = "Wi-Fire";
+        String password = "password";
+        String[] personal = {"6000 Reynolds Drive, 14623", "7743647789"};
+        String[] card = {"John Doe", "1111111111111111", "01/23", "111", "14623"};
+        Customer customer = new Customer(id, username, password, personal, card);
+
+        String[] expected_personal = {"newAddress", "newZip", "newPhone"};
+
+        // Invoke
+        customer.setPersonal(expected_personal);
+
+        // Analyze
+        assertEquals(expected_personal,customer.getPersonal());
+    }
+    @Test
     public void testToString() {
         // Setup
         int id = 99;
         String username = "Wi-Fire";
         String password = "password";
+        String[] personal = {"6000 Reynolds Drive, 14623", "7743647789"};
+        String[] card = {"John Doe", "1111111111111111", "01/23", "111", "14623"};
 
         String expected_string = String.format(Customer.STRING_FORMAT,id,username,password);
-        Customer customer = new Customer(id, username, password);
+        Customer customer = new Customer(id, username, password, personal, card);
 
         // Invoke
         String actual_string = customer.toString();
