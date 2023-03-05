@@ -227,7 +227,7 @@ public class CustomerControlerTest {
     @Test
     public void testSearchCustomeres() throws IOException { // findCustomeres may throw IOException
         // Setup
-        String searchString = "la";
+        String searchString = "Jo";
         Customer[] customers = new Customer[2];
         String[] personal = {"6000 Reynolds Drive, 14623", "7743647789"};
         String[] card = {"John Doe", "1111111111111111", "01/23", "111", "14623"};

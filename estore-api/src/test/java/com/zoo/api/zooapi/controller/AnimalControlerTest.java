@@ -211,10 +211,10 @@ public class AnimalControlerTest {
     @Test
     public void testSearchAnimales() throws IOException { // findAnimales may throw IOException
         // Setup
-        String searchString = "la";
+        String searchString = "Mon";
         Animal[] animales = new Animal[2];
-        animales[0] = new Animal(99,"Galactic Agent");
-        animales[1] = new Animal(100,"Ice Gladiator");
+        animales[0] = new Animal(25,"Monkey");
+        animales[1] = new Animal(26,"Mongoose");
         // When findAnimales is called with the search string, return the two
         /// animales above
         when(mockAnimalDAO.findAnimals(searchString)).thenReturn(animales);
