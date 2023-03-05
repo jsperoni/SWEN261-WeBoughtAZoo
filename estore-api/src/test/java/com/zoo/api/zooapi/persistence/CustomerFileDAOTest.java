@@ -40,9 +40,11 @@ public class CustomerFileDAOTest {
     public void setupCustomerFileDAO() throws IOException {
         mockObjectMapper = mock(ObjectMapper.class);
         testCustomers = new Customer[3];
-        testCustomers[0] = new Customer(9,"goodstudent123", "password1");
-        testCustomers[1] = new Customer(39,"gccismajor", "password2");
-        testCustomers[2] = new Customer(45,"itouchgrass123", "password3");
+        String[] personal = {"6000 Reynolds Drive, 14623", "7743647789"};
+        String[] card = {"John Doe", "1111111111111111", "01/23", "111", "14623"};
+        testCustomers[0] = new Customer(9,"goodstudent123", "password1", personal, card);
+        testCustomers[1] = new Customer(39,"gccismajor", "password2", personal, card);
+        testCustomers[2] = new Customer(45,"itouchgrass123", "password3", personal, card);
 
         // When the object mapper is supposed to read from the file
         // the mock object mapper will return the customer array above
@@ -103,7 +105,9 @@ public class CustomerFileDAOTest {
     @Test
     public void testCreateCustomer() {
         // Setup
-        Customer customer = new Customer(102,"Wonder-Person", "password");
+        String[] personal = {"6000 Reynolds Drive, 14623", "7743647789"};
+        String[] card = {"John Doe", "1111111111111111", "01/23", "111", "14623"};
+        Customer customer = new Customer(102,"Wonder-Person", "password", personal, card);
 
         // Invoke
         Customer result = assertDoesNotThrow(() -> customerFileDAO.createCustomer(customer),
@@ -119,7 +123,9 @@ public class CustomerFileDAOTest {
     @Test
     public void testUpdateCustomer() {
         // Setup
-        Customer customer = new Customer(99,"Galactic-Agent", "password");
+        String[] personal = {"6000 Reynolds Drive, 14623", "7743647789"};
+        String[] card = {"John Doe", "1111111111111111", "01/23", "111", "14623"};
+        Customer customer = new Customer(99,"Galactic-Agent", "password", personal, card);
 
         // Invoke
         Customer result = assertDoesNotThrow(() -> customerFileDAO.updateCustomer(customer),
@@ -133,11 +139,14 @@ public class CustomerFileDAOTest {
 
     @Test
     public void testSaveException() throws IOException{
+        String[] personal = {"6000 Reynolds Drive, 14623", "7743647789"};
+        String[] card = {"John Doe", "1111111111111111", "01/23", "111", "14623"};
         doThrow(new IOException())
             .when(mockObjectMapper)
                 .writeValue(any(File.class),any(Customer[].class));
 
-        Customer customer = new Customer(102,"Wi-Fire", "password");
+                
+        Customer customer = new Customer(102,"Wi-Fire", "password", personal, card);
 
         assertThrows(IOException.class,
                         () -> customerFileDAO.createCustomer(customer),
@@ -167,7 +176,9 @@ public class CustomerFileDAOTest {
     @Test
     public void testUpdateCustomerNotFound() {
         // Setup
-        Customer customer = new Customer(98,"Bolt", "password");
+        String[] personal = {"6000 Reynolds Drive, 14623", "7743647789"};
+        String[] card = {"John Doe", "1111111111111111", "01/23", "111", "14623"};
+        Customer customer = new Customer(98,"Bolt", "password", personal, card);
 
         // Invoke
         Customer result = assertDoesNotThrow(() -> customerFileDAO.updateCustomer(customer),
