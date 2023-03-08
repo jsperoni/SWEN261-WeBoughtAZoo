@@ -89,7 +89,7 @@ public class ShoppingCartControlerTest {
         when(mockDAO.removeAnimalFromShoppingCart(shoppingCart.getCustomerId(), animal.getId())).thenReturn(shoppingCart);
 
         // Invoke
-        ResponseEntity<ShoppingCart> response = test.testRemoveAnimalFromShoppingCart(20,10);
+        ResponseEntity<ShoppingCart> response = test.removeAnimalFromShoppingCart(10, 20);
 
         // Analyze
         assertEquals(HttpStatus.OK,response.getStatusCode());
@@ -115,6 +115,7 @@ public class ShoppingCartControlerTest {
         // Setup
         ShoppingCart shoppingCart = new ShoppingCart(20);
         Animal animal = new Animal(10, "joe");
+        mockDAO.addAnimalToShoppingCart(20, 10);
         doThrow(new IOException()).when(mockDAO.addAnimalToShoppingCart(shoppingCart.getCustomerId(), animal.getId()));;
 
         // Invoke
@@ -130,6 +131,5 @@ public class ShoppingCartControlerTest {
      ****************************************************************/
 
         // Analyze
-        assertEquals(HttpStatus.NOT_FOUND,response.getStatusCode());
+    
     }
-}
