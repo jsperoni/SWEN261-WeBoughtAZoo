@@ -23,7 +23,7 @@ public class ShoppingCartController {
     }
 
     @GetMapping("")
-    public ResponseEntity<Customer> getShoppingCart() {
+    public ResponseEntity<ShoppingCart[]> getShoppingCart() {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
     }
 
