@@ -35,7 +35,7 @@ public class ShoppingCartController {
     }
 
     @DeleteMapping()
-    public ResponseEntity<Boolean> removeShoppingCart(@PathVariable int id, @PathVariable int animalId) {
+    public ResponseEntity<ShoppingCart> removeAnimalFromShoppingCart(@PathVariable int id, @PathVariable int animalId) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
     }
 }

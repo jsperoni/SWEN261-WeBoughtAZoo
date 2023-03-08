@@ -28,8 +28,8 @@ public class ShoppingCartControlerTest {
     private ShoppingCartDAO mockDAO;
 
     /**
-     * Before each test, create a new CustomerController object and inject
-     * a mock Customer DAO
+     * Before each test, create a new ShoppingCartController object and inject
+     * a mock Shopping cart DAO
      */
     @BeforeEach
     public void setupShoppingCartController() {
@@ -38,7 +38,7 @@ public class ShoppingCartControlerTest {
     }
 
     @Test
-    public void addAnimalToShoppingCartTest() throws IOException {  // getCustomer may throw IOException
+    public void testAddAnimalToShoppingCart() throws IOException {  
         // Setup
         ShoppingCart shoppingCart = new ShoppingCart(20);
         Animal animal = new Animal(10, "joe");
@@ -53,34 +53,76 @@ public class ShoppingCartControlerTest {
     }
 
     @Test
-    public void testGetCustomerNotFound() throws Exception { // createCustomer may throw IOException
+    public void testAddAnimalToShoppingCartNotFound() throws Exception { 
         // Setup
-        int customerId = 99;
-        // When the same id is passed in, our mock Customer DAO will return null, simulating
-        // no customer found
-        when(mockCustomerDAO.getCustomer(customerId)).thenReturn(null);
+        ShoppingCart shoppingCart = new ShoppingCart(20);
+        Animal animal = new Animal(10, "joe");
+        when(mockDAO.addAnimalToShoppingCart(shoppingCart.getCustomerId(), animal.getId())).thenReturn(null);
 
-        // Invoke
-        ResponseEntity<Customer> response = customerController.getCustomer(customerId);
+        ResponseEntity<ShoppingCart> response = test.addAnimalToShoppingCart(shoppingCart.getCustomerId(),animal.getId());
 
         // Analyze
         assertEquals(HttpStatus.NOT_FOUND,response.getStatusCode());
     }
 
     @Test
-    public void testGetCustomerHandleException() throws Exception { // createCustomer may throw IOException
+    public void testAddAnimalToShoppingCartHandleException() throws Exception { 
         // Setup
-        int customerId = 99;
-        // When getCustomer is called on the Mock Customer DAO, throw an IOException
-        doThrow(new IOException()).when(mockCustomerDAO).getCustomer(customerId);
+        ShoppingCart shoppingCart = new ShoppingCart(20);
+        Animal animal = new Animal(10, "joe");
+        doThrow(new IOException()).when(mockDAO.addAnimalToShoppingCart(shoppingCart.getCustomerId(), animal.getId()));;
 
         // Invoke
-        ResponseEntity<Customer> response = customerController.getCustomer(customerId);
+        ResponseEntity<ShoppingCart> response = test.addAnimalToShoppingCart(shoppingCart.getCustomerId(),animal.getId());
 
         // Analyze
         assertEquals(HttpStatus.INTERNAL_SERVER_ERROR,response.getStatusCode());
     }
 
+    @Test
+    public void testRemoveAnimalFromShoppingCart() throws IOException {  // getCustomer may throw IOException
+        // Setup
+        ShoppingCart shoppingCart = new ShoppingCart(20);
+        Animal animal = new Animal(10, "joe");
+        mockDAO.addAnimalToShoppingCart(20, 10);
+        when(mockDAO.removeAnimalFromShoppingCart(shoppingCart.getCustomerId(), animal.getId())).thenReturn(shoppingCart);
+
+        // Invoke
+        ResponseEntity<ShoppingCart> response = test.removeAnimalFromShoppingCart(20,10);
+
+        // Analyze
+        assertEquals(HttpStatus.OK,response.getStatusCode());
+        assertEquals(shoppingCart,response.getBody());
+    }
+
+    @Test
+    public void testRemoveAnimalFromShoppingCartNotFound() throws Exception { // createCustomer may throw IOException
+        // Setup
+        ShoppingCart shoppingCart = new ShoppingCart(20);
+        Animal animal = new Animal(10, "joe");
+        mockDAO.addAnimalToShoppingCart(20, 10);
+        when(mockDAO.addAnimalToShoppingCart(shoppingCart.getCustomerId(), animal.getId())).thenReturn(null);
+
+        ResponseEntity<ShoppingCart> response = test.addAnimalToShoppingCart(shoppingCart.getCustomerId(),animal.getId());
+
+        // Analyze
+        assertEquals(HttpStatus.NOT_FOUND,response.getStatusCode());
+    }
+
+    @Test
+    public void testRemoveAnimalFromShoppingCartHandleException() throws Exception { // createCustomer may throw IOException
+        // Setup
+        ShoppingCart shoppingCart = new ShoppingCart(20);
+        Animal animal = new Animal(10, "joe");
+        doThrow(new IOException()).when(mockDAO.addAnimalToShoppingCart(shoppingCart.getCustomerId(), animal.getId()));;
+
+        // Invoke
+        ResponseEntity<ShoppingCart> response = test.addAnimalToShoppingCart(shoppingCart.getCustomerId(),animal.getId());
+
+        // Analyze
+        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR,response.getStatusCode());
+    }
+        
     /*****************************************************************
      * The following tests will fail until all CustomerController methods
      * are implemented.
