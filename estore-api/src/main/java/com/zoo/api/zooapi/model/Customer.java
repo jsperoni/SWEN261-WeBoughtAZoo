@@ -7,6 +7,9 @@ import java.util.logging.Logger;
 public class Customer {
     private static final Logger LOG = Logger.getLogger(Customer.class.getName());
 
+    // Package private for tests
+    static final String STRING_FORMAT = "customer [id=%d, username=%s, password=%s, personal=%s, card=%s, history=%s]";
+
     @JsonProperty("id") private int id;
     @JsonProperty("username") private String username;
     @JsonProperty("password") private String password; // Security is not a concern for this project

@@ -9,6 +9,7 @@ import java.io.IOException;
 
 import com.zoo.api.zooapi.persistence.ShoppingCartDAO;
 import com.zoo.api.zooapi.model.Animal;
+import com.zoo.api.zooapi.model.Customer;
 import com.zoo.api.zooapi.model.ShoppingCart;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -53,29 +54,33 @@ public class ShoppingCartControlerTest {
     }
 
     @Test
-    public void testGetCustomerNotFound() throws Exception { // createCustomer may throw IOException
+    public void testGetShoppingCart() throws IOException { // getAnimales may throw IOException
         // Setup
-        int customerId = 99;
-        // When the same id is passed in, our mock Customer DAO will return null, simulating
-        // no customer found
-        when(mockCustomerDAO.getCustomer(customerId)).thenReturn(null);
+        ShoppingCart[] shoppingCarts = new ShoppingCart[2];
+        shoppingCarts[0] = new ShoppingCart(10);
+        Animal animal1 = new Animal(10,"Joe");
+
+        shoppingCarts[1] = new ShoppingCart(50);
+        Animal animal2 = new Animal(50,"The Great Iguana");
+        // When getAnimales is called return the animales created above
+        when(mockDAO.getShoppingCarts()).thenReturn(shoppingCarts);
 
         // Invoke
-        ResponseEntity<Customer> response = customerController.getCustomer(customerId);
+        ResponseEntity<ShoppingCart[]> response = test.getShoppingCart();
 
         // Analyze
-        assertEquals(HttpStatus.NOT_FOUND,response.getStatusCode());
+        assertEquals(HttpStatus.OK,response.getStatusCode());
+        assertEquals(shoppingCarts,response.getBody());
     }
 
     @Test
-    public void testGetCustomerHandleException() throws Exception { // createCustomer may throw IOException
+    public void testGetShoppingCartHandleException() throws IOException { // getAnimales may throw IOException
         // Setup
-        int customerId = 99;
-        // When getCustomer is called on the Mock Customer DAO, throw an IOException
-        doThrow(new IOException()).when(mockCustomerDAO).getCustomer(customerId);
+        // When getAnimales is called on the Mock Animal DAO, throw an IOException
+        doThrow(new IOException()).when(mockDAO).getShoppingCarts();
 
         // Invoke
-        ResponseEntity<Customer> response = customerController.getCustomer(customerId);
+        ResponseEntity<ShoppingCart[]> response = test.getShoppingCart();
 
         // Analyze
         assertEquals(HttpStatus.INTERNAL_SERVER_ERROR,response.getStatusCode());
