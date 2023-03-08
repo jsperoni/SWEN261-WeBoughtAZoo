@@ -54,6 +54,22 @@ public class ShoppingCartControlerTest {
     }
 
     @Test
+    public void testAddAnimalToShoppingCartFailed() throws IOException { // updateAnimal may throw IOException
+        // Setup
+        ShoppingCart shoppingCart = new ShoppingCart(9);
+        Animal animal = new Animal(99,"Galactic Agent");
+        // when updateAnimal is called, return true simulating successful
+        // update and save
+        when(mockDAO.addAnimalToShoppingCart(9, 99)).thenReturn(null);
+
+        // Invoke
+        ResponseEntity<ShoppingCart> response = test.addAnimalToShoppingCart(shoppingCart.getCustomerId(),animal.getId());
+
+        // Analyze
+        assertEquals(HttpStatus.NOT_FOUND,response.getStatusCode());
+    }
+
+    @Test
     public void testGetShoppingCart() throws IOException { // getAnimales may throw IOException
         // Setup
         ShoppingCart[] shoppingCarts = new ShoppingCart[2];
@@ -86,9 +102,33 @@ public class ShoppingCartControlerTest {
         assertEquals(HttpStatus.INTERNAL_SERVER_ERROR,response.getStatusCode());
     }
 
-    /*****************************************************************
-     * The following tests will fail until all CustomerController methods
-     * are implemented.
-     ****************************************************************/
+    @Test
+    public void testDeleteAnimal() throws IOException { // deleteAnimal may throw IOException
+        // Setup
+        int shoppingCartID = 9;
+        int animalID = 99;
+        // when deleteAnimal is called return true, simulating successful deletion
+        when(mockDAO.deleteShoppingCart(shoppingCartID)).thenReturn(true);
 
+        // Invoke
+        ResponseEntity<Boolean> response = test.removeShoppingCart(shoppingCartID, animalID);
+
+        // Analyze
+        assertEquals(HttpStatus.OK,response.getStatusCode());
+    }
+
+    @Test
+    public void testDeleteAnimalNotFound() throws IOException { // deleteAnimal may throw IOException
+        // Setup
+        int cartID = 9;
+        int animalId = 99;
+        // when deleteAnimal is called return false, simulating failed deletion
+        when(mockDAO.deleteShoppingCart(cartID)).thenReturn(false);
+
+        // Invoke
+        ResponseEntity<Boolean> response = test.removeShoppingCart(cartID, animalId);
+
+        // Analyze
+        assertEquals(HttpStatus.NOT_FOUND,response.getStatusCode());
+    }
 }
