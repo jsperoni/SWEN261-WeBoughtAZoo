@@ -111,7 +111,7 @@ public class ShoppingCartControlerTest {
         when(mockDAO.deleteShoppingCart(shoppingCartID)).thenReturn(true);
 
         // Invoke
-        ResponseEntity<Boolean> response = test.removeShoppingCart(shoppingCartID, animalID);
+        ResponseEntity<Boolean> response = test.removeShoppingCart(shoppingCartID);
 
         // Analyze
         assertEquals(HttpStatus.OK,response.getStatusCode());
@@ -126,7 +126,7 @@ public class ShoppingCartControlerTest {
         when(mockDAO.deleteShoppingCart(cartID)).thenReturn(false);
 
         // Invoke
-        ResponseEntity<Boolean> response = test.removeShoppingCart(cartID, animalId);
+        ResponseEntity<ShoppingCart> response = test.removeAnimalFromShoppingCart(cartID, animalId);
 
         // Analyze
         assertEquals(HttpStatus.NOT_FOUND,response.getStatusCode());
