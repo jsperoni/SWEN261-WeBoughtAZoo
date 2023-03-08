@@ -9,6 +9,7 @@ import java.io.IOException;
 
 import com.zoo.api.zooapi.persistence.ShoppingCartDAO;
 import com.zoo.api.zooapi.model.Animal;
+import com.zoo.api.zooapi.model.Customer;
 import com.zoo.api.zooapi.model.ShoppingCart;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -88,7 +89,7 @@ public class ShoppingCartControlerTest {
         when(mockDAO.removeAnimalFromShoppingCart(shoppingCart.getCustomerId(), animal.getId())).thenReturn(shoppingCart);
 
         // Invoke
-        ResponseEntity<ShoppingCart> response = test.removeAnimalFromShoppingCart(20,10);
+        ResponseEntity<ShoppingCart> response = test.testRemoveAnimalFromShoppingCart(20,10);
 
         // Analyze
         assertEquals(HttpStatus.OK,response.getStatusCode());
@@ -128,4 +129,7 @@ public class ShoppingCartControlerTest {
      * are implemented.
      ****************************************************************/
 
+        // Analyze
+        assertEquals(HttpStatus.NOT_FOUND,response.getStatusCode());
+    }
 }

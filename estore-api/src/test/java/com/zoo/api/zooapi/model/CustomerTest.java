@@ -137,7 +137,6 @@ public class CustomerTest {
         String[] personal = {"6000 Reynolds Drive", "14623", "7743647789"};
         String[] card = {"John Doe", "1111111111111111", "01/23", "111", "14623"};
         String[] history = {"Bongo", "Lightning", "Zeus", "Apollo", "Scooby"};
-
         String expected_string = String.format(Customer.STRING_FORMAT,id,username,password);
         Customer customer = new Customer(id, username, password, personal, card, history);
 
