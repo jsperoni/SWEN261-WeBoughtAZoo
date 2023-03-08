@@ -2,6 +2,7 @@ package com.zoo.api.zooapi.controller;
 
 import com.zoo.api.zooapi.model.Animal;
 import com.zoo.api.zooapi.model.Customer;
+import com.zoo.api.zooapi.model.ShoppingCart;
 import com.zoo.api.zooapi.persistence.CustomerDAO;
 import com.zoo.api.zooapi.persistence.ShoppingCartDAO;
 
@@ -29,12 +30,12 @@ public class ShoppingCartController {
     
 
     @PutMapping("/{id}")
-    public ResponseEntity<Customer> addToShoppingCart(@PathVariable int id) {
+    public ResponseEntity<ShoppingCart> addAnimalToShoppingCart(@PathVariable int id, @PathVariable int animalId) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
     }
 
     @DeleteMapping()
-    public ResponseEntity<Boolean> removeFromShoppingCart(@PathVariable int id) {
+    public ResponseEntity<Boolean> removeShoppingCart(@PathVariable int id, @PathVariable int animalId) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
     }
 }

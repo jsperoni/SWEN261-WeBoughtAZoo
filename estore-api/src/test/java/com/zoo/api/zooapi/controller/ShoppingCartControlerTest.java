@@ -38,18 +38,18 @@ public class ShoppingCartControlerTest {
     }
 
     @Test
-    public void test() throws IOException {  // getCustomer may throw IOException
+    public void addAnimalToShoppingCartTest() throws IOException {  // getCustomer may throw IOException
         // Setup
-        Animal animal = new Animal(99,"Test");
-        // When the same id is passed in, our mock Customer DAO will return the Customer object
-        when(mockDAO.addAnimalToShoppingCart(animal.getId())).thenReturn(animal);
+        ShoppingCart shoppingCart = new ShoppingCart(20);
+        Animal animal = new Animal(10, "joe");
+        when(mockDAO.addAnimalToShoppingCart(shoppingCart.getCustomerId(), animal.getId())).thenReturn(shoppingCart);
 
         // Invoke
-        ResponseEntity<Animal> response = ShoppingCartController.addToShoppingCart(animal.getId());
+        ResponseEntity<ShoppingCart> response = test.addAnimalToShoppingCart(shoppingCart.getCustomerId(),animal.getId());
 
         // Analyze
         assertEquals(HttpStatus.OK,response.getStatusCode());
-        assertEquals(customer,response.getBody());
+        assertEquals(shoppingCart,response.getBody());
     }
 
     @Test

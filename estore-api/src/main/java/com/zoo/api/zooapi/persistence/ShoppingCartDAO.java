@@ -12,7 +12,7 @@ public interface ShoppingCartDAO {
 
     ShoppingCart updateShoppingCart(ShoppingCart shoppingCart) throws IOException;
 
-    ShoppingCart addAnimalToShoppingCart(int animalId) throws IOException;
+    ShoppingCart addAnimalToShoppingCart(int id, int animalId) throws IOException;
 
     ShoppingCart removeAnimalFromShoppingCart(int id, int animalId) throws IOException;
 
