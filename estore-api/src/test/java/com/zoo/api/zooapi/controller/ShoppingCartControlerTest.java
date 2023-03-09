@@ -9,7 +9,6 @@ import java.io.IOException;
 
 import com.zoo.api.zooapi.persistence.ShoppingCartDAO;
 import com.zoo.api.zooapi.model.Animal;
-import com.zoo.api.zooapi.model.Customer;
 import com.zoo.api.zooapi.model.ShoppingCart;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -124,12 +123,5 @@ public class ShoppingCartControlerTest {
         // Analyze
         assertEquals(HttpStatus.INTERNAL_SERVER_ERROR,response.getStatusCode());
     }
-        
-    /*****************************************************************
-     * The following tests will fail until all CustomerController methods
-     * are implemented.
-     ****************************************************************/
-
-        // Analyze
     
     }

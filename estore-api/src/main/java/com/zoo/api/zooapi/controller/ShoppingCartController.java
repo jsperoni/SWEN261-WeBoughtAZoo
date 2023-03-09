@@ -62,8 +62,21 @@ public class ShoppingCartController {
         }
     }
 
-    @DeleteMapping()
+    @DeleteMapping("/{id}")
     public ResponseEntity<ShoppingCart> removeAnimalFromShoppingCart(@PathVariable int id, @PathVariable int animalId) {
-        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+        Log.info("DELETE /animal/" + id);
+
+        try {
+            ShoppingCart cartnew = shoppingCartDao.removeAnimalFromShoppingCart(id, animalId);
+            if (cartnew.containsAnimal(animalId))
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            else {
+                return new ResponseEntity<>(cartnew, HttpStatus.OK);
+            }
+        }
+        catch(IOException e) {
+            Log.log(Level.SEVERE,e.getLocalizedMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 }

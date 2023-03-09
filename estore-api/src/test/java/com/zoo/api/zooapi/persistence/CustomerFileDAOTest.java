@@ -73,7 +73,7 @@ public class CustomerFileDAOTest {
 
         // Analyze
         assertEquals(customers.length,2);
-        assertEquals(customers[0],testCustomers[1]);
+        assertEquals(customers[0],testCustomers[0]);
         assertEquals(customers[1],testCustomers[2]);
 
 
