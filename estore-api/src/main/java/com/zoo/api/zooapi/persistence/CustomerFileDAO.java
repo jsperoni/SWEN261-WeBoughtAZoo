@@ -26,7 +26,11 @@ public class CustomerFileDAO implements CustomerDAO {
     public CustomerFileDAO(@Value("data/customers.json") String filename, ObjectMapper objectMapper) throws IOException {
         this.filename = filename;
         this.objectMapper = objectMapper;
-        load();  // load the Animals from the file
+        try {
+            load();  // load the Animals from the file
+        } catch (IOException e){
+            LOG.severe("Unable to load shopping carts from file: " + filename + " " + e.getMessage());
+        }
     }
 
     private synchronized static int nextId() {
