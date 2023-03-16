@@ -35,15 +35,14 @@ import com.zoo.api.zooapi.controller.*;
 @RequestMapping("owner")
 public class OwnerController {
     private static final Logger LOG = Logger.getLogger(OwnerController.class.getName());
-    private OwnerDAO OwnerDao;
+    private OwnerDAO ownerDao;
 
     public OwnerController(OwnerDAO ownerDao) {
-        this.OwnerDao = ownerDao;
+        this.ownerDao = ownerDao;
     }
 
 /**
- * owner needs to get indvl animals, all animals, edit the animals
- * get cust, edit cust
+ * following mappings are subject to change
  */
 
     @GetMapping("/{id}")
@@ -52,12 +51,12 @@ public class OwnerController {
     }
 
     @PostMapping("/{id}")
-    public ResponseEntity<Animal> addAnimal(@PathVariable Animal animal) {
+    public ResponseEntity<Animal> addAnimal(@RequestBody Animal animal) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
     }
 
     @PutMapping("")
-    public ResponseEntity<Animal> editAnimal(@PathVariable Animal animal) {
+    public ResponseEntity<Animal> editAnimal(@RequestBody Animal animal) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
     }
 
@@ -72,12 +71,12 @@ public class OwnerController {
     }
 
     @PostMapping("")
-    public ResponseEntity<Customer> createCustomer(@PathVariable Customer customer) {
+    public ResponseEntity<Customer> createCustomer(@RequestBody Customer customer) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
     }
 
     @PutMapping("")
-    public ResponseEntity<Customer> updateCustomer(@PathVariable Customer customer) {
+    public ResponseEntity<Customer> updateCustomer(@RequestBody Customer customer) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
     }
 
