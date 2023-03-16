@@ -20,7 +20,7 @@ import com.zoo.api.zooapi.model.Animal;
  * {@literal @}Component Spring annotation instantiates a single instance of this
  * class and injects the instance into other classes as needed
  *
- * @author SWEN Faculty
+ * @author Group 6F
  */
 @Component
 public class AnimalFileDAO implements AnimalDAO {
