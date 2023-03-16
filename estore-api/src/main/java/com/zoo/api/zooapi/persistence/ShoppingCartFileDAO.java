@@ -15,7 +15,7 @@ import java.util.logging.Logger;
 @Component
 public class ShoppingCartFileDAO {
     private static final Logger LOG = Logger.getLogger(ShoppingCartFileDAO.class.getName());
-//took out private
+
     Map<Integer, ShoppingCart> shoppingCarts;
 
     private final HashMap<Integer, Integer> animalCheckoutCount;
