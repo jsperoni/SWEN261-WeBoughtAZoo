@@ -1,4 +1,5 @@
-<h2>In-Stock Animals</h2>
+<h2>Current Animals</h2>
+
 <ul class="animals">
   <li *ngFor="let animal of animals">
     <button [class.selected]="animal === selectedAnimal" type="button" (click)="onSelect(animal)">
@@ -8,11 +9,4 @@
   </li>
 </ul>
 
-<div *ngIf="selectedAnimal">
-  <h2>{{selectedAnimal.name | uppercase}} Details</h2>
-  <div>id: {{selectedAnimal.id}}</div>
-  <div>
-    <label for="animal-name">Animal name: </label>
-    <input id="animal-name" [(ngModel)]="selectedAnimal.name" placeholder="name">
-  </div>
-</div>
+<app-animal-detail [animal]="selectedAnimal"></app-animal-detail>
