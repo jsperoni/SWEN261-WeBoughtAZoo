@@ -106,7 +106,7 @@ public class CustomerFileDAO implements CustomerDAO {
     @Override
     public Customer createCustomer(Customer customer) throws IOException {
         synchronized(customers){
-            Customer newCustomer = new Customer(nextId, customer.getUsername(), customer.getPassword(), customer.getPersonal(), customer.getCard(), customer.getHistory());
+            Customer newCustomer = new Customer(nextId, customer.getUsername(), customer.getPersonal(), customer.getCard(), customer.getHistory());
             customers.put(newCustomer.getId(), newCustomer);
             save();
             return newCustomer;

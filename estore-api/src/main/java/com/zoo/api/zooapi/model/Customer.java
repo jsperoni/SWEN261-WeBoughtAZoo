@@ -16,7 +16,6 @@ public class Customer {
 
     @JsonProperty("id") private int id;
     @JsonProperty("username") private String username;
-    @JsonProperty("password") private String password; // Security is not a concern for this project
     @JsonProperty("personal") private String[] personal;
     @JsonProperty("card") private String[] card;
     @JsonProperty("history") private String[] history;
@@ -25,16 +24,14 @@ public class Customer {
      * Create a customer with the following information
      * @param id id of the customer
      * @param username customer's username
-     * @param password customer's password
      * @param personal customer's personal information: address
      * @param card Customer's card information
      * @param history Customer's search history
      */
-    public Customer(@JsonProperty("id") int id, @JsonProperty("username") String username, @JsonProperty("password") String password,
-            @JsonProperty("personal") String[] personal, @JsonProperty("card") String[] card, @JsonProperty("history") String[] history) {
+    public Customer(@JsonProperty("id") int id, @JsonProperty("username") String username,@JsonProperty("personal") String[] personal,
+                    @JsonProperty("card") String[] card, @JsonProperty("history") String[] history) {
         this.id = id;
         this.username = username;
-        this.password = password;
         this.personal = personal;
         this.card = card;
         this.history = history;
@@ -57,18 +54,6 @@ public class Customer {
      * @return customer's username
      */
     public String getUsername() {return username;}
-
-    /**
-     * Sets the customer's password
-     * @param password Customer's password
-     */
-    public void setPassword(String password) {this.password = password;}
-
-    /**
-     * Gets the customer's password
-     * @return Customer's password
-     */
-    public String getPassword() {return password;}
 
     /**
      * Gets the customer's personal information ie address
