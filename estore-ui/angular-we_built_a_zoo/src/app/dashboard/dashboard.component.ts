@@ -1,14 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-
 import { Animal } from '../animals';
 import { AnimalService } from '../animal.service';
 
 @Component({
-  selector: 'app-animals',
-  templateUrl: './animals.component.html',
-  styleUrls: ['./animals.component.css']
+  selector: 'app-dashboard',
+  templateUrl: './dashboard.component.html',
+  styleUrls: [ './dashboard.component.css' ]
 })
-export class AnimalsComponent implements OnInit {
+export class DashboardComponent implements OnInit {
   animals: Animal[] = [];
 
   constructor(private animalService: AnimalService) { }
@@ -19,6 +18,6 @@ export class AnimalsComponent implements OnInit {
 
   getAnimals(): void {
     this.animalService.getAnimals()
-    .subscribe(animals => this.animals = animals);
+      .subscribe(animals => this.animals = animals.slice(1, 5));
   }
 }
