@@ -9,12 +9,13 @@ geometry: margin=1in
 > and appear in the generated PDF in italics._
 
 ## Team Information
-* Team name: TEAMNAME
+* Team name: We Bought A Zoe
 * Team members
-  * MEMBER1
-  * MEMBER2
-  * MEMBER3
-  * MEMBER4
+  * Jack
+  * Krysta
+  * Joe
+  * Bobby
+  * Aayan
 
 ## Executive Summary
 
@@ -183,6 +184,9 @@ Controller:
 > criteria tests failing, and the number of user stories that
 > have not had any testing yet. Highlight the issues found during
 > acceptance testing and if there are any concerns._
+
+We were able to meet the acceptence criteria for the owner account where we have a seperate frontend for a user and a admin.
+We also meet the requirment for adding a product, removing a product, editing an existing product from the inventory. We also fullfied the critera for the individual customer and have their personal information. We were not able to complete a checkout proccess or handling each customers billing information and address.
 
 ### Unit Testing and Code Coverage
 > _**[Sprint 4]** Discuss your unit testing strategy. Report on the code coverage
