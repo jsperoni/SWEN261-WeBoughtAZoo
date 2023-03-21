@@ -16,6 +16,7 @@ import com.zoo.api.zooapi.model.Animal;
 import com.zoo.api.zooapi.model.Customer;
 import com.zoo.api.zooapi.model.Owner;
 
+@Component
 public class OwnerFileDAO implements OwnerDAO{
 
     @Override
