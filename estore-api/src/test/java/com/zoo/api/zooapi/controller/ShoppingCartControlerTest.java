@@ -14,6 +14,7 @@ import com.zoo.api.zooapi.model.ShoppingCart;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.mockito.stubbing.Stubber;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
@@ -70,7 +71,12 @@ public class ShoppingCartControlerTest {
         // Setup
         ShoppingCart shoppingCart = new ShoppingCart(20);
         Animal animal = new Animal(10, "joe", "dog", 79);
-        doThrow(new IOException()).when(mockDAO.addAnimalToShoppingCart(shoppingCart.getCustomerId(), animal.getId()));;
+
+        when(mockDAO.addAnimalToShoppingCart(shoppingCart.getCustomerId(), animal.getId())).thenReturn(shoppingCart);
+
+        doThrow(new IOException())
+                .when(mockDAO)
+                .addAnimalToShoppingCart(shoppingCart.getCustomerId(), animal.getId());
 
         // Invoke
         ResponseEntity<ShoppingCart> response = test.addAnimalToShoppingCart(shoppingCart.getCustomerId(),animal.getId());

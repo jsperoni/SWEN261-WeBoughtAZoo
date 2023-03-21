@@ -2,6 +2,7 @@ package com.zoo.api.zooapi.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.util.Arrays;
 import java.util.logging.Logger;
 /**
  * Represents a Customer entity
@@ -98,5 +99,18 @@ static final String STRING_FORMAT = "customer [id=%d, username=%s]";
     public String toString() {
 //        return String.format(Customer.STRING_FORMAT, id, username,personal,card,history);
         return String.format(Customer.STRING_FORMAT, id, username);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other instanceof Customer) {
+            Customer otherCustomer = (Customer) other;
+            return this.id == otherCustomer.id
+                    && this.username.equals(otherCustomer.username)
+                    && Arrays.equals(this.personal, otherCustomer.personal)
+                    && Arrays.equals(this.card, otherCustomer.card)
+                    && Arrays.equals(this.history, otherCustomer.history);
+        }
+        return false;
     }
 }

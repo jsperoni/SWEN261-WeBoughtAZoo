@@ -128,7 +128,7 @@ public class CustomerFileDAOTest {
         String[] personal = {"6000 Reynolds Drive", "14623", "7743647789"};
         String[] card = {"John Doe", "1111111111111111", "01/23", "111", "14623"};
         String[] history = {"Bongo", "Lightning", "Zeus", "Apollo", "Scooby"};
-        Customer customer = new Customer(99,"Galactic-Agent", personal, card, history);
+        Customer customer = new Customer(45,"Galactic-Agent", personal, card, history);
 
         // Invoke
         Customer result = assertDoesNotThrow(() -> customerFileDAO.updateCustomer(customer),

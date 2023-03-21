@@ -26,11 +26,7 @@ public class CustomerFileDAO implements CustomerDAO {
     public CustomerFileDAO(@Value("data/customers.json") String filename, ObjectMapper objectMapper) throws IOException {
         this.filename = filename;
         this.objectMapper = objectMapper;
-        try {
-            load();  // load the Animals from the file
-        } catch (IOException e){
-            LOG.severe("Unable to load shopping carts from file: " + filename + " " + e.getMessage());
-        }
+        load();
     }
 
     private synchronized static int nextId() {
@@ -96,17 +92,14 @@ public class CustomerFileDAO implements CustomerDAO {
     @Override
     public Customer getCustomer(int id) {
         synchronized(customers) {
-            if (customers.containsKey(id)) 
-                return customers.get(id);
-            else
-                return null;
+            return customers.getOrDefault(id, null);
         }
     }
 
     @Override
     public Customer createCustomer(Customer customer) throws IOException {
         synchronized(customers){
-            Customer newCustomer = new Customer(nextId, customer.getUsername(), customer.getPersonal(), customer.getCard(), customer.getHistory());
+            Customer newCustomer = new Customer(customer.getId() != 0 ? customer.getId() : nextId++, customer.getUsername(), customer.getPersonal(), customer.getCard(), customer.getHistory());
             customers.put(newCustomer.getId(), newCustomer);
             save();
             return newCustomer;
@@ -116,7 +109,7 @@ public class CustomerFileDAO implements CustomerDAO {
     @Override
     public Customer updateCustomer(Customer customer) throws IOException {
         synchronized(customers) {
-            if (customers.containsKey(customer.getId()) == false)
+            if (!customers.containsKey(customer.getId()))
                 return null;
 
             customers.put(customer.getId(), customer);
