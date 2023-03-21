@@ -41,7 +41,7 @@ public class ShoppingCartControlerTest {
     public void testAddAnimalToShoppingCart() throws IOException {  
         // Setup
         ShoppingCart shoppingCart = new ShoppingCart(20);
-        Animal animal = new Animal(10, "joe");
+        Animal animal = new Animal(10, "joe", "dog", 69);
         when(mockDAO.addAnimalToShoppingCart(shoppingCart.getCustomerId(), animal.getId())).thenReturn(shoppingCart);
 
         // Invoke
@@ -56,7 +56,7 @@ public class ShoppingCartControlerTest {
     public void testAddAnimalToShoppingCartNotFound() throws Exception { 
         // Setup
         ShoppingCart shoppingCart = new ShoppingCart(20);
-        Animal animal = new Animal(10, "joe");
+        Animal animal = new Animal(10, "joe", "dog", 69);
         when(mockDAO.addAnimalToShoppingCart(shoppingCart.getCustomerId(), animal.getId())).thenReturn(null);
 
         ResponseEntity<ShoppingCart> response = test.addAnimalToShoppingCart(shoppingCart.getCustomerId(),animal.getId());
@@ -69,7 +69,7 @@ public class ShoppingCartControlerTest {
     public void testAddAnimalToShoppingCartHandleException() throws Exception { 
         // Setup
         ShoppingCart shoppingCart = new ShoppingCart(20);
-        Animal animal = new Animal(10, "joe");
+        Animal animal = new Animal(10, "joe", "dog", 79);
         doThrow(new IOException()).when(mockDAO.addAnimalToShoppingCart(shoppingCart.getCustomerId(), animal.getId()));;
 
         // Invoke
@@ -83,7 +83,7 @@ public class ShoppingCartControlerTest {
     public void testRemoveAnimalFromShoppingCart() throws IOException {  // getCustomer may throw IOException
         // Setup
         ShoppingCart shoppingCart = new ShoppingCart(20);
-        Animal animal = new Animal(10, "joe");
+        Animal animal = new Animal(10, "joe", "dog", 79);
         mockDAO.addAnimalToShoppingCart(20, 10);
         when(mockDAO.removeAnimalFromShoppingCart(shoppingCart.getCustomerId(), animal.getId())).thenReturn(shoppingCart);
 
@@ -99,7 +99,7 @@ public class ShoppingCartControlerTest {
     public void testRemoveAnimalFromShoppingCartNotFound() throws Exception { // createCustomer may throw IOException
         // Setup
         ShoppingCart shoppingCart = new ShoppingCart(20);
-        Animal animal = new Animal(10, "joe");
+        Animal animal = new Animal(10, "joe", "dog", 79);
         mockDAO.addAnimalToShoppingCart(20, 10);
         when(mockDAO.addAnimalToShoppingCart(shoppingCart.getCustomerId(), animal.getId())).thenReturn(null);
 
@@ -113,7 +113,7 @@ public class ShoppingCartControlerTest {
     public void testRemoveAnimalFromShoppingCartHandleException() throws Exception { // createCustomer may throw IOException
         // Setup
         ShoppingCart shoppingCart = new ShoppingCart(20);
-        Animal animal = new Animal(10, "joe");
+        Animal animal = new Animal(10, "joe", "dog", 79);
         mockDAO.addAnimalToShoppingCart(20, 10);
         doThrow(new IOException()).when(mockDAO.addAnimalToShoppingCart(shoppingCart.getCustomerId(), animal.getId()));;
 
