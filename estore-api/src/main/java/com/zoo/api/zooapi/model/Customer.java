@@ -16,9 +16,9 @@ public class Customer {
 
     @JsonProperty("id") private int id;
     @JsonProperty("username") private String username;
-    @JsonProperty("personal") private String[] personal;
-    @JsonProperty("card") private String[] card;
-    @JsonProperty("history") private String[] history;
+    @JsonProperty("personal") private String[] personal;    // {address, zip, phone #}
+    @JsonProperty("card") private String[] card;            // {name, card #, card exp, cvv, billing zip}
+    @JsonProperty("history") private String[] history;      // {purchaseID1, purchaseID2...}
 
     /**
      * Create a customer with the following information

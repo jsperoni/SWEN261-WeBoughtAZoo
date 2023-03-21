@@ -20,7 +20,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @RestController
-@RequestMapping("shopppingcart")
+@RequestMapping("shoppingcart")
 public class ShoppingCartController {
     private static final Logger Log = Logger.getLogger(ShoppingCartController.class.getName());
     private ShoppingCartDAO shoppingCartDao;
