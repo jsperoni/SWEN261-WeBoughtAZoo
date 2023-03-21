@@ -20,7 +20,7 @@ import com.zoo.api.zooapi.model.Animal;
  * {@literal @}Component Spring annotation instantiates a single instance of this
  * class and injects the instance into other classes as needed
  *
- * @author SWEN Faculty
+ * @author Group 6F
  */
 @Component
 public class AnimalFileDAO implements AnimalDAO {
@@ -178,7 +178,7 @@ public class AnimalFileDAO implements AnimalDAO {
         synchronized(animals) {
             // We create a new Animal object because the id field is immutable
             // and we need to assign the next unique id
-            Animal newAnimal = new Animal(nextId(), animal.getName());
+            Animal newAnimal = new Animal(nextId(), animal.getName(), animal.getSpecies(), animal.getPrice());
             animals.put(newAnimal.getId(),newAnimal);
             save(); // may throw an IOException
             return newAnimal;

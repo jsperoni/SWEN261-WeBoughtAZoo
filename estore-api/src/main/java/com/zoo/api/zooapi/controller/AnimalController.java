@@ -108,7 +108,7 @@ public class AnimalController {
      */
     @GetMapping("/")
     public ResponseEntity<Animal[]> searchAnimals(@RequestParam String name) {
-        LOG.info("GET /heroes/?name="+name);
+        LOG.info("GET /animals/?name="+name);
 
         try{
             Animal animalsarray[] = animalDao.findAnimals(name);
@@ -159,7 +159,7 @@ public class AnimalController {
      * 
      * @return ResponseEntity with updated {@link Animal animal} object and HTTP status of OK if updated<br>
      * ResponseEntity with HTTP status of NOT_FOUND if not found<br>
-     * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
+     * ResponseEntity with HTTP staus of INTERNAL_SERVER_ERROR otherwise
      */
     @PutMapping("")
     public ResponseEntity<Animal> updateAnimal(@RequestBody Animal animal) {
@@ -205,4 +205,5 @@ public class AnimalController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-}
+    }
+

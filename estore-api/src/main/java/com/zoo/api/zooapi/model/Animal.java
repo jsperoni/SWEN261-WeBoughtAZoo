@@ -16,6 +16,8 @@ public class Animal {
 
     @JsonProperty("id") private int id;
     @JsonProperty("name") private String name;
+    @JsonProperty("species") private String species;
+    @JsonProperty("price") private int price;
 
     /**
      * Create a animal with the given id and name
@@ -27,9 +29,12 @@ public class Animal {
      * is not provided in the JSON object, the Java field gets the default Java
      * value, i.e. 0 for int
      */
-    public Animal(@JsonProperty("id") int id, @JsonProperty("name") String name) {
+    public Animal(@JsonProperty("id") int id, @JsonProperty("name") String name, @JsonProperty("species") String species, @JsonProperty("price") int price)  {
         this.id = id;
         this.name = name;
+        this.species = species;
+        this.price = price;
+        
     }
 
     /**
@@ -49,6 +54,14 @@ public class Animal {
      * @return The name of the animal
      */
     public String getName() {return name;}
+
+    public String getSpecies() {return species;}
+
+    public void setSpecies(String species) {this.species = species;} 
+
+    public int getPrice() {return price;}
+
+    public void setPrice(int price) {this.price = price;}
 
     /**
      * {@inheritDoc}

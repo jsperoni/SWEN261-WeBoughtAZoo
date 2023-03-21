@@ -40,9 +40,9 @@ public class AnimalFileDAOTest {
     public void setupAnimalFileDAO() throws IOException {
         mockObjectMapper = mock(ObjectMapper.class);
         testAnimals = new Animal[3];
-        testAnimals[0] = new Animal(99,"Wi-Fire");
-        testAnimals[1] = new Animal(100,"Galactic Agent");
-        testAnimals[2] = new Animal(101,"Ice Gladiator");
+        testAnimals[0] = new Animal(99,"Wi-Fire", "dog", 79);
+        testAnimals[1] = new Animal(100,"Galactic Agent", "dog", 79);
+        testAnimals[2] = new Animal(101,"Ice Gladiator", "dog", 79);
 
         // When the object mapper is supposed to read from the file
         // the mock object mapper will return the animal array above
@@ -101,7 +101,7 @@ public class AnimalFileDAOTest {
     @Test
     public void testCreateAnimal() {
         // Setup
-        Animal animal = new Animal(102,"Wonder-Person");
+        Animal animal = new Animal(102,"Wonder-Person", "dog", 79);
 
         // Invoke
         Animal result = assertDoesNotThrow(() -> animalFileDAO.createAnimal(animal),
@@ -117,7 +117,7 @@ public class AnimalFileDAOTest {
     @Test
     public void testUpdateAnimal() {
         // Setup
-        Animal animal = new Animal(99,"Galactic Agent");
+        Animal animal = new Animal(99,"Galactic Agent", "dog", 79);
 
         // Invoke
         Animal result = assertDoesNotThrow(() -> animalFileDAO.updateAnimal(animal),
@@ -135,7 +135,7 @@ public class AnimalFileDAOTest {
             .when(mockObjectMapper)
                 .writeValue(any(File.class),any(Animal[].class));
 
-        Animal animal = new Animal(102,"Wi-Fire");
+        Animal animal = new Animal(102,"Wi-Fire", "dog", 79);
 
         assertThrows(IOException.class,
                         () -> animalFileDAO.createAnimal(animal),
@@ -165,7 +165,7 @@ public class AnimalFileDAOTest {
     @Test
     public void testUpdateAnimalNotFound() {
         // Setup
-        Animal animal = new Animal(98,"Bolt");
+        Animal animal = new Animal(98,"Bolt", "dog", 79);
 
         // Invoke
         Animal result = assertDoesNotThrow(() -> animalFileDAO.updateAnimal(animal),
