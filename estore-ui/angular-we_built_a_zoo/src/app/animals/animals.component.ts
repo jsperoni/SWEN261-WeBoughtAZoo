@@ -1,19 +1,39 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+
 import { Animal } from '../animals';
-import { ANIMALS } from '../mock-animals';
+import { AnimalService } from '../animal.service';
 
 @Component({
   selector: 'app-animals',
   templateUrl: './animals.component.html',
   styleUrls: ['./animals.component.css']
 })
+export class AnimalsComponent implements OnInit {
+  animals: Animal[] = [];
 
-export class AnimalsComponent {
+  constructor(private animalService: AnimalService) { }
 
-  animals = ANIMALS;
-  selectedAnimal?: Animal;
-
-  onSelect(animals: Animal): void {
-    this.selectedAnimal = animals;
+  ngOnInit(): void {
+    this.getAnimals();
   }
+
+  getAnimals(): void {
+    this.animalService.getAnimals()
+    .subscribe(animals => this.animals = animals);
+  }
+
+  add(name: string): void {
+    name = name.trim();
+    if (!name) { return; }
+    this.animalService.addAnimal({ name } as Animal)
+      .subscribe(animal => {
+        this.animals.push(animal);
+      });
+  }
+
+  delete(animal: Animal): void {
+    this.animals = this.animals.filter(h => h !== animal);
+    this.animalService.deleteAnimal(animal.id).subscribe();
+  }
+
 }

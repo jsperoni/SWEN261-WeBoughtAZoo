@@ -1,18 +1,21 @@
-<h2>In-Stock Animals</h2>
+<h2>My Animals</h2>
+
+<div>
+  <label for="new-animal">Animal name: </label>
+  <input id="new-animal" #animalName />
+
+  <!-- (click) passes input value to add() and then clears the input -->
+  <button type="button" class="add-button" (click)="add(animalName.value); animalName.value=''">
+    Add animal
+  </button>
+</div>
+
 <ul class="animals">
   <li *ngFor="let animal of animals">
-    <button [class.selected]="animal === selectedAnimal" type="button" (click)="onSelect(animal)">
-      <span class="badge">{{animal.id}}</span>
-      <span class="name">{{animal.name}}</span>
-    </button>
+    <a routerLink="/detail/{{animal.id}}">
+      <span class="badge">{{animal.id}}</span> {{animal.name}}
+    </a>
+    <button type="button" class="delete" title="delete animal"
+      (click)="delete(animal)">x</button>
   </li>
 </ul>
-
-<div *ngIf="selectedAnimal">
-  <h2>{{selectedAnimal.name | uppercase}} Details</h2>
-  <div>id: {{selectedAnimal.id}}</div>
-  <div>
-    <label for="animal-name">Animal name: </label>
-    <input id="animal-name" [(ngModel)]="selectedAnimal.name" placeholder="name">
-  </div>
-</div>
