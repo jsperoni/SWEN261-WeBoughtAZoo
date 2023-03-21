@@ -1,9 +1,21 @@
-<h2>Current Animals</h2>
+<h2>In-Stock Animals</h2>
+
+<div>
+  <label for="new-animal">Animal name: </label>
+  <input id="new-animal" #animalName />
+
+  <!-- (click) passes input value to add() and then clears the input -->
+  <button type="button" class="add-button" (click)="add(animalName.value); animalName.value=''">
+    Add animal
+  </button>
+</div>
 
 <ul class="animals">
   <li *ngFor="let animal of animals">
     <a routerLink="/detail/{{animal.id}}">
       <span class="badge">{{animal.id}}</span> {{animal.name}}
     </a>
+    <button type="button" class="delete" title="delete hero"
+      (click)="delete(animal)">x</button>
   </li>
 </ul>

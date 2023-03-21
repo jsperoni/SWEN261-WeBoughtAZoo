@@ -25,11 +25,18 @@ export class AnimalDetailComponent implements OnInit {
 
   getAnimal(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.animalService.getHero(id)
+    this.animalService.getAnimal(id)
       .subscribe(animal => this.animal = animal);
   }
 
   goBack(): void {
     this.location.back();
+  }
+
+  save(): void {
+    if (this.animal) {
+      this.animalService.updateAnimal(this.animal)
+        .subscribe(() => this.goBack());
+    }
   }
 }

@@ -21,4 +21,18 @@ export class AnimalsComponent implements OnInit {
     this.animalService.getAnimals()
     .subscribe(animals => this.animals = animals);
   }
+  add(name: string): void {
+    name = name.trim();
+    if (!name) { return; }
+    this.animalService.addAnimal({ name } as Animal)
+      .subscribe(animal => {
+        this.animals.push(animal);
+      });
+  }
+
+  delete(animal: Animal): void {
+    this.animals = this.animals.filter(h => h !== animal);
+    this.animalService.deleteAnimal(animal.id).subscribe();
+  }
+
 }
