@@ -1,6 +1,6 @@
 package com.zoo.api.zooapi.model;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -80,10 +80,10 @@ public class CustomerTest {
         String[] expected_card = {"newName", "newNum", "newExp", "newCvv", "newZip"};
 
         // Invoke
-        customer.setPersonal(expected_card);
+        customer.setCard(expected_card);
 
         // Analyze
-        assertEquals(expected_card,customer.getCard());
+            assertArrayEquals(expected_card,customer.getCard());
     }
     @Test
     public void testHistory() {
@@ -98,10 +98,10 @@ public class CustomerTest {
         String[] expected_history = {"newAnimal1", "newAnimal2", "newAnimal3"};
 
         // Invoke
-        customer.setPersonal(expected_history);
+        customer.setHistory(expected_history);
 
         // Analyze
-        assertEquals(expected_history,customer.getHistory());
+        assertArrayEquals(expected_history,customer.getHistory());
     }
     @Test
     public void testToString() {
@@ -111,7 +111,10 @@ public class CustomerTest {
         String[] personal = {"6000 Reynolds Drive", "14623", "7743647789"};
         String[] card = {"John Doe", "1111111111111111", "01/23", "111", "14623"};
         String[] history = {"Bongo", "Lightning", "Zeus", "Apollo", "Scooby"};
-        String expected_string = String.format(Customer.STRING_FORMAT,id,username);
+
+//        String expected_string = String.format(Customer.STRING_FORMAT, id, username,personal,card,history);
+        String expected_string = String.format(Customer.STRING_FORMAT, id, username);
+
         Customer customer = new Customer(id, username, personal, card, history);
 
         // Invoke

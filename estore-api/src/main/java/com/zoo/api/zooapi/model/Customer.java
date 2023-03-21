@@ -12,8 +12,8 @@ public class Customer {
     private static final Logger LOG = Logger.getLogger(Customer.class.getName());
 
     // Package private for tests
-    static final String STRING_FORMAT = "customer [id=%d, username=%s, password=%s, personal=%s, card=%s, history=%s]";
-
+//    static final String STRING_FORMAT = "customer [id=%d, username=%s, personal=%s, card=%s, history=%s]";
+static final String STRING_FORMAT = "customer [id=%d, username=%s]";
     @JsonProperty("id") private int id;
     @JsonProperty("username") private String username;
     @JsonProperty("personal") private String[] personal;    // {address, zip, phone #}
@@ -96,6 +96,7 @@ public class Customer {
      */
     @Override
     public String toString() {
-        return String.format("customer [id=%d, username=%s]",id,username);
+//        return String.format(Customer.STRING_FORMAT, id, username,personal,card,history);
+        return String.format(Customer.STRING_FORMAT, id, username);
     }
 }
