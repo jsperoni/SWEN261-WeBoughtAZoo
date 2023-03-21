@@ -14,7 +14,7 @@ import { AnimalService } from '../animal.service';
   templateUrl: './animal-search.component.html',
   styleUrls: [ './animal-search.component.css' ]
 })
-export class HeroSearchComponent implements OnInit {
+export class AnimalSearchComponent implements OnInit {
   animals$!: Observable<Animal[]>;
   private searchTerms = new Subject<string>();
 
