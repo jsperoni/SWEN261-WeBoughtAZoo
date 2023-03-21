@@ -13,7 +13,7 @@ import java.util.Map;
 import java.util.logging.Logger;
 
 @Component
-public class ShoppingCartFileDAO {
+public class ShoppingCartFileDAO implements ShoppingCartDAO {
     private static final Logger LOG = Logger.getLogger(ShoppingCartFileDAO.class.getName());
 
     Map<Integer, ShoppingCart> shoppingCarts;
@@ -46,6 +46,11 @@ public class ShoppingCartFileDAO {
                 incrementAnimal(animalId);
             }
         }
+    }
+
+    @Override
+    public ShoppingCart[] getShoppingCarts() throws IOException {
+        return shoppingCarts.values().toArray(new ShoppingCart[0]);
     }
 
     public ShoppingCart getShoppingCart(int customerId) {
