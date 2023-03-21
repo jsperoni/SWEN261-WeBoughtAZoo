@@ -3,11 +3,11 @@ import { Animal } from '../animals';
 import { AnimalService } from '../animal.service';
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: [ './dashboard.component.css' ]
+  selector: 'app-shopping-cart',
+  templateUrl: './shopping-cart.component.html',
+  styleUrls: [ './shopping-cart.component.css' ]
 })
-export class DashboardComponent implements OnInit {
+export class ShoppingCartComponent implements OnInit {
   animals: Animal[] = [];
 
   constructor(private animalService: AnimalService) { }

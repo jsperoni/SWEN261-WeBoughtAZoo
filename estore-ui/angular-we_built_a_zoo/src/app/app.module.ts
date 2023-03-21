@@ -11,12 +11,15 @@ import { AnimalDetailComponent } from './animal-detail/animal-detail.component';
 import { AnimalsComponent } from './animals/animals.component';
 import { AnimalSearchComponent } from './animal-search/animal-search.component';
 import { MessagesComponent } from './messages/messages.component';
+import { RouterModule } from '@angular/router';
+import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 
 @NgModule({
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule,
+    RouterModule,
     HttpClientModule
   ],
   declarations: [
@@ -25,7 +28,8 @@ import { MessagesComponent } from './messages/messages.component';
     AnimalsComponent,
     AnimalDetailComponent,
     MessagesComponent,
-    AnimalSearchComponent
+    AnimalSearchComponent,
+    ShoppingCartComponent
   ],
   bootstrap: [ AppComponent ]
 })

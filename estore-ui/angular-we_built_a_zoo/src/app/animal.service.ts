@@ -11,7 +11,7 @@ import { MessageService } from './message.service';
 @Injectable({ providedIn: 'root' })
 export class AnimalService {
 
-  private animalsUrl = 'http://localhost:8080/animals'
+  private animalsUrl = 'http://localhost:8080/animals';  // URL to web api
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -53,7 +53,7 @@ export class AnimalService {
     );
   }
 
-  /* GET animals whose name contains search term */
+  // search animals
   searchAnimals(term: string): Observable<Animal[]> {
     if (!term.trim()) {
       // if not search term, return empty animal array.
