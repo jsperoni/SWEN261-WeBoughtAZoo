@@ -4,12 +4,14 @@ import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AnimalsComponent } from './animals/animals.component';
 import { AnimalDetailComponent } from './animal-detail/animal-detail.component';
+import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'detail/:id', component: AnimalDetailComponent },
-  { path: 'animals', component: AnimalsComponent }
+  { path: 'animals', component: AnimalsComponent },
+  { path: 'shoppingCart', component: ShoppingCartComponent }
 ];
 
 @NgModule({

@@ -15,6 +15,7 @@ import { AnimalsComponent } from './animals/animals.component';
 import { AnimalSearchComponent } from './animal-search/animal-search.component';
 import { MessagesComponent } from './messages/messages.component';
 import { RouterModule } from '@angular/router';
+import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 
 @NgModule({
   imports: [
@@ -37,7 +38,8 @@ import { RouterModule } from '@angular/router';
     AnimalsComponent,
     AnimalDetailComponent,
     MessagesComponent,
-    AnimalSearchComponent
+    AnimalSearchComponent,
+    ShoppingCartComponent
   ],
   bootstrap: [ AppComponent ]
 })
