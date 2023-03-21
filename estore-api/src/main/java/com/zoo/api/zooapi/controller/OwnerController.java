@@ -45,42 +45,42 @@ public class OwnerController {
  * following mappings are subject to change
  */
 
-    @GetMapping("/{id}")
+    @GetMapping("/animal/{id}")
     public ResponseEntity<Animal> getAnimal(@PathVariable int id) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
     }
 
-    @PostMapping("/{id}")
+    @PostMapping("/animal/{id}")
     public ResponseEntity<Animal> addAnimal(@RequestBody Animal animal) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
     }
 
-    @PutMapping("")
+    @PutMapping("animal")
     public ResponseEntity<Animal> editAnimal(@RequestBody Animal animal) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/animal/{id}")
     public ResponseEntity<Animal> removeAnimal(@PathVariable Animal animal) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/customer/{id}")
     public ResponseEntity<Customer> getCustomer(@PathVariable Customer customer) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
     }
 
-    @PostMapping("")
+    @PostMapping("customer")
     public ResponseEntity<Customer> createCustomer(@RequestBody Customer customer) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
     }
 
-    @PutMapping("")
+    @PutMapping("customer")
     public ResponseEntity<Customer> updateCustomer(@RequestBody Customer customer) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/customer/{id}")
     public ResponseEntity<Customer> deleteCustomer(@PathVariable Customer customer) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
     }
