@@ -29,7 +29,7 @@ public class Animal {
      */
     public Animal(@JsonProperty("id") int id, @JsonProperty("name") String name) {
         this.id = id;
-        this.name = name;
+        this.name = name; jgvm
     }
 
     /**
