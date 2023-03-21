@@ -178,7 +178,7 @@ public class AnimalFileDAO implements AnimalDAO {
         synchronized(animals) {
             // We create a new Animal object because the id field is immutable
             // and we need to assign the next unique id
-            Animal newAnimal = new Animal(nextId(), animal.getName());
+            Animal newAnimal = new Animal(nextId(), animal.getName(), animal.getSpecies(), animal.getPrice());
             animals.put(newAnimal.getId(),newAnimal);
             save(); // may throw an IOException
             return newAnimal;
