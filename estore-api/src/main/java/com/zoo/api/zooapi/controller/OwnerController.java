@@ -1,6 +1,6 @@
 package com.zoo.api.zooapi.controller;
 
-import com.zoo.api.zooapi.persistence.AnimalDAO;
+
 import com.zoo.api.zooapi.persistence.OwnerDAO;
 
 import org.springframework.http.HttpStatus;
@@ -45,42 +45,42 @@ public class OwnerController {
  * following mappings are subject to change
  */
 
-    @GetMapping("/animal/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Animal> getAnimal(@PathVariable int id) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
     }
 
-    @PostMapping("/animal/{id}")
+    @PostMapping("/{id}")
     public ResponseEntity<Animal> addAnimal(@RequestBody Animal animal) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
     }
 
-    @PutMapping("/animal")
+    @PutMapping("")
     public ResponseEntity<Animal> editAnimal(@RequestBody Animal animal) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
     }
 
-    @DeleteMapping("/animal/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<Animal> removeAnimal(@PathVariable Animal animal) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
     }
 
-    @GetMapping("/customer/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Customer> getCustomer(@PathVariable Customer customer) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
     }
 
-    @PostMapping("/customer")
+    @PostMapping("")
     public ResponseEntity<Customer> createCustomer(@RequestBody Customer customer) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
     }
 
-    @PutMapping("/customer")
+    @PutMapping("")
     public ResponseEntity<Customer> updateCustomer(@RequestBody Customer customer) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
     }
 
-    @DeleteMapping("/customer/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<Customer> deleteCustomer(@PathVariable Customer customer) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
     }

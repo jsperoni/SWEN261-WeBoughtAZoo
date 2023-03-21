@@ -30,8 +30,22 @@ public class ShoppingCartController {
     }
 
     @GetMapping("")
-    public ResponseEntity<ShoppingCart[]> getShoppingCart() {
+    public ResponseEntity<ShoppingCart[]> getShoppingCarts() {
         Log.info("GET /shoppingcart");
+
+        try {
+            ShoppingCart cart[] = shoppingCartDao.getShoppingCarts();
+            return new ResponseEntity<ShoppingCart[]>(cart,HttpStatus.OK);
+        }
+        catch(IOException e) {
+            Log.log(Level.SEVERE,e.getLocalizedMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<ShoppingCart[]> getShoppingCart(@PathVariable int id) {
+        Log.info("GET /shoppingcart" + id);
 
         try {
             ShoppingCart cart[] = shoppingCartDao.getShoppingCarts();
