@@ -21,10 +21,11 @@ export class AnimalsComponent implements OnInit {
     this.animalService.getAnimals()
     .subscribe(animals => this.animals = animals);
   }
-  add(name: string): void {
+  add(name: string, species: string, price: number): void {
     name = name.trim();
-    if (!name) { return; }
-    this.animalService.addAnimal({ name } as Animal)
+    species = species.trim();
+    if (!name || !species || !price) { return; }
+    this.animalService.addAnimal({ name, species, price} as Animal)
       .subscribe(animal => {
         this.animals.push(animal);
       });

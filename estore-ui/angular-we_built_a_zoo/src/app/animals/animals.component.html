@@ -11,7 +11,7 @@
   <input id="new-animal" #animalPrice />
 
   <!-- (click) passes input value to add() and then clears the input -->
-  <button type="button" class="add-button" (click)="add(animalName.value); animalName.value=''; animalSpecies.value=''; animalPrice.value=''">
+  <button type="button" class="add-button" (click)="add(animalName.value, animalSpecies.value, animalPrice.value); animalName.value=''; animalSpecies.value=''; animalPrice.value=''">
     Add animal
   </button>
 </div>
