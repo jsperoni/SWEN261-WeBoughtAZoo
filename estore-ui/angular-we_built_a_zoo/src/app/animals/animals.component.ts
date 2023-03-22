@@ -21,8 +21,9 @@ export class AnimalsComponent implements OnInit {
     this.animalService.getAnimals()
     .subscribe(animals => this.animals = animals);
   }
-  add(name: string, species: string, price: number): void {
+  add(name: string, species: string, priceStr: string): void {
     name = name.trim();
+    let price = Number(priceStr);
     species = species.trim();
     if (!name || !species || !price) { return; }
     this.animalService.addAnimal({ name, species, price} as Animal)

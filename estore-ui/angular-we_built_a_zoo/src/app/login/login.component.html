@@ -2,7 +2,7 @@
     <label for="customer-username">Username: </label>
     <input id="customer-username" #username />
 
-    <button type="button" class="login-button" (click)="username.value=''">
+    <button type="button" class="login-button" (click)="login(username.value); username.value=''">
         Login
       </button>
 </div>
