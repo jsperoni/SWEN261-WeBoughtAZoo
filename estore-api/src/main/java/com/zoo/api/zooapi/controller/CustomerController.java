@@ -77,8 +77,8 @@ public class CustomerController {
         Log.info("GET /customers/?name="+containsText);
 
         try{
-            Customer customerarray[] = customerDao.findCustomers(containsText);
-            return new ResponseEntity<Customer>(customerarray[0], HttpStatus.OK);
+            Customer customer = customerDao.searchCustomer(containsText);
+            return new ResponseEntity<Customer>(customer , HttpStatus.OK);
         } 
         catch(IOException e){
         Log.log(Level.SEVERE,e.getLocalizedMessage());
