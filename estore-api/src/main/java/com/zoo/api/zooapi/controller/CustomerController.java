@@ -28,7 +28,7 @@ public class CustomerController {
         this.customerDao = customerDao;
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/by_id/{id}")
     public ResponseEntity<Customer> getCustomer(@PathVariable int id) {
          try {
             Customer customer = customerDao.getCustomer(id);
@@ -43,7 +43,7 @@ public class CustomerController {
         }
     }
 
-    @GetMapping("")
+    @GetMapping("/")
     public ResponseEntity<Customer[]> getCustomers() {
         Log.info("GET /customers");
 
@@ -59,8 +59,8 @@ public class CustomerController {
 
 
 
-    @GetMapping("/")
-    public ResponseEntity<Customer> searchCustomer(@RequestParam String containsText) {
+    @GetMapping("?name={containsText}")
+    public ResponseEntity<Customer> searchCustomer(@PathVariable String containsText) {
         Log.info("GET /customers/?name="+containsText);
 
         try{
@@ -74,7 +74,26 @@ public class CustomerController {
         }
     }
 
+    @GetMapping("login")
+    public ResponseEntity<Customer> login(@RequestParam String username, @RequestParam(required = false, defaultValue = "") String password) {
+        Log.info("GET /customers/login?username="+ username +"&password="+ password);
 
+        try {
+            Customer customer = customerDao.login(username, password);
+            if (customer != null) {
+                return new ResponseEntity<>(customer, HttpStatus.OK);
+            }
+            else {
+                Customer newCustomer = new Customer(0, username, null, null, null);
+                newCustomer = customerDao.createCustomer(newCustomer);
+                return new ResponseEntity<>(newCustomer, HttpStatus.CREATED);
+            }
+        }
+        catch(IOException e) {
+            Log.log(Level.SEVERE,e.getLocalizedMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 
     @PostMapping("")
     public ResponseEntity<Customer> createCustomer(@RequestBody Customer customer) {
@@ -118,30 +137,13 @@ public class CustomerController {
         }
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/by_id/{id}")
     public ResponseEntity<Boolean> deleteCustomer(@PathVariable int id) {
         Log.info("DELETE /customers/" + id);
 
         try {
             if (customerDao.deleteCustomer(id))
                 return new ResponseEntity<>(HttpStatus.OK);
-            else
-                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        catch(IOException e) {
-            Log.log(Level.SEVERE,e.getLocalizedMessage());
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-
-    @GetMapping("/login")
-    public ResponseEntity<Customer> login(@PathVariable String username, @PathVariable String password) {
-        Log.info("GET /customers/login?username="+username+"&password="+password);
-
-        try {
-            Customer customer = customerDao.login(username, password);
-            if (customer != null)
-                return new ResponseEntity<>(customer, HttpStatus.OK);
             else
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
