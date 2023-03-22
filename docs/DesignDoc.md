@@ -9,12 +9,13 @@ geometry: margin=1in
 > and appear in the generated PDF in italics._
 
 ## Team Information
-* Team name: TEAMNAME
+* Team name: 6F We Bought a Zoo
 * Team members
-  * MEMBER1
-  * MEMBER2
-  * MEMBER3
-  * MEMBER4
+  * Krysta Lestico
+  * Aayan Sayed
+  * Jack Speroni
+  * Joseph O'Neil
+  * Bobby Dhanoolal
 
 ## Executive Summary
 
@@ -183,6 +184,11 @@ Controller:
 > criteria tests failing, and the number of user stories that
 > have not had any testing yet. Highlight the issues found during
 > acceptance testing and if there are any concerns._
+Controller: The Animal and Customer controllers are well covered, missing only a single line in a single branch. The shopping cart and owner controllers are not nearly as well covered. Coverage for these classes in the controller tier will be significantly expanded and finished in sprint 3.
+
+Model: The Animal and Customer classes are well covered by line and instruction count, but the customer class contains a branch which is not covered by testing. This branch is the case in the equals method where the other object is not a Customer, which simply returns false, but was not tested. The Shopping Cart and Owner classes are much less rigorously tested, and their testing will be expanded upon in sprint 3.
+
+Persistence: All currently implemented DAOs are fairly well tested, missing only a few instructions and 6 branches out of 68. The OwnerFileDAO class is currently only stubbed out and does not yet have tests written.
 
 ### Unit Testing and Code Coverage
 > _**[Sprint 4]** Discuss your unit testing strategy. Report on the code coverage
@@ -192,3 +198,7 @@ Controller:
 
 >_**[Sprint 2 & 4]** **Include images of your code coverage report.** If there are any anomalies, discuss
 > those._
+The controller tier had an anomaly where in the customer class, it was missing tests for a branch. Otherwise for the class that we had fully flashed out were mostly (75-100%) covered by the unit testing.
+![Controller Tier](image1.png)
+![Model Tier](image2.png)
+![Persistence Tier](image3.png)
