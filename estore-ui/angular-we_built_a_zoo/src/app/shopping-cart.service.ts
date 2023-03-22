@@ -44,7 +44,7 @@ export class ShoppingCartService {
       );
   }
   
-  /** GET shopping cart by id. Will 404 if id not found */
+  /** GET shopping cart by id. Will 404 if id is not found */
   getShoppingCart(id: number): Observable<ShoppingCart> {
     const url = `${this.shoppingCartUrl}/${id}`;
     return this.http.get<ShoppingCart>(url).pipe(
