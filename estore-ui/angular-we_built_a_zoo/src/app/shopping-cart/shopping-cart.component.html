@@ -1,0 +1,7 @@
+<h2>Shopping cart</h2>
+<div class="animals-menu">
+  <a *ngFor="let animal of animals"
+    routerLink="/detail/{{animal.id}}">
+    {{animal.name}}
+  </a>
+</div>
