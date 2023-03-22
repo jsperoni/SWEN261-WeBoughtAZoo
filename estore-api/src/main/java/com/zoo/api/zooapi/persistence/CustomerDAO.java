@@ -12,6 +12,8 @@ public interface CustomerDAO {
 
     Customer getCustomer(int id) throws IOException;
 
+    Customer searchCustomer(String username) throws IOException;
+
     Customer createCustomer(Customer customer) throws IOException;
 
     Customer updateCustomer(Customer customer) throws IOException;

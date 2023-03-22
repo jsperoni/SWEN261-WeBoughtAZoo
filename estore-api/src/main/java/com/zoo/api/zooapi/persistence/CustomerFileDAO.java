@@ -90,6 +90,14 @@ public class CustomerFileDAO implements CustomerDAO {
     }
 
     @Override
+    public Customer searchCustomer(String containsText) {
+        synchronized(customers){
+            Customer[] customerArray = getCustomerArray(containsText);
+            return customerArray[0];
+        }
+    }
+
+    @Override
     public Customer getCustomer(int id) {
         synchronized(customers) {
             return customers.getOrDefault(id, null);
