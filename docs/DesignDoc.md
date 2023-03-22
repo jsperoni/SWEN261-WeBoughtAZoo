@@ -9,6 +9,7 @@ geometry: margin=1in
 > and appear in the generated PDF in italics._
 
 ## Team Information
+<<<<<<< HEAD
 * Team name: 6F We Bought a Zoo
 * Team members
   * Krysta Lestico
@@ -16,6 +17,8 @@ geometry: margin=1in
   * Jack Speroni
   * Joseph O'Neil
   * Bobby Dhanoolal
+
+>>>>>>> 5039b5edb61723d27db056b39e7b75e6fe89d5ae
 
 ## Executive Summary
 
@@ -189,6 +192,9 @@ Controller: The Animal and Customer controllers are well covered, missing only a
 Model: The Animal and Customer classes are well covered by line and instruction count, but the customer class contains a branch which is not covered by testing. This branch is the case in the equals method where the other object is not a Customer, which simply returns false, but was not tested. The Shopping Cart and Owner classes are much less rigorously tested, and their testing will be expanded upon in sprint 3.
 
 Persistence: All currently implemented DAOs are fairly well tested, missing only a few instructions and 6 branches out of 68. The OwnerFileDAO class is currently only stubbed out and does not yet have tests written.
+
+We were able to meet the acceptence criteria for the owner account where we have a seperate frontend for a user and a admin.
+We also meet the requirment for adding a product, removing a product, editing an existing product from the inventory. We also fullfied the critera for the individual customer and have their personal information. We were not able to complete a checkout proccess or handling each customers billing information and address.
 
 ### Unit Testing and Code Coverage
 > _**[Sprint 4]** Discuss your unit testing strategy. Report on the code coverage
