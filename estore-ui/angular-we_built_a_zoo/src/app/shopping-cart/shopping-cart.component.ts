@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Animal } from '../animals';
-import { AnimalService } from '../animal.service';
+import { ShoppingCart } from '../shopping-cart';
+import { ShoppingCartService } from '../shopping-cart.service';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -8,16 +9,16 @@ import { AnimalService } from '../animal.service';
   styleUrls: [ './shopping-cart.component.css' ]
 })
 export class ShoppingCartComponent implements OnInit {
-  animals: Animal[] = [];
+  shoppingCarts: ShoppingCart[] = [];
 
-  constructor(private animalService: AnimalService) { }
+  constructor(private shoppingCartService: ShoppingCartService) { }
 
   ngOnInit(): void {
-    this.getAnimals();
+    this.getShoppingCarts();
   }
 
-  getAnimals(): void {
-    this.animalService.getAnimals()
-      .subscribe(animals => this.animals = animals.slice(1, 5));
+  getShoppingCarts(): void {
+    this.shoppingCartService.getShoppingCarts()
+      .subscribe(shoppingCarts => this.shoppingCarts = shoppingCarts);
   }
 }

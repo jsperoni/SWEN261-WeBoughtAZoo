@@ -11,7 +11,7 @@
   <input id="new-animal" #animalPrice />
 
   <!-- (click) passes input value to add() and then clears the input -->
-  <button type="button" class="add-button" (click)="add(animalName.value); animalName.value=''; animalSpecies.value=''; animalPrice.value=''">
+  <button type="button" class="add-button" (click)="add(animalName.value, animalSpecies.value, animalPrice.value); animalName.value=''; animalSpecies.value=''; animalPrice.value=''">
     Add animal
   </button>
 </div>
@@ -20,7 +20,7 @@
 <ul class="animals">
   <li *ngFor="let animal of animals">
     <a routerLink="/detail/{{animal.id}}">
-      <span class="badge">{{animal.id}}</span> {{animal.name}}
+      <span class="badge">{{animal.id}}</span> {{animal.name}} (Species: {{animal.species}})
     </a>
     <!--<a ngIf="owner-condition">-->
     <button type="button" class="delete" title="delete animal"

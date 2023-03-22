@@ -3,7 +3,7 @@
   margin: 0 0 2em 0;
   list-style-type: none;
   padding: 0;
-  width: 15em;
+  width: 20em;
 }
 
 input {
@@ -75,8 +75,8 @@ input {
 
 button.delete {
   position: absolute;
-  left: 210px;
-  top: 5px;
+  left: 290px;
+  top: 3px;
   background-color: white;
   color:  #525252;
   font-size: 1.1rem;
