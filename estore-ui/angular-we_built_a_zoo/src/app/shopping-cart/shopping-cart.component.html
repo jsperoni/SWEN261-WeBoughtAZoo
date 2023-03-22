@@ -1,6 +1,6 @@
 <h2>Shopping cart</h2>
-<div class="shppingcart">
-  <a *ngFor="let animal of shoppingcart"
+<div class="shoppingcart">
+  <a *ngFor="let animal of shoppingCart"
     routerLink="/detail/{{animal.id}}">
     {{animal.name}} (Species: {{animal.species}})
   </a>
