@@ -57,20 +57,7 @@ public class CustomerController {
         }
     }
 
-    @GetMapping("/")
-    public ResponseEntity<Customer[]> findCustomers(@RequestParam String containsText) {
-        Log.info("GET /customers/?name="+containsText);
 
-        try{
-            Customer customerarray[] = customerDao.findCustomers(containsText);
-            return new ResponseEntity<Customer[]>(customerarray, HttpStatus.OK);
-        } 
-        catch(IOException e){
-        Log.log(Level.SEVERE,e.getLocalizedMessage());
-        return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-            
-        }
-    }
 
     @GetMapping("/")
     public ResponseEntity<Customer> searchCustomer(@RequestParam String containsText) {
@@ -78,7 +65,7 @@ public class CustomerController {
 
         try{
             Customer customer = customerDao.searchCustomer(containsText);
-            return new ResponseEntity<Customer>(customer , HttpStatus.OK);
+            return new ResponseEntity<Customer>(customer, HttpStatus.OK);
         } 
         catch(IOException e){
         Log.log(Level.SEVERE,e.getLocalizedMessage());
