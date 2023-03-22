@@ -1,6 +1,7 @@
 <div *ngIf="animal">
     <h2>{{animal.name | uppercase}} Details</h2>
     <div><span>id: </span>{{animal.id}}</div>
+    <!--<a ngIf="owner-condition">-->
     <div>
       <label for="animal-name">Animal name: </label>
       <input id="animal-name" [(ngModel)]="animal.name" placeholder="Animal name"/>
@@ -15,6 +16,16 @@
         <input id="animal-price" [(ngModel)]="animal.price" placeholder="Animal price"/>
       </div>
     -->
+    <!--</a>-->
+
+    <!--<a ngIf="customer-condition">
+        <div><span>Name: </span>{{animal.name}}</div>
+
+          <div><span>Species: </span>{{animal.species}}</div>
+          
+          <div><span>Price: </span>{{animal.price}}</div>
+          </a>-->
+
     <button type="button" (click)="goBack()">go back</button>
     <button type="button" (click)="save()">save</button>
   </div>

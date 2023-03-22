@@ -1,5 +1,5 @@
 <h2>In-Stock Animals</h2>
-
+<!--<a ngIf="owner-condition">-->
 <div>
   <label for="new-animal">Animal name: </label>
   <input id="new-animal" #animalName />
@@ -15,13 +15,16 @@
     Add animal
   </button>
 </div>
+<!--</a>-->
 
 <ul class="animals">
   <li *ngFor="let animal of animals">
     <a routerLink="/detail/{{animal.id}}">
       <span class="badge">{{animal.id}}</span> {{animal.name}}
     </a>
+    <!--<a ngIf="owner-condition">-->
     <button type="button" class="delete" title="delete animal"
       (click)="delete(animal)">x</button>
+    <!--</a>-->
   </li>
 </ul>
