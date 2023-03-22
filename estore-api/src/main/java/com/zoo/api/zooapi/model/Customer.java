@@ -92,6 +92,10 @@ static final String STRING_FORMAT = "customer [id=%d, username=%s]";
      */
     public void setHistory(String[] history) {this.history = history;}
 
+    public boolean passwordMatch(String password) {
+        return true;
+    }
+
     /**
      * {@inheritDoc}
      */

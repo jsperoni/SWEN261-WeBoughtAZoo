@@ -65,7 +65,7 @@ public class CustomerController {
 
         try{
             Customer customer = customerDao.searchCustomer(containsText);
-            return new ResponseEntity<Customer>(customer, HttpStatus.OK);
+            return new ResponseEntity<>(customer, HttpStatus.OK);
         } 
         catch(IOException e){
         Log.log(Level.SEVERE,e.getLocalizedMessage());
@@ -125,6 +125,23 @@ public class CustomerController {
         try {
             if (customerDao.deleteCustomer(id))
                 return new ResponseEntity<>(HttpStatus.OK);
+            else
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        catch(IOException e) {
+            Log.log(Level.SEVERE,e.getLocalizedMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/login")
+    public ResponseEntity<Customer> login(@PathVariable String username, @PathVariable String password) {
+        Log.info("GET /customers/login?username="+username+"&password="+password);
+
+        try {
+            Customer customer = customerDao.login(username, password);
+            if (customer != null)
+                return new ResponseEntity<>(customer, HttpStatus.OK);
             else
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }

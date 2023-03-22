@@ -235,7 +235,7 @@ public class CustomerControlerTest {
     @Test
     public void testSearchCustomeres() throws IOException { // findCustomeres may throw IOException
         // Setup
-        String searchString = "Jo";
+        String searchString = "Ga";
         Customer[] customers = new Customer[2];
         String[] personal = {"6000 Reynolds Drive", "14623", "7743647789"};
         String[] card = {"John Doe", "1111111111111111", "01/23", "111", "14623"};
@@ -244,14 +244,14 @@ public class CustomerControlerTest {
         customers[1] = new Customer(100,"Ice Gladiator", personal, card, history);
         // When findCustomeres is called with the search string, return the two
         /// customers above
-        when(mockCustomerDAO.findCustomers(searchString)).thenReturn(customers);
+        when(mockCustomerDAO.searchCustomer(searchString)).thenReturn(customers[0]);
 
         // Invoke
-        ResponseEntity<Customer[]> response = customerController.searchCustomers(searchString);
+        ResponseEntity<Customer> response = customerController.searchCustomer(searchString);
 
         // Analyze
         assertEquals(HttpStatus.OK,response.getStatusCode());
-        assertEquals(customers,response.getBody());
+        assertEquals(customers[0],response.getBody());
     }
 
     @Test
@@ -259,10 +259,10 @@ public class CustomerControlerTest {
         // Setup
         String searchString = "an";
         // When createCustomer is called on the Mock Customer DAO, throw an IOException
-        doThrow(new IOException()).when(mockCustomerDAO).findCustomers(searchString);
+        doThrow(new IOException()).when(mockCustomerDAO).searchCustomer(searchString);
 
         // Invoke
-        ResponseEntity<Customer[]> response = customerController.searchCustomers(searchString);
+        ResponseEntity<Customer> response = customerController.searchCustomer(searchString);
 
         // Analyze
         assertEquals(HttpStatus.INTERNAL_SERVER_ERROR,response.getStatusCode());

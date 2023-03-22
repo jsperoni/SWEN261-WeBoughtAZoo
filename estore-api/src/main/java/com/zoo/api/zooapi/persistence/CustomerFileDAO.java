@@ -127,6 +127,18 @@ public class CustomerFileDAO implements CustomerDAO {
     }
 
     @Override
+    public Customer login(String username, String password) throws IOException {
+        synchronized(customers) {
+            for (Customer customer : customers.values()) {
+                if (customer.getUsername().equals(username) && customer.passwordMatch(password)) {
+                    return customer;
+                }
+            }
+            return null;
+        }
+    }
+
+    @Override
     public boolean deleteCustomer(int id) throws IOException {
         synchronized(customers) {
             if (customers.containsKey(id)) {
