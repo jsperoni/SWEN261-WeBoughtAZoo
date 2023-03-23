@@ -5,6 +5,10 @@ import { Location } from '@angular/common';
 import { Animal } from '../animals';
 import { AnimalService } from '../animal.service';
 
+import { instance } from '../login/login.component';
+
+let components: AnimalDetailComponent[] = [];
+
 @Component({
   selector: 'app-animal-detail',
   templateUrl: './animal-detail.component.html',
@@ -12,12 +16,15 @@ import { AnimalService } from '../animal.service';
 })
 export class AnimalDetailComponent implements OnInit {
   animal: Animal | undefined;
+  username?: string = instance.customer?.username;
 
   constructor(
     private route: ActivatedRoute,
     private animalService: AnimalService,
     private location: Location
-  ) {}
+  ) {
+
+  }
 
   ngOnInit(): void {
     this.getAnimal();
@@ -38,5 +45,9 @@ export class AnimalDetailComponent implements OnInit {
       this.animalService.updateAnimal(this.animal)
         .subscribe(() => this.goBack());
     }
+  }
+
+  isAdmin() : boolean {
+    return instance.customer?.username === 'admin';
   }
 }

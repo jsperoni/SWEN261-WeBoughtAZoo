@@ -12,6 +12,7 @@ import { MessageService } from './message.service';
 })
 export class CustomerService {
   private customerUrl = 'http://localhost:8080/customers';  // URL to web api
+  private loginUrl = 'http://localhost:8080/customers/login'; // URL to login endpoint
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -92,6 +93,13 @@ export class CustomerService {
     return this.http.put(this.customerUrl, customer, this.httpOptions).pipe(
       tap(_ => this.log(`updated customer id=${customer.id}`)),
       catchError(this.handleError<any>('updateCustomer'))
+    );
+  }
+
+  login(username: string): Observable<any> {
+    return this.http.get(`${this.loginUrl}?username=${username}&password=empty`).pipe(
+      tap(_ => this.log(`logged in as customer name=${username}`)),
+      catchError(this.handleError<any>('login'))
     );
   }
 

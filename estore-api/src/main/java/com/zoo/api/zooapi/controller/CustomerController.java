@@ -59,8 +59,8 @@ public class CustomerController {
 
 
 
-    @GetMapping("?name={containsText}")
-    public ResponseEntity<Customer> searchCustomer(@PathVariable String containsText) {
+    @GetMapping("")
+    public ResponseEntity<Customer> searchCustomer(@RequestParam(value="name") String containsText) {
         Log.info("GET /customers/?name="+containsText);
 
         try{

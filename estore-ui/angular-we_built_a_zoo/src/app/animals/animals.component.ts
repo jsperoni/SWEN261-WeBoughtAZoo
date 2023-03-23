@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { Animal } from '../animals';
 import { AnimalService } from '../animal.service';
+import { instance } from '../login/login.component';
 
 @Component({
   selector: 'app-animals',
@@ -36,5 +37,8 @@ export class AnimalsComponent implements OnInit {
     this.animals = this.animals.filter(h => h !== animal);
     this.animalService.deleteAnimal(animal.id).subscribe();
   }
-
+  
+  isAdmin() : boolean {
+    return instance.customer?.username === 'admin';
+  }
 }

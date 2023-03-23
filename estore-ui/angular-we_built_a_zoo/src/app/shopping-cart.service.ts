@@ -71,6 +71,13 @@ export class ShoppingCartService {
     );
   }
 
+  getAnimal(id: number): Observable<any> {
+    return this.http.get(`http://localhost:8080/animals/${id}`).pipe(
+      tap(_ => this.log(`fetched animal id=${id}`)),
+      catchError(this.handleError<any>('getAnimal'))
+    );
+  }
+
   /**
    * Handle Http operation that failed.
    * Let the app continue.
