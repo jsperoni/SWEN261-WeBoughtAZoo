@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Observable, of } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
+import { catchError, filter, map, tap } from 'rxjs/operators';
 
 import { Animal } from './animals';
 import { ShoppingCart } from './shopping-cart';
@@ -25,14 +25,19 @@ export class ShoppingCartService {
   getShoppingCarts(): Observable<ShoppingCart[]> {
   return this.http.get<ShoppingCart[]>(this.shoppingCartUrl)
     .pipe(
-      tap(_ => this.log('fetched shopping carts')),
+      tap(val => this.log(`fetched shopping carts (got ${val.length} carts)`)),
+      tap(val => {
+        for(let cart of val) {
+          this.log(`got ${cart.customer_id}`)
+        }
+      }),
       catchError(this.handleError<ShoppingCart[]>('getShoppingCarts', []))
     );
   }
 
   /** GET shopping cart by id. Return `undefined` when id not found */
   getShoppingCartNo404<Data>(id: number): Observable<ShoppingCart> {
-    const url = `${this.shoppingCartUrl}/?id=${id}`;
+    const url = `${this.shoppingCartUrl}/${id}`;
     return this.http.get<ShoppingCart[]>(url)
       .pipe(
         map(shoppingCarts => shoppingCarts[0]), // returns a {0|1} element array
@@ -44,13 +49,18 @@ export class ShoppingCartService {
       );
   }
   
-  /** GET shopping cart by id. Will 404 if id not found */
+  /** GET shopping cart by id. Will 404 if id is not found */
   getShoppingCart(id: number): Observable<ShoppingCart> {
-    const url = `${this.shoppingCartUrl}/${id}`;
-    return this.http.get<ShoppingCart>(url).pipe(
-      tap(_ => this.log(`fetched shopping cart id=${id}`)),
+    const url = `${this.shoppingCartUrl}`;
+    this.log(`attempting to get ${url}`);
+    return this.http.get<ShoppingCart[]>(url).pipe(
+      map(carts => {
+        return carts
+        .find(cart => cart.customer_id == id) as ShoppingCart
+      }),
+      tap(val => this.log(`fetched shopping cart id=${id} (contains ${val.animals.length} animals)`)),
       catchError(this.handleError<ShoppingCart>(`getShoppingCart id=${id}`))
-    );
+      );
   }
 
   /** DELETE: delete the shopping cart from the server */
@@ -66,9 +76,35 @@ export class ShoppingCartService {
   /** PUT: update the shopping cart on the server */
   updateShoppingCart(shoppingCart: ShoppingCart): Observable<any> {
     return this.http.put(this.shoppingCartUrl, shoppingCart, this.httpOptions).pipe(
-      tap(_ => this.log(`updated shopping cart id=${shoppingCart.id}`)),
+      tap(_ => this.log(`updated shopping cart id=${shoppingCart.customer_id}`)),
       catchError(this.handleError<any>('updateShoppingCart'))
     );
+  }
+
+  getAnimal(id: number): Observable<any> {
+    return this.http.get(`http://localhost:8080/animals/${id}`).pipe(
+      tap(_ => this.log(`fetched animal id=${id}`)),
+      catchError(this.handleError<any>('getAnimal'))
+    );
+  }
+
+  addToCart(cartId: number, animalId: number): Observable<any> {
+    return this.http.put(`${this.shoppingCartUrl}/${cartId}/${animalId}`, "nothing goes here").pipe(
+      tap(_ => this.log(`added animal id=${animalId} to cart id=${cartId}`)),
+      catchError(this.handleError<any>('addToCart'))
+    );
+  }
+
+  removeFromCart(cartId: number, animalId: number): Observable<any> {
+    return this.http.delete(`${this.shoppingCartUrl}/${cartId}/${animalId}`).pipe(
+      tap(_ => this.log(`removed animal id=${animalId} from cart id=${cartId}`)),
+      catchError(this.handleError<any>('removeFromCart'))
+    );
+  }
+
+  createShoppingCart(cartId: number) {
+    return this.addToCart(cartId, 9999).subscribe(
+      _ => this.removeFromCart(cartId, 9999));
   }
 
   /**

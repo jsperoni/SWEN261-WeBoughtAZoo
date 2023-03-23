@@ -1,4 +1,4 @@
 export interface ShoppingCart {
-    id: number;
-    animals: Set<number>;
+    customer_id: number;
+    animals: number[]
   }

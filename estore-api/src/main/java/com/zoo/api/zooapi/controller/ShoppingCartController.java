@@ -57,15 +57,18 @@ public class ShoppingCartController {
         }
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/{id}/{animalId}")
     public ResponseEntity<ShoppingCart> addAnimalToShoppingCart(@PathVariable int id, @PathVariable int animalId) {
         Log.info("PUT /shoppingcart " + id);
 
         // Replace below with your implementation
         try {
             ShoppingCart cartnew = shoppingCartDao.addAnimalToShoppingCart(id, animalId);
-            if (cartnew == null)
-                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            if (cartnew == null){
+                cartnew = shoppingCartDao.createShoppingCart(new ShoppingCart(id));
+                shoppingCartDao.addAnimalToShoppingCart(id, animalId);
+                return new ResponseEntity<>(cartnew, HttpStatus.OK);
+            }
             else {
                 return new ResponseEntity<>(cartnew, HttpStatus.OK);
             }
@@ -76,7 +79,7 @@ public class ShoppingCartController {
         }
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/{id}/{animalId}")
     public ResponseEntity<ShoppingCart> removeAnimalFromShoppingCart(@PathVariable int id, @PathVariable int animalId) {
         Log.info("DELETE /animal/" + id);
 

@@ -3,6 +3,8 @@ import { Component } from '@angular/core';
 import { Customer } from '../customer';
 import { CustomerService } from '../customer.service';
 
+let instance: LoginComponent;
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -10,9 +12,11 @@ import { CustomerService } from '../customer.service';
 })
 export class LoginComponent {
   customers: Customer[] = [];
-  loginId: number = 0;
+  customer?: Customer;
 
-  constructor(private customerService: CustomerService) { }
+  constructor(private customerService: CustomerService) {
+    instance = this;
+   }
 
   ngOnInit(): void {
     this.getCustomers();
@@ -33,10 +37,13 @@ export class LoginComponent {
 
   login(username: string): void{
     if (!username) { return; }
-    // this comment adds a new customer, login will not do this, however I do not know how to login yet.
-    // this.customerService.addCustomer({ username } as Customer)
-    // .subscribe(customer => {
-    //  this.customers.push(customer);
-    //});
+    this.customerService.login(username)
+      .subscribe(customer => this.customer = customer);
+  }
+
+  getCurrentCustomer(): Customer | undefined {
+    return this.customer;
   }
 }
+
+export { instance };

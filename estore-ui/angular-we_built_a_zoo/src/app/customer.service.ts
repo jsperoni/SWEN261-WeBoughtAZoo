@@ -6,12 +6,15 @@ import { catchError, map, tap } from 'rxjs/operators';
 
 import { Customer } from './customer';
 import { MessageService } from './message.service';
+import { ShoppingCartService } from './shopping-cart.service';
+import { validate } from 'json-schema';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CustomerService {
   private customerUrl = 'http://localhost:8080/customers';  // URL to web api
+  private loginUrl = 'http://localhost:8080/customers/login'; // URL to login endpoint
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -19,7 +22,8 @@ export class CustomerService {
 
   constructor(
     private http: HttpClient,
-    private messageService: MessageService) { }
+    private messageService: MessageService,
+    private shoppingCartService: ShoppingCartService) { }
 
   /** GET customers from the server */
   getCustomers(): Observable<Customer[]> {
@@ -92,6 +96,19 @@ export class CustomerService {
     return this.http.put(this.customerUrl, customer, this.httpOptions).pipe(
       tap(_ => this.log(`updated customer id=${customer.id}`)),
       catchError(this.handleError<any>('updateCustomer'))
+    );
+  }
+
+  login(username: string): Observable<any> {
+
+    return this.http.get(`${this.loginUrl}?username=${username}&password=empty`).pipe(
+      tap(val => {
+        this.log(`logged in as customer name=${username}`);
+        let customer = val as Customer;
+        this.log(`creating new cart for user ${customer.id}`)
+        this.shoppingCartService.createShoppingCart(customer.id);
+      }),
+      catchError(this.handleError<any>('login'))
     );
   }
 

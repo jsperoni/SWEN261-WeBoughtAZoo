@@ -5,6 +5,11 @@ import { Location } from '@angular/common';
 import { Animal } from '../animals';
 import { AnimalService } from '../animal.service';
 
+import { instance } from '../login/login.component';
+import { ShoppingCartService } from '../shopping-cart.service';
+
+let components: AnimalDetailComponent[] = [];
+
 @Component({
   selector: 'app-animal-detail',
   templateUrl: './animal-detail.component.html',
@@ -12,12 +17,16 @@ import { AnimalService } from '../animal.service';
 })
 export class AnimalDetailComponent implements OnInit {
   animal: Animal | undefined;
+  username?: string = instance.customer?.username;
 
   constructor(
     private route: ActivatedRoute,
     private animalService: AnimalService,
+    private shoppingCartService: ShoppingCartService,
     private location: Location
-  ) {}
+  ) {
+
+  }
 
   ngOnInit(): void {
     this.getAnimal();
@@ -38,5 +47,18 @@ export class AnimalDetailComponent implements OnInit {
       this.animalService.updateAnimal(this.animal)
         .subscribe(() => this.goBack());
     }
+  }
+
+  isAdmin() : boolean {
+    return instance.customer?.username === 'admin';
+  }
+
+  add(): void {
+    console.log("attempted to add to shopping cart");
+    this.shoppingCartService.addToCart(instance.customer?.id ? instance.customer?.id : 9999, this.animal ? this.animal.id : 9999).subscribe(() => {});
+  }
+
+  remove(): void {
+    this.shoppingCartService.removeFromCart(instance.customer?.id ? instance.customer?.id: 9999 , this.animal ? this.animal.id : 9999).subscribe(() => {});
   }
 }
