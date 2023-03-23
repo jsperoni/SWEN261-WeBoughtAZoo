@@ -24,6 +24,10 @@
           <div><span>Species: </span>{{animal.species}}</div>
           
           <div><span>Price: </span>{{animal.price}}</div>
+
+          <button type="button" (click)="add()">Add to Shopping Cart</button>
+
+          <button type="button" (click)="remove()">Remove from Shopping Cart</button>
     </span>
 
     <button type="button" (click)="goBack()">go back</button>

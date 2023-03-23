@@ -6,6 +6,8 @@ import { catchError, map, tap } from 'rxjs/operators';
 
 import { Customer } from './customer';
 import { MessageService } from './message.service';
+import { ShoppingCartService } from './shopping-cart.service';
+import { validate } from 'json-schema';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +22,8 @@ export class CustomerService {
 
   constructor(
     private http: HttpClient,
-    private messageService: MessageService) { }
+    private messageService: MessageService,
+    private shoppingCartService: ShoppingCartService) { }
 
   /** GET customers from the server */
   getCustomers(): Observable<Customer[]> {
@@ -97,8 +100,14 @@ export class CustomerService {
   }
 
   login(username: string): Observable<any> {
+
     return this.http.get(`${this.loginUrl}?username=${username}&password=empty`).pipe(
-      tap(_ => this.log(`logged in as customer name=${username}`)),
+      tap(val => {
+        this.log(`logged in as customer name=${username}`);
+        let customer = val as Customer;
+        this.log(`creating new cart for user ${customer.id}`)
+        this.shoppingCartService.createShoppingCart(customer.id);
+      }),
       catchError(this.handleError<any>('login'))
     );
   }

@@ -6,6 +6,7 @@ import { Animal } from '../animals';
 import { AnimalService } from '../animal.service';
 
 import { instance } from '../login/login.component';
+import { ShoppingCartService } from '../shopping-cart.service';
 
 let components: AnimalDetailComponent[] = [];
 
@@ -21,6 +22,7 @@ export class AnimalDetailComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private animalService: AnimalService,
+    private shoppingCartService: ShoppingCartService,
     private location: Location
   ) {
 
@@ -49,5 +51,14 @@ export class AnimalDetailComponent implements OnInit {
 
   isAdmin() : boolean {
     return instance.customer?.username === 'admin';
+  }
+
+  add(): void {
+    console.log("attempted to add to shopping cart");
+    this.shoppingCartService.addToCart(instance.customer?.id ? instance.customer?.id : 9999, this.animal ? this.animal.id : 9999).subscribe(() => {});
+  }
+
+  remove(): void {
+    this.shoppingCartService.removeFromCart(instance.customer?.id ? instance.customer?.id: 9999 , this.animal ? this.animal.id : 9999).subscribe(() => {});
   }
 }
