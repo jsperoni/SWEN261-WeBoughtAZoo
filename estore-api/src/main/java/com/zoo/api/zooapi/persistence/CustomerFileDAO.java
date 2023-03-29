@@ -149,4 +149,21 @@ public class CustomerFileDAO implements CustomerDAO {
                 return false;
         }
     }
+
+    @Override
+    public Customer addToProductHistory(Customer customer, int animalId){
+        Customer tempCustomer = customer;
+        tempCustomer.setHistory(animalId);
+        try {
+            Customer finalCustomer = updateCustomer(tempCustomer);
+            return finalCustomer;
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+           
+        }
+        return null;
+     
+
+    }
 }

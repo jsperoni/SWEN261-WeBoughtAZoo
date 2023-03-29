@@ -19,7 +19,7 @@ static final String STRING_FORMAT = "customer [id=%d, username=%s]";
     @JsonProperty("username") private String username;
     @JsonProperty("personal") private String[] personal;    // {address, zip, phone #}
     @JsonProperty("card") private String[] card;            // {name, card #, card exp, cvv, billing zip}
-    @JsonProperty("history") private String[] history;      // {purchaseID1, purchaseID2...}
+    @JsonProperty("history") private int[] history;      // {purchaseID1, purchaseID2...}
 
     /**
      * Create a customer with the following information
@@ -30,7 +30,7 @@ static final String STRING_FORMAT = "customer [id=%d, username=%s]";
      * @param history Customer's search history
      */
     public Customer(@JsonProperty("id") int id, @JsonProperty("username") String username,@JsonProperty("personal") String[] personal,
-                    @JsonProperty("card") String[] card, @JsonProperty("history") String[] history) {
+                    @JsonProperty("card") String[] card, @JsonProperty("history") int[] history) {
         this.id = id;
         this.username = username;
         this.personal = personal;
@@ -84,13 +84,13 @@ static final String STRING_FORMAT = "customer [id=%d, username=%s]";
      * Gets the customer's search history
      * @return Customer's search history
      */
-    public String[] getHistory() {return this.history;}
+    public int[] getHistory() {return this.history;}
 
     /**
      * Sets the customer's search history
      * @param history Customer's search history
      */
-    public void setHistory(String[] history) {this.history = history;}
+    public void setHistory(int animalId) {this.history = history;}
 
     public boolean passwordMatch(String password) {
         return true;
