@@ -18,6 +18,7 @@ public interface CustomerDAO {
 
     Customer updateCustomer(Customer customer) throws IOException;
 
+
     Customer login(String username, String password) throws IOException;
 
     boolean deleteCustomer(int id) throws IOException;
