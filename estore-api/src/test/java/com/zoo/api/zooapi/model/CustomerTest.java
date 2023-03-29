@@ -94,10 +94,10 @@ public class CustomerTest {
         int[] history = {1, 2, 3, 4, 5};
         Customer customer = new Customer(id, username, personal, card, history);
 
-        int[] expected_history = {1, 2, 3};
+        int[] expected_history = {1, 2, 3, 4, 5, 3};
 
         // Invoke
-        customer.setHistory(3);
+        customer.addToHistory(3);
 
         // Analyze
         assertArrayEquals(expected_history,customer.getHistory());

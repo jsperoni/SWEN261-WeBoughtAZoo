@@ -153,7 +153,7 @@ public class CustomerFileDAO implements CustomerDAO {
     @Override
     public Customer addToProductHistory(Customer customer, int animalId){
         Customer tempCustomer = customer;
-        tempCustomer.setHistory(animalId);
+        tempCustomer.addToHistory(animalId);
         try {
             Customer finalCustomer = updateCustomer(tempCustomer);
             return finalCustomer;

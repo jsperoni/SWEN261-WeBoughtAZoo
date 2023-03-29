@@ -96,7 +96,7 @@ static final String STRING_FORMAT = "customer [id=%d, username=%s]";
      * Sets the customer's search history
      * @param history Customer's search history
      */
-    public void setHistory(int animalId) {
+    public void addToHistory(int animalId) {
         int[] animalHistory = append(history, animalId);
         this.history = animalHistory;
     }
