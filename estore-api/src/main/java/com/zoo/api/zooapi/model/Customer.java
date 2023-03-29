@@ -86,11 +86,20 @@ static final String STRING_FORMAT = "customer [id=%d, username=%s]";
      */
     public int[] getHistory() {return this.history;}
 
+    public static int[] append(int[] array, int value) {
+        int[] result = Arrays.copyOf(array, array.length + 1);
+        result[result.length - 1] = value;
+        return result;
+   }
+
     /**
      * Sets the customer's search history
      * @param history Customer's search history
      */
-    public void setHistory(int animalId) {this.history = history;}
+    public void setHistory(int animalId) {
+        int[] animalHistory = append(history, animalId);
+        this.history = animalHistory;
+    }
 
     public boolean passwordMatch(String password) {
         return true;

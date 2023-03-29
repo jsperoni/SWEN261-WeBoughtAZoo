@@ -19,8 +19,7 @@ public class CustomerTest {
         String expected_username = "Wi-Fire";
         String[] expected_personal = {"6000 Reynolds Drive", "14623", "7743647789"};
         String[] expected_card = {"John Doe", "1111111111111111", "01/23", "111", "14623"};
-        String[] expected_history = {"Bongo", "Lightning", "Zeus", "Apollo", "Scooby"};
-        // Invoke
+        int[] expected_history = {1, 2, 3, 4, 5};          // Invoke
         Customer customer = new Customer(expected_id, expected_username, expected_personal, expected_card, expected_history);
 
         // Analyze
@@ -37,8 +36,8 @@ public class CustomerTest {
         String username = "Wi-Fire";
         String[] personal = {"6000 Reynolds Drive", "14623", "7743647789"};
         String[] card = {"John Doe", "1111111111111111", "01/23", "111", "14623"};
-        String[] history = {"Bongo", "Lightning", "Zeus", "Apollo", "Scooby"};
-        Customer customer = new Customer(id, username, personal, card, history);
+        int[] expected_history = {1, 2, 3, 4, 5};
+        Customer customer = new Customer(id, username, personal, card, expected_history);
 
         String expected_username = "Galactic Agent";
 
@@ -56,7 +55,7 @@ public class CustomerTest {
         String username = "Wi-Fire";
         String[] personal = {"6000 Reynolds Drive", "14623", "7743647789"};
         String[] card = {"John Doe", "1111111111111111", "01/23", "111", "14623"};
-        String[] history = {"Bongo", "Lightning", "Zeus", "Apollo", "Scooby"};
+        int[] history = {1, 2, 3, 4, 5};
         Customer customer = new Customer(id, username, personal, card, history);
 
         String[] expected_personal = {"newAddress", "newZip", "newPhone"};
@@ -74,7 +73,7 @@ public class CustomerTest {
         String username = "Wi-Fire";
         String[] personal = {"6000 Reynolds Drive", "14623", "7743647789"};
         String[] card = {"John Doe", "1111111111111111", "01/23", "111", "14623"};
-        String[] history = {"Bongo", "Lightning", "Zeus", "Apollo", "Scooby"};
+        int[] history = {1, 2, 3, 4, 5};
         Customer customer = new Customer(id, username, personal, card, history);
 
         String[] expected_card = {"newName", "newNum", "newExp", "newCvv", "newZip"};
@@ -92,13 +91,13 @@ public class CustomerTest {
         String username = "Wi-Fire";
         String[] personal = {"6000 Reynolds Drive", "14623", "7743647789"};
         String[] card = {"John Doe", "1111111111111111", "01/23", "111", "14623"};
-        String[] history = {"Bongo", "Lightning", "Zeus", "Apollo", "Scooby"};
+        int[] history = {1, 2, 3, 4, 5};
         Customer customer = new Customer(id, username, personal, card, history);
 
-        String[] expected_history = {"newAnimal1", "newAnimal2", "newAnimal3"};
+        int[] expected_history = {1, 2, 3};
 
         // Invoke
-        customer.setHistory(expected_history);
+        customer.setHistory(3);
 
         // Analyze
         assertArrayEquals(expected_history,customer.getHistory());
@@ -110,8 +109,7 @@ public class CustomerTest {
         String username = "Wi-Fire";
         String[] personal = {"6000 Reynolds Drive", "14623", "7743647789"};
         String[] card = {"John Doe", "1111111111111111", "01/23", "111", "14623"};
-        String[] history = {"Bongo", "Lightning", "Zeus", "Apollo", "Scooby"};
-
+        int[] history = {1, 2, 3, 4, 5};
 //        String expected_string = String.format(Customer.STRING_FORMAT, id, username,personal,card,history);
         String expected_string = String.format(Customer.STRING_FORMAT, id, username);
 

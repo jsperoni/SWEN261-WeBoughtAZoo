@@ -152,4 +152,21 @@ public class CustomerController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @GetMapping("/history/{id}")
+    public ResponseEntity<Customer> addToProductHistory(@PathVariable int customerId, @PathVariable int animalId){
+        try {
+            Customer customer = customerDao.getCustomer(customerId);
+            if (customerDao.addToProductHistory(customer,animalId) != null){
+                return new ResponseEntity<>(HttpStatus.OK);
+            }
+            else
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        catch(IOException e) {
+            Log.log(Level.SEVERE,e.getLocalizedMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+    }
 }
