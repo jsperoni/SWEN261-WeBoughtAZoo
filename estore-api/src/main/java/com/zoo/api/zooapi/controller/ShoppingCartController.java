@@ -67,7 +67,7 @@ public class ShoppingCartController {
             if (cartnew == null){
                 cartnew = shoppingCartDao.createShoppingCart(new ShoppingCart(id));
                 shoppingCartDao.addAnimalToShoppingCart(id, animalId);
-                return new ResponseEntity<>(cartnew, HttpStatus.OK);
+                return new ResponseEntity<>(cartnew, HttpStatus.NOT_FOUND);
             }
             else {
                 return new ResponseEntity<>(cartnew, HttpStatus.OK);
