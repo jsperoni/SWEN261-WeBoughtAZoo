@@ -8,7 +8,7 @@
   <input id="new-species" #speciesInfo />
 
   <!-- (click) passes input value to add() and then clears the input -->
-  <button type="button" class="add-button" (click)="add(speciesName.value, speciesInfo.value); speciesName.value=''; speciesinfo.value=''">
+  <button type="button" class="add-button" (click)="add(speciesName.value, speciesInfo.value); speciesName.value=''; speciesInfo.value=''">
     Add species
   </button>
 </div>

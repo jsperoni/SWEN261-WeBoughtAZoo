@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
 import { Species } from '../species';
-//import { SpeciesService } from '../species.service';
+import { SpeciesService } from '../species.service';
 
 import { instance } from '../login/login.component';
 
@@ -20,7 +20,7 @@ export class SpeciesDetailComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    /*private speciesService: SpeciesService,*/
+    private speciesService: SpeciesService,
     private location: Location
   ) {
 
@@ -32,8 +32,8 @@ export class SpeciesDetailComponent implements OnInit {
 
   getSpecies(): void {
     const name = this.route.snapshot.paramMap.get('name');
-    /*this.speciesService.getSpecies(name)
-      .subscribe(species => this.species = species);*/
+    this.speciesService.getSpecies(name == null ? "" : name as string)
+      .subscribe(species => this.species = species);
   }
 
   goBack(): void {
@@ -42,8 +42,8 @@ export class SpeciesDetailComponent implements OnInit {
 
   save(): void {
     if (this.species) {
-      /*this.speciesService.updateSpecies(this.species)
-        .subscribe(() => this.goBack());*/
+      this.speciesService.updateSpecies(this.species)
+        .subscribe(() => this.goBack());
     }
   }
 
