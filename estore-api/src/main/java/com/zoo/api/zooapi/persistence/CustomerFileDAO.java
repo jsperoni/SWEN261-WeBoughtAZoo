@@ -158,9 +158,7 @@ public class CustomerFileDAO implements CustomerDAO {
             Customer finalCustomer = updateCustomer(tempCustomer);
             return finalCustomer;
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
-           
         }
         return null;
      

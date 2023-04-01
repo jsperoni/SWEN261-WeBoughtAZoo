@@ -1,13 +1,13 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 
-import { Observable, of } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
+import {mergeAll, mergeMap, Observable, of} from 'rxjs';
+import {catchError, map, tap} from 'rxjs/operators';
 
-import { Customer } from './customer';
-import { MessageService } from './message.service';
-import { ShoppingCartService } from './shopping-cart.service';
-import { validate } from 'json-schema';
+import {Customer} from './customer';
+import {MessageService} from './message.service';
+import {ShoppingCartService} from './shopping-cart.service';
+import {Animal} from "./animals";
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +19,7 @@ export class CustomerService {
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
+  private animalUrl: string = 'http://localhost:8080/animals';
 
   constructor(
     private http: HttpClient,
@@ -110,6 +111,66 @@ export class CustomerService {
       }),
       catchError(this.handleError<any>('login'))
     );
+  }
+
+  addToCustomerHistory(id: number, animalId: number): Observable<any> {
+    return this.http.post(`${this.customerUrl}/history/${id}`, animalId, this.httpOptions).pipe(
+      tap(val => {
+        this.log(`added animal id=${animalId} to customer id=${id} history`);
+      }),
+      catchError(this.handleError<any>('addToCustomerHistory'))
+    );
+  }
+
+  getCustomerHistory(id: number): Observable<any> {
+    return this.http.get(`${this.customerUrl}/history/${id}`).pipe(
+      map(val => {
+        let history = val as number[];
+        return history
+          .filter((value, index, self) => self.indexOf(value) === index) // remove duplicates
+          .filter((value) => value < 9999);
+      }),
+      tap<any>(val => {
+        this.log(`got customer history for customer id=${id}`);
+        let history = val as number[];
+        this.log(`history contains ${history.length} items`);
+      }),
+      catchError(this.handleError<any>('getCustomerHistory'))
+    );
+  }
+
+  getCustomerHistoryAsProducts(id: number): Observable<Animal[]> {
+    // Get customer history as array of animal ids
+    // Then get the animals from the animal service
+    // Then return the animals
+    return this.getCustomerHistory(id)
+      .pipe(
+        map(val => {
+          let history = val as number[];
+          // toPromise() is deprecated, but that's the only way I can think to do this
+          return history.map(id => this.shoppingCartService.getAnimal(id).toPromise() as Promise<Animal>);
+        }),
+        // Await all promises
+        mergeMap(val => Promise.all(val)),
+        tap(val => {
+          this.log(`got customer history as products for customer id=${id}`);
+          let history = val as Animal[];
+          this.log(`history contains ${history.length} items`);
+        }),
+        catchError(this.handleError<any>('getCustomerHistoryAsProducts'))
+      );
+  }
+
+  getCustomerSpeciesHistory(id: number): Observable<string[]> {
+    return this.getCustomerHistoryAsProducts(id)
+      .pipe(
+        map(val => {
+            let history = val as Animal[];
+            return history.map(animal => animal.species)
+              .filter((value, index, self) => self.indexOf(value) === index);
+          }
+        )
+      )
   }
 
   /**

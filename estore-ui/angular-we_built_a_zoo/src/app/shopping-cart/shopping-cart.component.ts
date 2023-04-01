@@ -59,12 +59,12 @@ export class ShoppingCartComponent implements OnInit {
   }
 
   add(id: number): void {
-    this.shoppingCartService.addToCart(this.shoppingCart?.customer_id ? this.shoppingCart?.customer_id : 9999, id)
+    this.shoppingCartService.addToCart(this.shoppingCart?.customer_id ? this.shoppingCart.customer_id : 9999, id)
       .subscribe((value) => this.updateCart(value as ShoppingCart));
   }
 
   remove(id: number): void {
-    this.shoppingCartService.removeFromCart(this.shoppingCart?.customer_id ? this.shoppingCart?.customer_id : 9999, id)
+    this.shoppingCartService.removeFromCart(this.shoppingCart?.customer_id ? this.shoppingCart.customer_id : 9999, id)
       .subscribe((value) => this.updateCart(value as ShoppingCart));
   }
 
@@ -72,5 +72,10 @@ export class ShoppingCartComponent implements OnInit {
     // console.log(`Got new shopping cart: ${newCart}`);
     this.shoppingCart = newCart;
     this.getAnimals();
+  }
+
+  checkout(): void {
+    this.shoppingCartService.checkout(this.shoppingCart?.customer_id ? this.shoppingCart.customer_id : 9999)
+      .subscribe((value) => this.updateCart(value as ShoppingCart));
   }
 }

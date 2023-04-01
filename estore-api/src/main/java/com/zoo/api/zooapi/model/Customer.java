@@ -87,6 +87,9 @@ static final String STRING_FORMAT = "customer [id=%d, username=%s]";
     public int[] getHistory() {return this.history;}
 
     public static int[] append(int[] array, int value) {
+        if (array == null) {
+            return new int[] {value};
+        }
         int[] result = Arrays.copyOf(array, array.length + 1);
         result[result.length - 1] = value;
         return result;
@@ -94,7 +97,7 @@ static final String STRING_FORMAT = "customer [id=%d, username=%s]";
 
     /**
      * Sets the customer's search history
-     * @param history Customer's search history
+     * @param animalId animal id to add to history
      */
     public void addToHistory(int animalId) {
         int[] animalHistory = append(history, animalId);

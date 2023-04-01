@@ -14,6 +14,7 @@ import { MessagesComponent } from './messages/messages.component';
 import { RouterModule } from '@angular/router';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { LoginComponent } from './login/login.component';
+import { HistoryComponent } from './history/history.component';
 
 @NgModule({
   imports: [
@@ -31,7 +32,8 @@ import { LoginComponent } from './login/login.component';
     MessagesComponent,
     AnimalSearchComponent,
     ShoppingCartComponent,
-    LoginComponent
+    LoginComponent,
+    HistoryComponent
   ],
   bootstrap: [ AppComponent ]
 })

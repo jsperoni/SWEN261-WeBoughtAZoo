@@ -8,12 +8,7 @@ import com.zoo.api.zooapi.persistence.ShoppingCartDAO;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.util.logging.Level;
@@ -86,6 +81,24 @@ public class ShoppingCartController {
         try {
             ShoppingCart cartnew = shoppingCartDao.removeAnimalFromShoppingCart(id, animalId);
             if (cartnew.containsAnimal(animalId))
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            else {
+                return new ResponseEntity<>(cartnew, HttpStatus.OK);
+            }
+        }
+        catch(IOException e) {
+            Log.log(Level.SEVERE,e.getLocalizedMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PostMapping("/checkout/{id}")
+    public ResponseEntity<ShoppingCart> checkoutShoppingCart(@PathVariable int id) {
+        Log.info("POST /shoppingcart/checkout/" + id);
+
+        try {
+            ShoppingCart cartnew = shoppingCartDao.checkoutShoppingCart(id);
+            if (cartnew == null)
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             else {
                 return new ResponseEntity<>(cartnew, HttpStatus.OK);
