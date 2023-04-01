@@ -45,11 +45,11 @@ public class SpeciesController {
      * ResponseEntity with HTTP status of NOT_FOUND if not found<br>
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
      */
-    @GetMapping("/{id}")
-    public ResponseEntity<Species> getSpecies(@PathVariable int id) {
-        LOG.info("GET /Species/" + id);
+    @GetMapping("/{name}")
+    public ResponseEntity<Species> getSpecies(@PathVariable String name) {
+        LOG.info("GET /Species/" + name);
         try {
-            Species Species = SpeciesDao.getSpecies(id);
+            Species Species = SpeciesDao.getSpecies(name);
             if (Species != null)
                 return new ResponseEntity<Species>(Species,HttpStatus.OK);
             else
@@ -126,7 +126,7 @@ public class SpeciesController {
 
         // Replace below with your implementation
         try {
-            if(SpeciesDao.getSpecies(Species.getId()) == null){
+            if(SpeciesDao.getSpecies(Species.getName()) == null){
                 Species SpeciesNew = SpeciesDao.createSpecies(Species);
                 if (SpeciesNew != null) {
                     return new ResponseEntity<Species>(SpeciesNew,HttpStatus.CREATED);
@@ -180,13 +180,13 @@ public class SpeciesController {
      * ResponseEntity with HTTP status of NOT_FOUND if not found<br>
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
      */
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Species> deleteSpecies(@PathVariable int id) {
-        LOG.info("DELETE /Species/" + id);
+    @DeleteMapping("/{name}")
+    public ResponseEntity<Species> deleteSpecies(@PathVariable String name) {
+        LOG.info("DELETE /Species/" + name);
 
         try {
 
-            if (SpeciesDao.deleteSpecies(id))
+            if (SpeciesDao.deleteSpecies(name))
                 return new ResponseEntity<>(HttpStatus.OK);
             else
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
