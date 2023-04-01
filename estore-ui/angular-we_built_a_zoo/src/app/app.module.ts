@@ -14,6 +14,8 @@ import { MessagesComponent } from './messages/messages.component';
 import { RouterModule } from '@angular/router';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { LoginComponent } from './login/login.component';
+import { SpeciesComponent } from './species/species.component';
+import { SpeciesDetailComponent } from './species-detail/species-detail.component';
 
 @NgModule({
   imports: [
@@ -31,7 +33,9 @@ import { LoginComponent } from './login/login.component';
     MessagesComponent,
     AnimalSearchComponent,
     ShoppingCartComponent,
-    LoginComponent
+    LoginComponent,
+    SpeciesComponent,
+    SpeciesDetailComponent
   ],
   bootstrap: [ AppComponent ]
 })
