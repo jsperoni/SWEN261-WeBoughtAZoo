@@ -1,0 +1,27 @@
+<h2>Species Care List</h2>
+<span *ngIf="isAdmin()">
+<div>
+  <label for="new-species">Species name: </label>
+  <input id="new-species" #speciesName />
+
+  <label for="new-species">Species info: </label>
+  <input id="new-species" #speciesInfo />
+
+  <!-- (click) passes input value to add() and then clears the input -->
+  <button type="button" class="add-button" (click)="add(speciesName.value, speciesInfo.value); speciesName.value=''; speciesinfo.value=''">
+    Add species
+  </button>
+</div>
+</span>
+
+<ul class="species">
+  <li *ngFor="let species of speciesList">
+    <a routerLink="/detail/{{species.name}}">
+      <span class="badge">{{species.name}}</span> {{species.name}}
+    </a>
+    <span *ngIf="isAdmin()">
+    <button type="button" class="delete" title="delete species"
+      (click)="delete(species)">x</button>
+    </span>
+  </li>
+</ul>

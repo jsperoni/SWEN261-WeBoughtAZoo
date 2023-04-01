@@ -1,0 +1,6 @@
+projectKey=animals-app
+serverUrl=http://localhost:9000
+serverVersion=9.9.0.65466
+dashboardUrl=http://localhost:9000/dashboard?id=animals-app
+ceTaskId=AYc1BiIEzQ40iSXahbyM
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AYc1BiIEzQ40iSXahbyM
