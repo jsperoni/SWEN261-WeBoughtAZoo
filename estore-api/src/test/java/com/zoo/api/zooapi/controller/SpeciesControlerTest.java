@@ -36,12 +36,13 @@ public class SpeciesControlerTest {
     @Test
     public void testGetSpecies() throws IOException {  // getSpecies may throw IOException
         // Setup
-        Species species = new Species(99,"Galactic Agent", "mongoose", 20);
+        String[] test = {"one", "two", "three"}; 
+        Species species = new Species("mongoose", test);
         // When the same id is passed in, our mock Species DAO will return the Species object
-        when(mockSpeciesDAO.getSpecies(species.getId())).thenReturn(species);
+        when(mockSpeciesDAO.getSpecies(species.getName())).thenReturn(species);
 
         // Invoke
-        ResponseEntity<Species> response = speciesController.getSpecies(species.getId());
+        ResponseEntity<Species> response = speciesController.getSpecies(species.getName());
 
         // Analyze
         assertEquals(HttpStatus.OK,response.getStatusCode());
@@ -51,7 +52,7 @@ public class SpeciesControlerTest {
     @Test
     public void testGetSpeciesNotFound() throws Exception { // createSpecies may throw IOException
         // Setup
-        int speciesId = 99;
+        String speciesId = "test";
         // When the same id is passed in, our mock Species DAO will return null, simulating
         // no species found
         when(mockSpeciesDAO.getSpecies(speciesId)).thenReturn(null);
@@ -65,10 +66,10 @@ public class SpeciesControlerTest {
 
     @Test
     public void testGetSpeciesHandleException() throws Exception { // createSpecies may throw IOException
-        // Setup
-        int speciesId = 99;
-        // When getSpecies is called on the Mock Species DAO, throw an IOException
-        doThrow(new IOException()).when(mockSpeciesDAO).getSpecies(speciesId);
+        String speciesId = "test";
+        // When the same id is passed in, our mock Species DAO will return null, simulating
+        // no species found
+        when(mockSpeciesDAO.getSpecies(speciesId)).thenReturn(null);
 
         // Invoke
         ResponseEntity<Species> response = speciesController.getSpecies(speciesId);
@@ -85,7 +86,8 @@ public class SpeciesControlerTest {
     @Test
     public void testCreateSpecies() throws IOException {  // createSpecies may throw IOException
         // Setup
-        Species species = new Species(99,"Wi-Fire", "monkey", 10);
+        String[] test = {"one", "two", "three"}; 
+        Species species = new Species("mongoose", test);
         // when createSpecies is called, return true simulating successful
         // creation and save
         when(mockSpeciesDAO.createSpecies(species)).thenReturn(species);
@@ -101,7 +103,8 @@ public class SpeciesControlerTest {
     @Test
     public void testCreateSpeciesFailed() throws IOException {  // createSpecies may throw IOException
         // Setup
-        Species species = new Species(99,"Bolt", "dog", 79 );
+        String[] test = {"one", "two", "three"}; 
+        Species species = new Species("mongoose", test);
         // when createSpecies is called, return false simulating failed
         // creation and save
         when(mockSpeciesDAO.createSpecies(species)).thenReturn(null);
@@ -116,7 +119,8 @@ public class SpeciesControlerTest {
     @Test
     public void testCreateSpeciesHandleException() throws IOException {  // createSpecies may throw IOException
         // Setup
-        Species species = new Species(99,"Ice Gladiator", "dog", 79);
+        String[] test = {"one", "two", "three"}; 
+        Species species = new Species("mongoose", test);
 
         // When createSpecies is called on the Mock Species DAO, throw an IOException
         doThrow(new IOException()).when(mockSpeciesDAO).createSpecies(species);
@@ -131,12 +135,13 @@ public class SpeciesControlerTest {
     @Test
     public void testUpdateSpecies() throws IOException { // updateSpecies may throw IOException
         // Setup
-        Species species = new Species(99,"Wi-Fire", "dog", 79);
+        String[] test = {"one", "two", "three"}; 
+        Species species = new Species("mongoose", test);
         // when updateSpecies is called, return true simulating successful
         // update and save
         when(mockSpeciesDAO.updateSpecies(species)).thenReturn(species);
         ResponseEntity<Species> response = speciesController.updateSpecies(species);
-        species.setName("Bolt");
+        
 
         // Invoke
         response = speciesController.updateSpecies(species);
@@ -149,7 +154,8 @@ public class SpeciesControlerTest {
     @Test
     public void testUpdateSpeciesFailed() throws IOException { // updateSpecies may throw IOException
         // Setup
-        Species species = new Species(99,"Galactic Agent", "dog", 79);
+        String[] test = {"one", "two", "three"}; 
+        Species species = new Species("mongoose", test);
         // when updateSpecies is called, return true simulating successful
         // update and save
         when(mockSpeciesDAO.updateSpecies(species)).thenReturn(null);
@@ -164,7 +170,8 @@ public class SpeciesControlerTest {
     @Test
     public void testUpdateSpeciesHandleException() throws IOException { // updateSpecies may throw IOException
         // Setup
-        Species species = new Species(99,"Galactic Agent", "dog", 79);
+        String[] test = {"one", "two", "three"}; 
+        Species species = new Species("mongoose", test);
         // When updateSpecies is called on the Mock Species DAO, throw an IOException
         doThrow(new IOException()).when(mockSpeciesDAO).updateSpecies(species);
 
@@ -179,8 +186,9 @@ public class SpeciesControlerTest {
     public void testGetSpecieses() throws IOException { // getSpecieses may throw IOException
         // Setup
         Species[] specieses = new Species[2];
-        specieses[0] = new Species(99,"Bolt", "dog", 79);
-        specieses[1] = new Species(100,"The Great Iguana", "Iguana", 79);
+        String[] test = {"one", "two", "three"}; 
+        specieses[0] = new Species("Bolt",test);
+        specieses[1] = new Species("The Great Iguana", test );
         // When getSpecieses is called return the specieses created above
         when(mockSpeciesDAO.getSpeciess()).thenReturn(specieses);
 
@@ -210,8 +218,9 @@ public class SpeciesControlerTest {
         // Setup
         String searchString = "Mon";
         Species[] specieses = new Species[2];
-        specieses[0] = new Species(25,"Monkey", "dog", 79);
-        specieses[1] = new Species(26,"Mongoose", "dog", 79);
+        String[] test = {"one", "two", "three"}; 
+        specieses[0] = new Species("Bolt",test);
+        specieses[1] = new Species("The Great Iguana", test);
         // When findSpecieses is called with the search string, return the two
         /// specieses above
         when(mockSpeciesDAO.findSpeciess(searchString)).thenReturn(specieses);
@@ -241,12 +250,12 @@ public class SpeciesControlerTest {
     @Test
     public void testDeleteSpecies() throws IOException { // deleteSpecies may throw IOException
         // Setup
-        int speciesId = 99;
+        String speciesName = "test";
         // when deleteSpecies is called return true, simulating successful deletion
-        when(mockSpeciesDAO.deleteSpecies(speciesId)).thenReturn(true);
+        when(mockSpeciesDAO.deleteSpecies(speciesName)).thenReturn(true);
 
         // Invoke
-        ResponseEntity<Species> response = speciesController.deleteSpecies(speciesId);
+        ResponseEntity<Species> response = speciesController.deleteSpecies(speciesName);
 
         // Analyze
         assertEquals(HttpStatus.OK,response.getStatusCode());
@@ -255,12 +264,15 @@ public class SpeciesControlerTest {
     @Test
     public void testDeleteSpeciesNotFound() throws IOException { // deleteSpecies may throw IOException
         // Setup
-        int speciesId = 99;
+        String speciesName = "test";
+        // when deleteSpecies is called return true, simulating successful deletion
+        when(mockSpeciesDAO.deleteSpecies(speciesName)).thenReturn(true);
+
         // when deleteSpecies is called return false, simulating failed deletion
-        when(mockSpeciesDAO.deleteSpecies(speciesId)).thenReturn(false);
+        when(mockSpeciesDAO.deleteSpecies(speciesName)).thenReturn(false);
 
         // Invoke
-        ResponseEntity<Species> response = speciesController.deleteSpecies(speciesId);
+        ResponseEntity<Species> response = speciesController.deleteSpecies(speciesName);
 
         // Analyze
         assertEquals(HttpStatus.NOT_FOUND,response.getStatusCode());
@@ -269,12 +281,12 @@ public class SpeciesControlerTest {
     @Test
     public void testDeleteSpeciesHandleException() throws IOException { // deleteSpecies may throw IOException
         // Setup
-        int speciesId = 99;
+        String speciesName = "test";
         // When deleteSpecies is called on the Mock Species DAO, throw an IOException
-        doThrow(new IOException()).when(mockSpeciesDAO).deleteSpecies(speciesId);
+        doThrow(new IOException()).when(mockSpeciesDAO).deleteSpecies(speciesName);
 
         // Invoke
-        ResponseEntity<Species> response = speciesController.deleteSpecies(speciesId);
+        ResponseEntity<Species> response = speciesController.deleteSpecies(speciesName);
 
         // Analyze
         assertEquals(HttpStatus.INTERNAL_SERVER_ERROR,response.getStatusCode());

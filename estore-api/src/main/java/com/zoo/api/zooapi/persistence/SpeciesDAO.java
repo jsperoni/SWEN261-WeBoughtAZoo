@@ -41,7 +41,7 @@ public interface SpeciesDAO {
      * 
      * @throws IOException if an issue with underlying storage
      */
-    Species getSpecies(int id) throws IOException;
+    Species getSpecies(String name) throws IOException;
 
     /**
      * Creates and saves a {@linkplain Species species}
@@ -79,5 +79,5 @@ public interface SpeciesDAO {
      * 
      * @throws IOException if underlying storage cannot be accessed
      */
-    boolean deleteSpecies(int id) throws IOException;
+    boolean deleteSpecies(String name) throws IOException;
 }

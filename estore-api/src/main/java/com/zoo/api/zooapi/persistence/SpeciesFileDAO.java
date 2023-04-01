@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
 import java.util.logging.Logger;
@@ -23,7 +24,7 @@ import java.util.logging.Logger;
 @Component
 public class SpeciesFileDAO implements SpeciesDAO {
     private static final Logger LOG = Logger.getLogger(SpeciesFileDAO.class.getName());
-    Map<Integer, Species> speciesList;   // Provides a local cache of the species objects
+    Map<String, Species> speciesList;   // Provides a local cache of the species objects
                                    // so that we don't need to read from the file
                                    // each time
     private ObjectMapper objectMapper;  // Provides conversion between Species
@@ -40,10 +41,33 @@ public class SpeciesFileDAO implements SpeciesDAO {
      *
      * @throws IOException when file cannot be accessed or read from
      */
-    public SpeciesFileDAO(@Value("${speciesList.file}") String filename, ObjectMapper objectMapper) throws IOException {
+    public SpeciesFileDAO(@Value("data/species.json") String filename, ObjectMapper objectMapper) throws IOException {
         this.filename = filename;
         this.objectMapper = objectMapper;
-        load();  // load the Speciess from the file
+        try {
+            load();  // load the Animals from the file
+        } catch (IOException e) {
+            LOG.severe("Unable to load species info from file: " + filename + " " + e.getMessage());
+            speciesList = new HashMap<>();
+        }
+    }
+
+    private boolean load() throws IOException {
+        speciesList = new TreeMap<>();
+        nextId = 0;
+
+        // Deserializes the JSON objects from the file into an array of Speciess
+        // readValue will throw an IOException if there's an issue with the file
+        // or reading from the file
+        Species[] SpeciesArray = objectMapper.readValue(new File(filename), Species[].class);
+
+        // Add each Species to the tree map and keep track of the greatest id
+        for (Species Species : SpeciesArray) {
+            speciesList.put(Species.getName(),Species);
+        }
+        // Make the next id one greater than the maximum from the file
+        ++nextId;
+        return true;
     }
 
     /**
@@ -51,11 +75,7 @@ public class SpeciesFileDAO implements SpeciesDAO {
      *
      * @return The next id
      */
-    private synchronized static int nextId() {
-        int id = nextId;
-        ++nextId;
-        return id;
-    }
+   
 
     /**
      * Generates an array of {@linkplain Species Speciess} from the tree map
@@ -115,25 +135,7 @@ public class SpeciesFileDAO implements SpeciesDAO {
      *
      * @throws IOException when file cannot be accessed or read from
      */
-    private boolean load() throws IOException {
-        speciesList = new TreeMap<>();
-        nextId = 0;
-
-        // Deserializes the JSON objects from the file into an array of Speciess
-        // readValue will throw an IOException if there's an issue with the file
-        // or reading from the file
-        Species[] SpeciesArray = objectMapper.readValue(new File(filename), Species[].class);
-
-        // Add each Species to the tree map and keep track of the greatest id
-        for (Species Species : SpeciesArray) {
-            speciesList.put(Species.getId(),Species);
-            if (Species.getId() > nextId)
-                nextId = Species.getId();
-        }
-        // Make the next id one greater than the maximum from the file
-        ++nextId;
-        return true;
-    }
+   
 
     /**
     ** {@inheritDoc}
@@ -159,10 +161,10 @@ public class SpeciesFileDAO implements SpeciesDAO {
     ** {@inheritDoc}
      */
     @Override
-    public Species getSpecies(int id) {
+    public Species getSpecies(String name ) {
         synchronized(speciesList) {
-            if (speciesList.containsKey(id))
-                return speciesList.get(id);
+            if (speciesList.containsKey(name))
+                return speciesList.get(name);
             else
                 return null;
         }
@@ -176,8 +178,8 @@ public class SpeciesFileDAO implements SpeciesDAO {
         synchronized(speciesList) {
             // We create a new Species object because the id field is immutable
             // and we need to assign the next unique id
-            Species newSpecies = new Species(nextId(), species.getName(), species.getInfo());
-            speciesList.put(newSpecies.getId(),newSpecies);
+            Species newSpecies = new Species(species.getName(), species.getInfo());
+            speciesList.put(newSpecies.getName(),newSpecies);
             save(); // may throw an IOException
             return newSpecies;
         }
@@ -189,10 +191,10 @@ public class SpeciesFileDAO implements SpeciesDAO {
     @Override
     public Species updateSpecies(Species species) throws IOException {
         synchronized(speciesList) {
-            if (speciesList.containsKey(species.getId()) == false)
+            if (speciesList.containsKey(species.getName()) == false)
                 return null;  // Species does not exist
 
-            speciesList.put(species.getId(), species);
+            speciesList.put(species.getName(), species);
             save(); // may throw an IOException
             return species;
         }
@@ -202,10 +204,10 @@ public class SpeciesFileDAO implements SpeciesDAO {
     ** {@inheritDoc}
      */
     @Override
-    public boolean deleteSpecies(int id) throws IOException {
+    public boolean deleteSpecies(String name) throws IOException {
         synchronized(speciesList) {
-            if (speciesList.containsKey(id)) {
-                speciesList.remove(id);
+            if (speciesList.containsKey(name)) {
+                speciesList.remove(name);
                 return save();
             }
             else

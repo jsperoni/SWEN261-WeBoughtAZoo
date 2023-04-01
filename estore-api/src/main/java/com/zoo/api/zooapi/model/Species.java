@@ -15,7 +15,6 @@ public class Species {
     // Package private for tests
     static final String STRING_FORMAT = "animal [id=%d, name=%s]";
 
-    @JsonProperty("id") private int id;
     @JsonProperty("name") private String name;
     @JsonProperty("info") private String[] info;
 
@@ -30,24 +29,11 @@ public class Species {
      * is not provided in the JSON object, the Java field gets the default Java
      * value, i.e. 0 for int
      */
-    public Species(@JsonProperty("id") int id, @JsonProperty("name") String name, @JsonProperty("info") String[] info )  {
-        this.id = id;
+    public Species(@JsonProperty("name") String name, @JsonProperty("info") String[] info )  {
         this.name = name;
         this.info = info;
         
     }
-
-    /**
-     * Retrieves the id of the animal
-     * @return The id of the animal
-     */
-    public int getId() {return id;}
-
-    /**
-     * Sets the name of the animal - necessary for JSON object to Java object deserialization
-     * @param name The name of the animal
-     */
-    public void setName(String name) {this.name = name;}
 
     /**
      * Retrieves the name of the animal
@@ -64,6 +50,6 @@ public class Species {
      */
     @Override
     public String toString() {
-        return String.format(STRING_FORMAT,id,name);
+        return String.format(STRING_FORMAT,name);
     }
 }
