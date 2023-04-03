@@ -7,7 +7,7 @@ import java.io.IOException;
 /**
  * Defines the interface for species object persistence
  * 
- * @author SWEN Faculty
+ * @author Group 6F
  */
 public interface SpeciesDAO {
     /**

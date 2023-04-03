@@ -25,7 +25,7 @@ import com.zoo.api.zooapi.model.Animal;
  * {@literal @}RestController Spring annotation identifies this class as a REST API
  * method handler to the Spring framework
  * 
- * @author SWEN Faculty
+ * @author Group 6F
  */
 
 @RestController

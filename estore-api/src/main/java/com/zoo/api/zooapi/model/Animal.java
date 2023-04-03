@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 /**
  * Represents a animal entity
  * 
- * @author SWEN Faculty
+ * @author Group 6F
  */
 public class Animal {
     private static final Logger LOG = Logger.getLogger(Animal.class.getName());
