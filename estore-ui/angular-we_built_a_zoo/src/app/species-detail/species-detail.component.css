@@ -7,6 +7,13 @@ label {
     font-size: 1em;
     padding: .5rem;
   }
+  input#species-info{
+    display: block;
+    width: 100%;
+    padding: .5rem;
+    margin: 1rem 0;
+    box-sizing: border-box;
+  }
   button {
     margin-top: 20px;
     margin-right: .5rem;

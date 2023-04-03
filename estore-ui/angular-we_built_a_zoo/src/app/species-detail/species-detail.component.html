@@ -6,8 +6,12 @@
       <input id="species-name" [(ngModel)]="species.name" placeholder="Species name"/>
     </div>
     <div>
+        <br>
         <label for="species-info">Care Information: </label>
-        <input id="species-info" [(ngModel)]="species.info" placeholder="Species Information"/>
+        <!--<li *ngFor="let info of species.info">-->
+            <input id="species-info" [(ngModel)]="species.info" placeholder="Species info" #speciesInfo/>
+            <span *ngIf="isAdmin()"><button type="button" (click)="save(speciesInfo.value)">save</button></span>
+        <!--</li>-->
       </div>
     
     </span>
@@ -19,5 +23,5 @@
     </span>
 
     <button type="button" (click)="goBack()">go back</button>
-    <span *ngIf="isAdmin()"><button type="button" (click)="save()">save</button></span>
+    <!--<span *ngIf="isAdmin()"><button type="button" (click)="save()">save</button></span>-->
   </div>

@@ -27,7 +27,7 @@ export class SpeciesComponent implements OnInit {
     name = name.trim();
     let info = [speciesInfo];
     if (!name || !info) { return; }
-    this.speciesService.addSpecies({ name, info} as Species)
+    this.speciesService.addSpecies({ name, info } as Species)
       .subscribe(species => {
         this.speciesList.push(species);
       });

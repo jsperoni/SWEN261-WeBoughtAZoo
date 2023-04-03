@@ -13,7 +13,7 @@ public class Species {
     private static final Logger LOG = Logger.getLogger(Species.class.getName());
 
     // Package private for tests
-    static final String STRING_FORMAT = "animal [id=%d, name=%s]";
+    static final String STRING_FORMAT = "animal [name=%s]";
 
     @JsonProperty("name") private String name;
     @JsonProperty("info") private String[] info;

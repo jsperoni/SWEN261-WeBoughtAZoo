@@ -40,8 +40,13 @@ export class SpeciesDetailComponent implements OnInit {
     this.location.back();
   }
 
-  save(): void {
+  save(stringInfo: string): void {
     if (this.species) {
+      console.log(stringInfo);
+      let info = [stringInfo];
+      console.log(info);
+      this.species.info = info;
+      console.log(this.species.info);
       this.speciesService.updateSpecies(this.species)
         .subscribe(() => this.goBack());
     }

@@ -16,7 +16,7 @@
 
 <ul class="species">
   <li *ngFor="let species of speciesList">
-    <a routerLink="/detail/{{species.name}}">
+    <a routerLink="/species-detail/{{species.name}}">
       <span class="badge">{{species.name}}</span> {{species.name}}
     </a>
     <span *ngIf="isAdmin()">

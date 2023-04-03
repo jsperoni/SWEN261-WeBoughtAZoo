@@ -90,6 +90,7 @@ export class SpeciesService {
 
   /** PUT: update the species on the server */
   updateSpecies(species: Species): Observable<any> {
+    console.log(species.info);
     return this.http.put(this.speciesUrl, species, this.httpOptions).pipe(
       tap(_ => this.log(`updated species name=${species.name}`)),
       catchError(this.handleError<any>('updateSpecies'))
