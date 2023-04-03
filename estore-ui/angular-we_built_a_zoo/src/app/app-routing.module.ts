@@ -6,6 +6,8 @@ import { AnimalsComponent } from './animals/animals.component';
 import { AnimalDetailComponent } from './animal-detail/animal-detail.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { LoginComponent } from './login/login.component';
+import { SpeciesComponent } from './species/species.component';
+import { SpeciesDetailComponent } from './species-detail/species-detail.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -13,7 +15,9 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
   { path: 'detail/:id', component: AnimalDetailComponent },
   { path: 'animals', component: AnimalsComponent },
-  { path: 'shoppingCart', component: ShoppingCartComponent }
+  { path: 'shoppingCart', component: ShoppingCartComponent }, 
+  { path: 'species', component: SpeciesComponent }, 
+  { path: 'species-detail/:name', component: SpeciesDetailComponent }
 ];
 
 @NgModule({

@@ -12,15 +12,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.io.IOException;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import com.zoo.api.zooapi.model.*;
-import com.zoo.api.zooapi.controller.*;
 
 /**
  * Handles the REST API requests for the animal resource
@@ -28,7 +24,7 @@ import com.zoo.api.zooapi.controller.*;
  * {@literal @}RestController Spring annotation identifies this class as a REST API
  * method handler to the Spring framework
  * 
- * @author SWEN Faculty
+ * @author Group 6F
  */
 
 @RestController
