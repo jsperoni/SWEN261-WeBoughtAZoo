@@ -1,9 +1,6 @@
 package com.zoo.api.zooapi.controller;
 
-//import com.zoo.api.zooapi.model.Animal;
-//import com.zoo.api.zooapi.model.Customer;
 import com.zoo.api.zooapi.model.ShoppingCart;
-//import com.zoo.api.zooapi.persistence.CustomerDAO;
 import com.zoo.api.zooapi.persistence.ShoppingCartDAO;
 
 import org.springframework.http.HttpStatus;

@@ -7,7 +7,7 @@ import java.util.logging.Logger;
 /**
  * Represents a animal entity
  * 
- * @author SWEN Faculty
+ * @author Group 6F
  */
 public class Species {
     private static final Logger LOG = Logger.getLogger(Species.class.getName());
