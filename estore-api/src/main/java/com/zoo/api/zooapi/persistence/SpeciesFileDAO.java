@@ -98,9 +98,9 @@ public class SpeciesFileDAO implements SpeciesDAO {
     private Species[] getSpeciessArray(String containsText) { // if containsText == null, no filter
         ArrayList<Species> SpeciesArrayList = new ArrayList<>();
 
-        for (Species Species : speciesList.values()) {
-            if (containsText == null || Species.getName().contains(containsText)) {
-                SpeciesArrayList.add(Species);
+        for (Species species : speciesList.values()) {
+            if (containsText == null || species.getName().contains(containsText)) {
+                SpeciesArrayList.add(species);
             }
         }
 
