@@ -23,7 +23,7 @@ public class ShoppingCartFileDAO implements ShoppingCartDAO {
     private final ObjectMapper objectMapper;
     private final String filename;
 
-    public ShoppingCartFileDAO(@Value("data/shopping_carts.json") String filename, ObjectMapper objectMapper) {
+    public ShoppingCartFileDAO(@Value("data/shoppingcart.json") String filename, ObjectMapper objectMapper) {
         this.filename = filename;
         this.objectMapper = objectMapper;
         animalCheckoutCount = new HashMap<>();

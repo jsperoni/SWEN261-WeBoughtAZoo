@@ -23,6 +23,7 @@ export class SpeciesComponent implements OnInit {
     .subscribe(speciesList => this.speciesList = speciesList);
   }
   add(name: string, speciesInfo: string): void {
+    console.log("Tried to add a species");
     name = name.trim();
     let info = [speciesInfo];
     if (!name || !info) { return; }

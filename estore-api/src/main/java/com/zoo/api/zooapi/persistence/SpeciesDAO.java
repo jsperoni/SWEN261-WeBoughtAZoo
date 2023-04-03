@@ -31,13 +31,13 @@ public interface SpeciesDAO {
     Species[] findSpeciess(String containsText) throws IOException;
 
     /**
-     * Retrieves a {@linkplain Species species} with the given id
+     * Retrieves a {@linkplain Species species} with the given name
      * 
-     * @param id The id of the {@link Species species} to get
+     * @param name The name of the {@link Species species} to get
      * 
-     * @return a {@link Species species} object with the matching id
+     * @return a {@link Species species} object with the matching name
      * <br>
-     * null if no {@link Species species} with a matching id is found
+     * null if no {@link Species species} with a matching name is found
      * 
      * @throws IOException if an issue with underlying storage
      */

@@ -71,6 +71,7 @@ export class SpeciesService {
 
   /** POST: add a new species to the server */
   addSpecies(species: Species): Observable<Species> {
+    console.log("Tried to add a species (in the service)");
     return this.http.post<Species>(this.speciesUrl, species, this.httpOptions).pipe(
       tap((newSpecies: Species) => this.log(`added species w/ name=${newSpecies.name}`)),
       catchError(this.handleError<Species>('addSpecies'))
