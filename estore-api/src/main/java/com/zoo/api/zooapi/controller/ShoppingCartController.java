@@ -1,9 +1,6 @@
 package com.zoo.api.zooapi.controller;
 
-//import com.zoo.api.zooapi.model.Animal;
-//import com.zoo.api.zooapi.model.Customer;
 import com.zoo.api.zooapi.model.ShoppingCart;
-//import com.zoo.api.zooapi.persistence.CustomerDAO;
 import com.zoo.api.zooapi.persistence.ShoppingCartDAO;
 
 import org.springframework.http.HttpStatus;
@@ -62,7 +59,7 @@ public class ShoppingCartController {
             if (cartnew == null){
                 cartnew = shoppingCartDao.createShoppingCart(new ShoppingCart(id));
                 shoppingCartDao.addAnimalToShoppingCart(id, animalId);
-                return new ResponseEntity<>(cartnew, HttpStatus.OK);
+                return new ResponseEntity<>(cartnew, HttpStatus.NOT_FOUND);
             }
             else {
                 return new ResponseEntity<>(cartnew, HttpStatus.OK);

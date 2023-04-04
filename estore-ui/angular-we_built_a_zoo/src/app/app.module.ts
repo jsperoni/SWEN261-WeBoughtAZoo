@@ -15,6 +15,8 @@ import { RouterModule } from '@angular/router';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { LoginComponent } from './login/login.component';
 import { HistoryComponent } from './history/history.component';
+import { SpeciesComponent } from './species/species.component';
+import { SpeciesDetailComponent } from './species-detail/species-detail.component';
 
 @NgModule({
   imports: [
@@ -34,6 +36,8 @@ import { HistoryComponent } from './history/history.component';
     ShoppingCartComponent,
     LoginComponent,
     HistoryComponent
+    SpeciesComponent,
+    SpeciesDetailComponent
   ],
   bootstrap: [ AppComponent ]
 })

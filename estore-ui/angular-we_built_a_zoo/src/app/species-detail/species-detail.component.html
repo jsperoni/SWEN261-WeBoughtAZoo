@@ -1,0 +1,27 @@
+<div *ngIf="species">
+    <h2>{{species.name}} Care Information</h2>
+    <span *ngIf="isAdmin()">
+    <div>
+      <label for="species-name">Species name: </label>
+      <input id="species-name" [(ngModel)]="species.name" placeholder="Species name"/>
+    </div>
+    <div>
+        <br>
+        <label for="species-info">Care Information: </label>
+        <li *ngFor="let info of species.info">
+            <input id="species-info" value= {{info}} #speciesInfo/>
+            <span *ngIf="isAdmin()"><button type="button" (click)="save(speciesInfo.value)">save</button></span>
+        </li>
+      </div>
+    
+    </span>
+
+    <span *ngIf="!isAdmin()">
+        <div><span>Species: </span>{{species.name}}</div>
+
+          <div><span>Information: </span>{{species.info}}</div>
+    </span>
+
+    <button type="button" (click)="goBack()">go back</button>
+    <!--<span *ngIf="isAdmin()"><button type="button" (click)="save()">save</button></span>-->
+  </div>

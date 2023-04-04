@@ -6,7 +6,7 @@ import com.zoo.api.zooapi.model.Animal;
 /**
  * Defines the interface for animal object persistence
  * 
- * @author SWEN Faculty
+ * @author Group 6F
  */
 public interface AnimalDAO {
     /**
