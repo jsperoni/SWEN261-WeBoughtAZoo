@@ -10,12 +10,17 @@ label {
   
   }
   input {
-    padding: .5rem;
+    /* padding: .5rem;
     width: 100%;
     max-width: 600px;
     box-sizing: border-box;
     display: block;
-    margin-left: 25%;
+    margin-left: 25%; */
+    display: block;
+    width: 100%;
+    padding: .5rem;
+    margin: 1rem 0;
+    box-sizing: border-box;
 
   }
   
