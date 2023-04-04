@@ -6,6 +6,7 @@ label {
     font-size: 1.2rem;
     margin-top: 1rem;
     margin-bottom: .5rem;
+    text-align: center;
   
   }
   input {
@@ -14,6 +15,7 @@ label {
     max-width: 600px;
     box-sizing: border-box;
     display: block;
+    margin-left: 25%;
 
   }
   
