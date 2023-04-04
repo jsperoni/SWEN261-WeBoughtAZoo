@@ -152,4 +152,39 @@ public class CustomerController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @GetMapping("/history/{customerId}/{animalId}")
+    public ResponseEntity<Customer> addToProductHistory(@PathVariable int customerId, @PathVariable int animalId){
+        try {
+            Customer customer = customerDao.getCustomer(customerId);
+            if (customer == null) {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+            Customer newCustomer = customerDao.addToProductHistory(customer,animalId);
+            if (newCustomer == null) {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+            return new ResponseEntity<>(newCustomer,HttpStatus.OK);
+        }
+        catch(IOException e) {
+            Log.log(Level.SEVERE,e.getLocalizedMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/history/{customerId}")
+    public ResponseEntity<int[]> getProductHistory(@PathVariable int customerId){
+        try {
+            Customer customer = customerDao.getCustomer(customerId);
+            if (customer != null){
+                return new ResponseEntity<>(customer.getHistory(),HttpStatus.OK);
+            }
+            else
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        catch(IOException e) {
+            Log.log(Level.SEVERE,e.getLocalizedMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }

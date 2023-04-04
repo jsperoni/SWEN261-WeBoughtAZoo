@@ -63,7 +63,8 @@ public class ShoppingCartControlerTest {
         ResponseEntity<ShoppingCart> response = test.addAnimalToShoppingCart(shoppingCart.getCustomerId(),animal.getId());
 
         // Analyze
-        assertEquals(HttpStatus.NOT_FOUND,response.getStatusCode());
+        // Controller should create shopping cart if not found, so this should return OK not NOT_FOUND
+        assertEquals(HttpStatus.OK,response.getStatusCode());
     }
 
     @Test
@@ -112,7 +113,8 @@ public class ShoppingCartControlerTest {
         ResponseEntity<ShoppingCart> response = test.addAnimalToShoppingCart(shoppingCart.getCustomerId(),animal.getId());
 
         // Analyze
-        assertEquals(HttpStatus.NOT_FOUND,response.getStatusCode());
+        // Controller should create a shopping cart if not found, so this should return OK not NOT_FOUND
+        assertEquals(HttpStatus.OK,response.getStatusCode());
     }
 
     @Test

@@ -16,6 +16,8 @@ public interface ShoppingCartDAO {
 
     ShoppingCart removeAnimalFromShoppingCart(int id, int animalId) throws IOException;
 
+    ShoppingCart checkoutShoppingCart(int id) throws IOException;
+
     boolean deleteShoppingCart(int id) throws IOException;
 
     int[] getCheckedOutAnimals() throws IOException;

@@ -14,6 +14,7 @@ import { MessagesComponent } from './messages/messages.component';
 import { RouterModule } from '@angular/router';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { LoginComponent } from './login/login.component';
+import { HistoryComponent } from './history/history.component';
 import { SpeciesComponent } from './species/species.component';
 import { SpeciesDetailComponent } from './species-detail/species-detail.component';
 
@@ -34,6 +35,7 @@ import { SpeciesDetailComponent } from './species-detail/species-detail.componen
     AnimalSearchComponent,
     ShoppingCartComponent,
     LoginComponent,
+    HistoryComponent
     SpeciesComponent,
     SpeciesDetailComponent
   ],

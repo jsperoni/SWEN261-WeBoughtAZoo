@@ -1,0 +1,7 @@
+<h2>History</h2>
+<div class="animals-menu">
+  <a *ngFor="let animal of animals"
+     routerLink="/detail/{{animal.id}}">
+    {{animal.name}} <br>(Species: {{animal.species}})
+  </a>
+</div>

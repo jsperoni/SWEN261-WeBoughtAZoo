@@ -7,6 +7,7 @@ import { catchError, filter, map, tap } from 'rxjs/operators';
 import { Animal } from './animals';
 import { ShoppingCart } from './shopping-cart';
 import { MessageService } from './message.service';
+import {CustomerService} from "./customer.service";
 
 @Injectable({ providedIn: 'root' })
 export class ShoppingCartService {
@@ -48,7 +49,7 @@ export class ShoppingCartService {
         catchError(this.handleError<ShoppingCart>(`getShoppingCart id=${id}`))
       );
   }
-  
+
   /** GET shopping cart by id. Will 404 if id is not found */
   getShoppingCart(id: number): Observable<ShoppingCart> {
     const url = `${this.shoppingCartUrl}`;
@@ -105,6 +106,27 @@ export class ShoppingCartService {
   createShoppingCart(cartId: number) {
     return this.addToCart(cartId, 9999).subscribe(
       _ => this.removeFromCart(cartId, 9999));
+  }
+
+  checkout(cartId: number): Observable<any> {
+    // add all animals in cart to customer history
+    this.getShoppingCart(cartId).subscribe(cart => {
+      for(let animal of cart.animals) {
+        this.addToCustomerHistory(cart.customer_id, animal).subscribe();
+      }
+    })
+
+    return this.http.post(`${this.shoppingCartUrl}/checkout/${cartId}`, "nothing goes here").pipe(
+      tap(_ => this.log(`checked out cart id=${cartId}`)),
+      catchError(this.handleError<any>('checkout'))
+    );
+  }
+
+  private addToCustomerHistory(customerId: number, animal: number): Observable<any> {
+    return this.http.get(`http://localhost:8080/customers/history/${customerId}/${animal}`).pipe(
+      tap(_ => this.log(`added animal id=${animal} to customer id=${customerId}`)),
+      catchError(this.handleError<any>('addToCustomerHistory'))
+    );
   }
 
   /**

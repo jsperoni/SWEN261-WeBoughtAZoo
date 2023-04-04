@@ -111,6 +111,18 @@ public class ShoppingCartFileDAO implements ShoppingCartDAO {
         return shoppingCart;
     }
 
+    public ShoppingCart checkoutShoppingCart(int id) {
+        if (!shoppingCarts.containsKey(id)) {
+            return null;
+        }
+        ShoppingCart shoppingCart = shoppingCarts.get(id);
+        for (int animalId : shoppingCart.getAnimals()) {
+            decrementAnimal(animalId);
+        }
+        shoppingCart.clearAnimals();
+        return shoppingCart;
+    }
+
     public boolean deleteShoppingCart(int id) {
         if (!shoppingCarts.containsKey(id)) {
             return false;

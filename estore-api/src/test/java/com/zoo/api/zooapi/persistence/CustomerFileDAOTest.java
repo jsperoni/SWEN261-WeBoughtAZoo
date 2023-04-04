@@ -38,7 +38,7 @@ public class CustomerFileDAOTest {
         testCustomers = new Customer[3];
         String[] personal = {"6000 Reynolds Drive", "14623", "7743647789"};
         String[] card = {"John Doe", "1111111111111111", "01/23", "111", "14623"};
-        String[] history = {"Bongo", "Lightning", "Zeus", "Apollo", "Scooby"};
+        int[] history = {1, 2, 3, 4, 5};
         testCustomers[0] = new Customer(9,"goodstudent123", personal, card, history);
         testCustomers[1] = new Customer(39,"gccismajor", personal, card, history);
         testCustomers[2] = new Customer(45,"itouchgrass123", personal, card, history);
@@ -104,7 +104,7 @@ public class CustomerFileDAOTest {
         // Setup
         String[] personal = {"6000 Reynolds Drive", "14623", "7743647789"};
         String[] card = {"John Doe", "1111111111111111", "01/23", "111", "14623"};
-        String[] history = {"Bongo", "Lightning", "Zeus", "Apollo", "Scooby"};
+        int[] history = {1, 2, 3, 4, 5};
         Customer customer = new Customer(102,"Wonder-Person", personal, card, history);
 
         // Invoke
@@ -123,7 +123,7 @@ public class CustomerFileDAOTest {
         // Setup
         String[] personal = {"6000 Reynolds Drive", "14623", "7743647789"};
         String[] card = {"John Doe", "1111111111111111", "01/23", "111", "14623"};
-        String[] history = {"Bongo", "Lightning", "Zeus", "Apollo", "Scooby"};
+        int[] history = {1, 2, 3, 4, 5};
         Customer customer = new Customer(45,"Galactic-Agent", personal, card, history);
 
         // Invoke
@@ -140,7 +140,7 @@ public class CustomerFileDAOTest {
     public void testSaveException() throws IOException{
         String[] personal = {"6000 Reynolds Drive", "14623", "7743647789"};
         String[] card = {"John Doe", "1111111111111111", "01/23", "111", "14623"};
-        String[] history = {"Bongo", "Lightning", "Zeus", "Apollo", "Scooby"};
+        int[] history = {1, 2, 3, 4, 5};
         doThrow(new IOException())
             .when(mockObjectMapper)
                 .writeValue(any(File.class),any(Customer[].class));
@@ -178,7 +178,7 @@ public class CustomerFileDAOTest {
         // Setup
         String[] personal = {"6000 Reynolds Drive", "14623", "7743647789"};
         String[] card = {"John Doe", "1111111111111111", "01/23", "111", "14623"};
-        String[] history = {"Bongo", "Lightning", "Zeus", "Apollo", "Scooby"};
+        int[] history = {1, 2, 3, 4, 5};
         Customer customer = new Customer(98,"Bolt", personal, card, history);
 
         // Invoke
