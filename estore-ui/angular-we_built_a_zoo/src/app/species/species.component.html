@@ -17,7 +17,8 @@
 <ul class="species">
   <li *ngFor="let species of speciesList">
     <a routerLink="/species-detail/{{species.name}}">
-      <span class="badge">{{species.name}}</span> {{species.name}}
+       {{species.name}} 
+      <!-- <span class="badge">{{species.name}}</span> {{species.name}} -->
     </a>
     <span *ngIf="isAdmin()">
     <button type="button" class="delete" title="delete species"
