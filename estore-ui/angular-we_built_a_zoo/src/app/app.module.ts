@@ -35,7 +35,7 @@ import { SpeciesDetailComponent } from './species-detail/species-detail.componen
     AnimalSearchComponent,
     ShoppingCartComponent,
     LoginComponent,
-    HistoryComponent
+    HistoryComponent,
     SpeciesComponent,
     SpeciesDetailComponent
   ],
