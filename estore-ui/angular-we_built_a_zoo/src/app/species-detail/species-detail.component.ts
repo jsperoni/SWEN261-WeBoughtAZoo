@@ -17,6 +17,8 @@ let components: SpeciesDetailComponent[] = [];
 export class SpeciesDetailComponent implements OnInit {
   species: Species | undefined;
   username?: string = instance.customer?.username;
+  container = document.getElementById('input-cont');
+  inps: number = 0;
 
   constructor(
     private route: ActivatedRoute,
@@ -40,13 +42,17 @@ export class SpeciesDetailComponent implements OnInit {
     this.location.back();
   }
 
-  save(stringInfo: string): void {
+  save(): void {
     if (this.species) {
-      console.log(stringInfo);
-      let info = [stringInfo];
-      console.log(info);
+      this.nameInputs();
+      let info: string[] = [];
+      for(let i = 1; i < this.inps; i++){
+        let inp = document.getElementsByTagName("input").item(i)?.value;
+        if(inp){
+          info.push(inp);
+        }
+      }
       this.species.info = info;
-      console.log(this.species.info);
       this.speciesService.updateSpecies(this.species)
         .subscribe(() => this.goBack());
     }
@@ -55,5 +61,24 @@ export class SpeciesDetailComponent implements OnInit {
   isAdmin() : boolean {
     return instance.customer?.username === 'admin';
   }
+
+nameInputs(){
+    var inputs = document.getElementsByTagName("input");
+    this.inps = inputs.length;
+    for(let i=0; i<inputs.length; i++)
+      inputs[i].name = "info" + (i);
+}
+
+createNewElement() {
+  // First create a DIV element.
+  var txtNewInputBox = document.createElement('div');
+  txtNewInputBox.className = 'dynamic-class';
+
+  // Then add the content (a new input box) of the element.
+  txtNewInputBox.innerHTML = "<input id='newInputBox' class='dynamic-input'>";
+
+  // Finally put it where it is supposed to appear.
+  document.getElementById("info")?.appendChild(txtNewInputBox);
+}
 }
 
