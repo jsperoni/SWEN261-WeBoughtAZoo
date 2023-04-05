@@ -24,7 +24,7 @@ h1 {
   
   nav a:hover {
     color: white;
-    background-color: #42545C;
+    background-color: #3d3221;
   }
   nav a:active {
     background-color: black;
@@ -46,7 +46,7 @@ h1 {
   
   nav b:hover {
     color: white;
-    background-color: #42545C;
+    background-color: #3d3221;
   }
   nav b:active {
     background-color: black;
