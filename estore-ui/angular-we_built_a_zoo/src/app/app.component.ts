@@ -18,4 +18,8 @@ export class AppComponent {
       return "Guest";
     }
   }
+
+  loggedIn(): boolean {
+    return !!instance?.customer?.username;
+  }
 }
