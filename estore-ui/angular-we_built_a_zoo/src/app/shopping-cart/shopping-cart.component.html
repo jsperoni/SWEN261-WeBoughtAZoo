@@ -1,14 +1,4 @@
 <h2>Shopping cart</h2>
-<<<<<<< Updated upstream
-<div class="shoppingcart">
-  <a *ngFor="let animal of animals"
-    routerLink="/detail/{{animal.id}}">
-    {{animal.name}} (Species: {{animal.species}})
-  </a>
-  
-</div>
-<button (click)="checkout()">Checkout</button>
-=======
 <span *ngIf="!isUser()">You must be signed in to access a shopping cart</span>
 <span *ngIf="isUser()">
   <div class="shoppingcart">
@@ -16,7 +6,6 @@
       routerLink="/detail/{{animal.id}}">
       {{animal.name}} (Species: {{animal.species}})
     </a>
-    <button (click)="checkout()">Checkout</button>
+    <button (click)="checkout(); router.navigate(['/history']);">Checkout</button>
   </div>
 </span>
->>>>>>> Stashed changes

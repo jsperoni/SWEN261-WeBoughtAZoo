@@ -5,6 +5,8 @@ import { ShoppingCartService } from '../shopping-cart.service';
 import { instance } from '../login/login.component'
 import { Customer } from '../customer';
 import { AnimalService } from '../animal.service';
+import { Location } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -17,7 +19,7 @@ export class ShoppingCartComponent implements OnInit {
   animals: Animal[] = [];
 
   constructor(private shoppingCartService: ShoppingCartService,
-    private animalSerivce: AnimalService) {
+    private animalSerivce: AnimalService, public router: Router) {
   }
 
   ngOnInit(): void {
@@ -77,6 +79,7 @@ export class ShoppingCartComponent implements OnInit {
   checkout(): void {
     this.shoppingCartService.checkout(this.shoppingCart?.customer_id ? this.shoppingCart.customer_id : 9999)
       .subscribe((value) => this.updateCart(value as ShoppingCart));
+    //this.location.go("history");
   }
   
   isUser(): boolean {
