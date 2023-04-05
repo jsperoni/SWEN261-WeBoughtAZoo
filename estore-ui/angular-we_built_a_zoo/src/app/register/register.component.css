@@ -1,6 +1,5 @@
-/* species's private CSS styles */
-
-.species {
+/* register's private CSS styles */
+.animals {
     margin: 0 0 2em 0;
     list-style-type: none;
     padding: 0;
@@ -9,51 +8,31 @@
   
   input {
     display: block;
-    width: 100%;
+    width: 25%;
     padding: .5rem;
     margin: 1rem 0;
     box-sizing: border-box;
   }
-
-  .species li {
+  
+  .animals li {
     position: relative;
     cursor: pointer;
   }
   
-  .species li:hover {
+  .animals li:hover {
     left: .1em;
   }
   
-  /* .species a {
+  .animals a {
     color: #333;
     text-decoration: none;
     background-color: #EEE;
     margin: .5em;
     padding: .3em 0;
-    height: 5em;
+    height: 1.6em;
     border-radius: 4px;
-    display: block;
     width: 100%;
-  }
-  
-  .species a:hover {
-    color: #2c3a41;
-    background-color: #e6e6e6;
-  }
-   */
-  a {
-    background-color: #304f2c;
-    border-radius: 2px;
-    padding: 1rem;
-    font-size: 1.2rem;
-    text-decoration: none;
     display: inline-block;
-    color: #fff;
-    text-align: center;
-    width: 100%;
-    min-width: 70px;
-    margin: .5rem auto;
-    box-sizing: border-box;
   
     /* flexbox */
     order: 0;
@@ -61,23 +40,17 @@
     align-self: auto;
   }
   
-  @media (min-width: 600px) {
-    a {
-      width: 100%;
-      box-sizing: content-box;
-    }
+  .animals a:hover {
+    color: #2c3a41;
+    background-color: #e6e6e6;
   }
   
-  a:hover {
-    background-color: black;
-  }
-
-  .species a:active {
+  .animals a:active {
     background-color: #525252;
     color: #fafafa;
   }
   
-  .species .badge {
+  .animals .badge {
     display: inline-block;
     font-size: small;
     color: white;
@@ -107,8 +80,8 @@
   
   button.delete {
     position: absolute;
-    left: 350px;
-    top: 8px;
+    left: 290px;
+    top: 3px;
     background-color: white;
     color:  #525252;
     font-size: 1.1rem;

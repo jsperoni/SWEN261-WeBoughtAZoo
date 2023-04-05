@@ -1,3 +1,4 @@
+<h2>Login</h2>
 <div>
     <label for="customer-username">Username: </label>
     <input id="customer-username" #username />
@@ -5,4 +6,6 @@
     <button type="button" class="login-button" (click)="login(username.value); username.value=''">
         Login
       </button>
+      <br>
+      <span *ngIf="show">Login Success!</span>
 </div>

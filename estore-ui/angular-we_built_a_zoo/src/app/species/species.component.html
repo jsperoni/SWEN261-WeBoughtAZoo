@@ -15,6 +15,7 @@
 </div>
 </span>
 <ul class="species">
+
         <label for="targets">Based on Your Purchase History:</label>
         <li *ngFor="let target of speciesBought" id="targets">
             <a routerLink="/species-detail/{{target}}">
@@ -31,4 +32,5 @@
                 (click)="delete(species)">x</button>
         </span>
     </li>
+
 </ul>
