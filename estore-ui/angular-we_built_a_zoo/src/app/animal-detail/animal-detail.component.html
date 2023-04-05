@@ -28,6 +28,9 @@
           <span *ngIf="isUser()"><button type="button" (click)="add()">Add to Shopping Cart</button></span>
 
           <span *ngIf="isUser()"><button type="button" (click)="remove()">Remove from Shopping Cart</button></span>
+          <br>
+          <span *ngIf="cartAction">{{message}}</span>
+          <br>
     </span>
 
     <button type="button" (click)="goBack()">go back</button>
