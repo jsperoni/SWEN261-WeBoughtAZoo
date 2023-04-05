@@ -19,7 +19,6 @@ export class CustomerService {
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
-  private animalUrl: string = 'http://localhost:8080/animals';
 
   constructor(
     private http: HttpClient,
@@ -28,7 +27,7 @@ export class CustomerService {
 
   /** GET customers from the server */
   getCustomers(): Observable<Customer[]> {
-    return this.http.get<Customer[]>(this.customerUrl)
+    return this.http.get<Customer[]>(`${this.customerUrl}/`)
       .pipe(
         tap(_ => this.log('fetched customers')),
         catchError(this.handleError<Customer[]>('getCustomers', []))
