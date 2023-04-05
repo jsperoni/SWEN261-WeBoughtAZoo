@@ -23,6 +23,11 @@ public class ShoppingCartFileDAO implements ShoppingCartDAO {
     private final ObjectMapper objectMapper;
     private final String filename;
 
+    /**
+     * Creates a new ShoppingCartFileDAO
+     * @param filename the file to load the shopping carts from
+     * @param objectMapper the object mapper to use
+     */
     public ShoppingCartFileDAO(@Value("data/shoppingcart.json") String filename, ObjectMapper objectMapper) {
         this.filename = filename;
         this.objectMapper = objectMapper;
@@ -35,6 +40,10 @@ public class ShoppingCartFileDAO implements ShoppingCartDAO {
         }
     }
 
+    /**
+     * Loads the shopping carts from the file
+     * @throws IOException if there is an error reading the file
+     */
     private void load() throws IOException {
         shoppingCarts = new HashMap<>();
 
@@ -48,11 +57,17 @@ public class ShoppingCartFileDAO implements ShoppingCartDAO {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ShoppingCart[] getShoppingCarts() throws IOException {
         return shoppingCarts.values().toArray(new ShoppingCart[0]);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public ShoppingCart getShoppingCart(int customerId) {
         if (shoppingCarts.containsKey(customerId)) {
             return shoppingCarts.get(customerId);
@@ -60,6 +75,9 @@ public class ShoppingCartFileDAO implements ShoppingCartDAO {
         return null;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public ShoppingCart createShoppingCart(ShoppingCart shoppingCart) {
         if (shoppingCarts.containsKey(shoppingCart.getCustomerId())) {
             return shoppingCarts.get(shoppingCart.getCustomerId());
@@ -71,6 +89,9 @@ public class ShoppingCartFileDAO implements ShoppingCartDAO {
         return shoppingCart;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public ShoppingCart updateShoppingCart(ShoppingCart shoppingCart) {
         if (!shoppingCarts.containsKey(shoppingCart.getCustomerId())) {
             return createShoppingCart(shoppingCart);
@@ -87,6 +108,9 @@ public class ShoppingCartFileDAO implements ShoppingCartDAO {
         return shoppingCart;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public ShoppingCart addAnimalToShoppingCart(int id, int animalId) {
         if (!shoppingCarts.containsKey(id)) {
             createShoppingCart(new ShoppingCart(id));
@@ -99,6 +123,9 @@ public class ShoppingCartFileDAO implements ShoppingCartDAO {
         return shoppingCart;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public ShoppingCart removeAnimalFromShoppingCart(int id, int animalId) {
         if (!shoppingCarts.containsKey(id)) {
             return null;
@@ -111,6 +138,9 @@ public class ShoppingCartFileDAO implements ShoppingCartDAO {
         return shoppingCart;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public ShoppingCart checkoutShoppingCart(int id) {
         if (!shoppingCarts.containsKey(id)) {
             return null;
@@ -123,6 +153,9 @@ public class ShoppingCartFileDAO implements ShoppingCartDAO {
         return shoppingCart;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public boolean deleteShoppingCart(int id) {
         if (!shoppingCarts.containsKey(id)) {
             return false;
@@ -131,6 +164,9 @@ public class ShoppingCartFileDAO implements ShoppingCartDAO {
         return true;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public int[] getCheckedOutAnimals() {
         HashSet<Integer> checkedOutAnimals = new HashSet<>();
         for(Map.Entry<Integer, Integer> entry : animalCheckoutCount.entrySet()) {
@@ -146,6 +182,9 @@ public class ShoppingCartFileDAO implements ShoppingCartDAO {
         return animals;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     private void incrementAnimal(int id) {
         if (animalCheckoutCount.containsKey(id)) {
             animalCheckoutCount.put(id, animalCheckoutCount.get(id) + 1);
@@ -154,6 +193,9 @@ public class ShoppingCartFileDAO implements ShoppingCartDAO {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     private void decrementAnimal(int id) {
         if (animalCheckoutCount.containsKey(id)) {
             animalCheckoutCount.put(id, animalCheckoutCount.get(id) - 1);

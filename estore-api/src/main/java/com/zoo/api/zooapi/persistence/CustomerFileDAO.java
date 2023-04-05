@@ -35,10 +35,19 @@ public class CustomerFileDAO implements CustomerDAO {
         return id;
     }
 
+    /**
+     * Returns an array of all customers
+     * @return an array of all customers
+     */
     private Customer[] getCustomerArray() {
         return getCustomerArray(null);
     }
 
+    /**
+     * Returns an array of all customers that contain the given text
+     * @param text text to search for
+     * @return an array of all customers that contain the given text
+     */
     private Customer[] getCustomerArray(String text){
         ArrayList<Customer> CustomerArrayList = new ArrayList<>();
 
@@ -53,12 +62,22 @@ public class CustomerFileDAO implements CustomerDAO {
         return CustomerArray;
     }
 
+    /**
+     * Saves the current state of the customers to the file
+     * @return true if successful, false otherwise
+     * @throws IOException if there is an error writing to the file
+     */
     private boolean save() throws IOException {
         Customer[] Customerarray = getCustomers();
         objectMapper.writeValue(new File(filename), Customerarray);
         return true;
     }
 
+    /**
+     * Loads the customers from the file
+     * @return true if successful, false otherwise
+     * @throws IOException if there is an error reading from the file
+     */
     private boolean load() throws IOException {
         customers = new TreeMap<>();
         nextId = 0;
@@ -75,6 +94,9 @@ public class CustomerFileDAO implements CustomerDAO {
         return true;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Customer[] getCustomers() {
         synchronized(customers){
@@ -82,6 +104,9 @@ public class CustomerFileDAO implements CustomerDAO {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Customer[] findCustomers(String containsText) {
         synchronized(customers){
@@ -89,6 +114,9 @@ public class CustomerFileDAO implements CustomerDAO {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Customer searchCustomer(String containsText) {
         synchronized(customers){
@@ -97,6 +125,9 @@ public class CustomerFileDAO implements CustomerDAO {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Customer getCustomer(int id) {
         synchronized(customers) {
@@ -104,6 +135,9 @@ public class CustomerFileDAO implements CustomerDAO {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Customer createCustomer(Customer customer) throws IOException {
         synchronized(customers){
@@ -114,6 +148,9 @@ public class CustomerFileDAO implements CustomerDAO {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Customer updateCustomer(Customer customer) throws IOException {
         synchronized(customers) {
@@ -126,6 +163,9 @@ public class CustomerFileDAO implements CustomerDAO {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Customer login(String username, String password) throws IOException {
         synchronized(customers) {
@@ -138,6 +178,9 @@ public class CustomerFileDAO implements CustomerDAO {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean deleteCustomer(int id) throws IOException {
         synchronized(customers) {
@@ -150,6 +193,9 @@ public class CustomerFileDAO implements CustomerDAO {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Customer addToProductHistory(Customer customer, int animalId){
         Customer tempCustomer = customer;

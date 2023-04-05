@@ -55,12 +55,28 @@ public class Animal {
      */
     public String getName() {return name;}
 
+    /**
+     * Retrieves the species of the animal
+     * @return The species of the animal
+     */
     public String getSpecies() {return species;}
 
+    /**
+     * Sets the species of the animal - necessary for JSON object to Java object deserialization
+     * @param species The species of the animal
+     */
     public void setSpecies(String species) {this.species = species;} 
 
+    /**
+     * Retrieves the price of the animal
+     * @return The price of the animal
+     */
     public int getPrice() {return price;}
 
+    /**
+     * Sets the price of the animal - necessary for JSON object to Java object deserialization
+     * @param price The price of the animal
+     */
     public void setPrice(int price) {this.price = price;}
 
     /**

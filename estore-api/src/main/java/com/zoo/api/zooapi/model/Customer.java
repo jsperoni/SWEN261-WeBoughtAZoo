@@ -117,6 +117,9 @@ static final String STRING_FORMAT = "customer [id=%d, username=%s]";
         return String.format(Customer.STRING_FORMAT, id, username);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean equals(Object other) {
         if (other instanceof Customer) {
