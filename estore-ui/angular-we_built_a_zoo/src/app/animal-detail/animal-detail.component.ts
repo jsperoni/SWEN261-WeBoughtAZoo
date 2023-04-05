@@ -61,4 +61,12 @@ export class AnimalDetailComponent implements OnInit {
   remove(): void {
     this.shoppingCartService.removeFromCart(instance.customer?.id ? instance.customer?.id: 9999 , this.animal ? this.animal.id : 9999).subscribe(() => {});
   }
+
+  isUser(): boolean {
+    if(instance.customer?.username){
+      return true;
+    } else{
+      return false;
+    }
+  }
 }

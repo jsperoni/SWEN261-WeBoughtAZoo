@@ -78,4 +78,12 @@ export class ShoppingCartComponent implements OnInit {
     this.shoppingCartService.checkout(this.shoppingCart?.customer_id ? this.shoppingCart.customer_id : 9999)
       .subscribe((value) => this.updateCart(value as ShoppingCart));
   }
+  
+  isUser(): boolean {
+    if(instance.customer?.username){
+      return true;
+    } else{
+      return false;
+    }
+  }
 }

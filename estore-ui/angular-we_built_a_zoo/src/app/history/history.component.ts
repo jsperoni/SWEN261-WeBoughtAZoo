@@ -31,4 +31,12 @@ export class HistoryComponent implements OnInit {
       }
     });
   }
+
+  isUser(): boolean {
+    if(instance.customer?.username){
+      return true;
+    } else{
+      return false;
+    }
+  }
 }

@@ -52,4 +52,12 @@ export class SpeciesComponent implements OnInit {
   isAdmin() : boolean {
     return instance.customer?.username === 'admin';
   }
+
+  isUser(): boolean {
+    if(instance.customer?.username){
+      return true;
+    } else{
+      return false;
+    }
+  }
 }

@@ -1,7 +1,10 @@
 <h2>History</h2>
-<div class="animals-menu">
-  <a *ngFor="let animal of animals"
-     routerLink="/detail/{{animal.id}}">
-    {{animal.name}} <br>(Species: {{animal.species}})
-  </a>
-</div>
+<span *ngIf="!isUser()">You must be signed in to have access to product history</span>
+<span *ngIf="isUser()">
+  <div class="animals-menu">
+    <a *ngFor="let animal of animals"
+      routerLink="/detail/{{animal.id}}">
+      {{animal.name}} <br>(Species: {{animal.species}})
+    </a>
+  </div>
+</span>

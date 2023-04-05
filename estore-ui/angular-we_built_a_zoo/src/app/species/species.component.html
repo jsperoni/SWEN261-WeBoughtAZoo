@@ -14,6 +14,7 @@
   </button>
 </div>
 </span>
+<<<<<<< Updated upstream
 <ul class="species">
 
         <label for="targets">Based on Your Purchase History:</label>
@@ -22,6 +23,18 @@
                 {{target}}
             </a>
         </li>
+=======
+    <ul class="species">
+        <span *ngIf="isUser()">
+            <label for="targets">Based on Your Purchase History:</label>
+            <li *ngFor="let target of speciesBought" id="targets">
+                <a routerLink="/species-detail/{{target}}">
+                    {{target}}
+                </a>
+            </li>
+            <br>
+        </span>
+>>>>>>> Stashed changes
     <label for="species-list">Species Care:</label>
     <li *ngFor="let species of speciesList" id="species-list">
         <a routerLink="/species-detail/{{species.name}}">
