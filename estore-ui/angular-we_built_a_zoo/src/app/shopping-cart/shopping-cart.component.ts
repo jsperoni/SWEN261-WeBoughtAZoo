@@ -76,16 +76,23 @@ export class ShoppingCartComponent implements OnInit {
     this.getAnimals();
   }
 
-  checkout(): void {
-    this.shoppingCartService.checkout(this.shoppingCart?.customer_id ? this.shoppingCart.customer_id : 9999)
+  async checkout(): Promise<void> {
+    (await this.shoppingCartService.checkout(this.shoppingCart?.customer_id ? this.shoppingCart.customer_id : 9999))
       .subscribe((value) => this.updateCart(value as ShoppingCart));
-    //this.location.go("history");
   }
-  
+
   isUser(): boolean {
     if(instance.customer?.username){
       return true;
     } else{
+      return false;
+    }
+  }
+
+  isAdmin(): boolean {
+    if(instance.customer?.username === "admin" ){
+      return true;
+    } else {
       return false;
     }
   }
