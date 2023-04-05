@@ -3,17 +3,18 @@ import { Component } from '@angular/core';
 import { Customer } from '../customer';
 import { CustomerService } from '../customer.service';
 
-let instance: LoginComponent;
+let instance: RegisterComponent;
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  selector: 'app-register',
+  templateUrl: './register.component.html',
+  styleUrls: ['./register.component.css']
 })
-export class LoginComponent {
+export class RegisterComponent {
   customers: Customer[] = [];
   customer?: Customer;
-  show: boolean=false;
+  show: boolean= false;
+  register: boolean=false;
 
   constructor(private customerService: CustomerService) {
     instance = this;
@@ -34,21 +35,23 @@ export class LoginComponent {
       .subscribe(customer => {
         this.customers.push(customer);
       });
+    this.register=true;
   }
 
   login(username: string): void{
     if (!username) { return; }
     this.customerService.login(username)
       .subscribe(customer => this.customer = customer);
-    this.show = true;
-  }
+      this.show = true;
+    }
 
   getCurrentCustomer(): Customer | undefined {
     return this.customer;
   }
 
   isNonuser() : boolean {
-    return (this.show);
-  }}
+    return (this.register);
+  }
+}
 
 export { instance };

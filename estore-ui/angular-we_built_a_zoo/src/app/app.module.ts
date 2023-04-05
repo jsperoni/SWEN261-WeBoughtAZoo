@@ -17,6 +17,7 @@ import { LoginComponent } from './login/login.component';
 import { HistoryComponent } from './history/history.component';
 import { SpeciesComponent } from './species/species.component';
 import { SpeciesDetailComponent } from './species-detail/species-detail.component';
+import { RegisterComponent } from './register/register.component'
 
 @NgModule({
   imports: [
@@ -35,6 +36,7 @@ import { SpeciesDetailComponent } from './species-detail/species-detail.componen
     AnimalSearchComponent,
     ShoppingCartComponent,
     LoginComponent,
+    RegisterComponent,
     HistoryComponent,
     SpeciesComponent,
     SpeciesDetailComponent
