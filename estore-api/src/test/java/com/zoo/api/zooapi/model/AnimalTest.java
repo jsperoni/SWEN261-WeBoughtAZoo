@@ -17,9 +17,11 @@ public class AnimalTest {
         // Setup
         int expected_id = 99;
         String expected_name = "Wi-Fire";
+        String expected_species = "dog";
+        int expected_cost = 69;
 
         // Invoke
-        Animal animal = new Animal(expected_id,expected_name);
+        Animal animal = new Animal(expected_id,expected_name,expected_species, expected_cost);
 
         // Analyze
         assertEquals(expected_id,animal.getId());
@@ -31,7 +33,11 @@ public class AnimalTest {
         // Setup
         int id = 99;
         String name = "Wi-Fire";
-        Animal animal = new Animal(id,name);
+        String expected_species = "dog";
+        int expected_cost = 69;
+
+        // Invoke
+        Animal animal = new Animal(id,name,expected_species, expected_cost);
 
         String expected_name = "Galactic Agent";
 
@@ -47,8 +53,11 @@ public class AnimalTest {
         // Setup
         int id = 99;
         String name = "Wi-Fire";
+        String expected_species = "dog";
+        int expected_cost = 69;
+        
         String expected_string = String.format(Animal.STRING_FORMAT,id,name);
-        Animal animal = new Animal(id,name);
+        Animal animal = new Animal(id,name, expected_species, expected_cost);
 
         // Invoke
         String actual_string = animal.toString();

@@ -1,0 +1,44 @@
+<div *ngIf="!species">
+    <h2>No information for this species</h2>
+</div>
+<div *ngIf="species">
+    <h2>{{species.name}} Care Information</h2>
+    <span *ngIf="isAdmin()">
+    <div>
+      <label for="species-name">Species name: </label>
+      <input id="species-name" [(ngModel)]="species.name" placeholder="Species name"/>
+    </div>
+    <div>
+        <br>
+        <label for="species-info">Care Information: </label>
+        <form id="info" class="info">
+            <li *ngFor="let info of species.info">
+                <input id="species-info" value= {{info}}/>
+            </li>
+        </form>
+        <div id="dynamicCheck">
+            <span *ngIf = "isAdmin()"><button type="button" (click)="createNewElement();">Add new info</button></span>
+         </div>
+      </div>
+    
+    </span>
+
+    <span *ngIf="!isAdmin()">
+        <span *ngIf="isSpecies()">It looks like this species doesn't have any extra infomation yet! 
+            If you have any questions feel free to contact admin</span>
+        <div><span>Species: </span>{{species.name}}</div>
+
+        <div>
+            <br>
+            <label for="species-info">Care Information: </label>
+            <form id="info">
+                <li *ngFor="let info of species.info">
+                    {{info}}
+                </li>
+            </form>
+        </div>
+    </span>
+
+    <button type="button" (click)="goBack()">go back</button>
+    <span *ngIf="isAdmin()"><button type="button" (click)="save()">save</button></span>
+  </div>

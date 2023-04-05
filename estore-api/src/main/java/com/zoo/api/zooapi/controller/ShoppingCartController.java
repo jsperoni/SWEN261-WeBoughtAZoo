@@ -1,0 +1,109 @@
+package com.zoo.api.zooapi.controller;
+
+import com.zoo.api.zooapi.model.ShoppingCart;
+import com.zoo.api.zooapi.persistence.ShoppingCartDAO;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+@RestController
+@RequestMapping("shoppingcart")
+public class ShoppingCartController {
+    private static final Logger Log = Logger.getLogger(ShoppingCartController.class.getName());
+    private ShoppingCartDAO shoppingCartDao;
+
+    public ShoppingCartController(ShoppingCartDAO shoppingCartDao) {
+        this.shoppingCartDao = shoppingCartDao;
+    }
+
+    @GetMapping("")
+    public ResponseEntity<ShoppingCart[]> getShoppingCarts() {
+        Log.info("GET /shoppingcart");
+
+        try {
+            ShoppingCart cart[] = shoppingCartDao.getShoppingCarts();
+            return new ResponseEntity<ShoppingCart[]>(cart,HttpStatus.OK);
+        }
+        catch(IOException e) {
+            Log.log(Level.SEVERE,e.getLocalizedMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<ShoppingCart[]> getShoppingCart(@PathVariable int id) {
+        Log.info("GET /shoppingcart" + id);
+
+        try {
+            ShoppingCart cart[] = shoppingCartDao.getShoppingCarts();
+            return new ResponseEntity<ShoppingCart[]>(cart,HttpStatus.OK);
+        }
+        catch(IOException e) {
+            Log.log(Level.SEVERE,e.getLocalizedMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PutMapping("/{id}/{animalId}")
+    public ResponseEntity<ShoppingCart> addAnimalToShoppingCart(@PathVariable int id, @PathVariable int animalId) {
+        Log.info("PUT /shoppingcart " + id);
+
+        // Replace below with your implementation
+        try {
+            ShoppingCart cartnew = shoppingCartDao.addAnimalToShoppingCart(id, animalId);
+            if (cartnew == null){
+                cartnew = shoppingCartDao.createShoppingCart(new ShoppingCart(id));
+                shoppingCartDao.addAnimalToShoppingCart(id, animalId);
+                return new ResponseEntity<>(cartnew, HttpStatus.NOT_FOUND);
+            }
+            else {
+                return new ResponseEntity<>(cartnew, HttpStatus.OK);
+            }
+        }
+        catch(IOException e) {
+            Log.log(Level.SEVERE,e.getLocalizedMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @DeleteMapping("/{id}/{animalId}")
+    public ResponseEntity<ShoppingCart> removeAnimalFromShoppingCart(@PathVariable int id, @PathVariable int animalId) {
+        Log.info("DELETE /animal/" + id);
+
+        try {
+            ShoppingCart cartnew = shoppingCartDao.removeAnimalFromShoppingCart(id, animalId);
+            if (cartnew.containsAnimal(animalId))
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            else {
+                return new ResponseEntity<>(cartnew, HttpStatus.OK);
+            }
+        }
+        catch(IOException e) {
+            Log.log(Level.SEVERE,e.getLocalizedMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PostMapping("/checkout/{id}")
+    public ResponseEntity<ShoppingCart> checkoutShoppingCart(@PathVariable int id) {
+        Log.info("POST /shoppingcart/checkout/" + id);
+
+        try {
+            ShoppingCart cartnew = shoppingCartDao.checkoutShoppingCart(id);
+            if (cartnew == null)
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            else {
+                return new ResponseEntity<>(cartnew, HttpStatus.OK);
+            }
+        }
+        catch(IOException e) {
+            Log.log(Level.SEVERE,e.getLocalizedMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+}

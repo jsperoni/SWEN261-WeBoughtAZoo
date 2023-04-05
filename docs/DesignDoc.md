@@ -9,7 +9,7 @@ geometry: margin=1in
 > and appear in the generated PDF in italics._
 
 ## Team Information
-<<<<<<< HEAD
+
 * Team name: 6F We Bought a Zoo
 * Team members
   * Krysta Lestico
@@ -17,8 +17,6 @@ geometry: margin=1in
   * Jack Speroni
   * Joseph O'Neil
   * Bobby Dhanoolal
-
->>>>>>> 5039b5edb61723d27db056b39e7b75e6fe89d5ae
 
 ## Executive Summary
 
@@ -158,6 +156,7 @@ Dependency Injection:
 
 Single Responsibility:
 
+
 	Single responsibility is also a part of the SOLID design principles. It is the principle that states that a class should only have one responsibility. This leads to smaller classes which can lead to larger coupling with relationships between the classes. But this will mean that it will be easier to understand the scope of a change in a class and to manage modifications. In our API the Controller is only responsible for using a try catch mechanism with its individual and calling the functions from DAO to fulfill the user queries. It is not concerned with the management of the data of the products in the webstore and will delegate this responsibility to the AnimalDao class. If the controller did not use single responsibility there would be limited use of the functionality of the functions with the data of the products. Unit testing would also be not possible. 
 
 Controller:
@@ -196,6 +195,9 @@ Persistence: All currently implemented DAOs are fairly well tested, missing only
 We were able to meet the acceptence criteria for the owner account where we have a seperate frontend for a user and a admin.
 We also meet the requirment for adding a product, removing a product, editing an existing product from the inventory. We also fullfied the critera for the individual customer and have their personal information. We were not able to complete a checkout proccess or handling each customers billing information and address.
 
+We were able to meet the acceptence criteria for the owner account where we have a seperate frontend for a user and a admin.
+We also meet the requirment for adding a product, removing a product, editing an existing product from the inventory. We also fullfied the critera for the individual customer and have their personal information. We were not able to complete a checkout proccess or handling each customers billing information and address.
+
 ### Unit Testing and Code Coverage
 > _**[Sprint 4]** Discuss your unit testing strategy. Report on the code coverage
 > achieved from unit testing of the code base. Discuss the team's
@@ -203,8 +205,10 @@ We also meet the requirment for adding a product, removing a product, editing an
 > code coverage met your targets._
 
 >_**[Sprint 2 & 4]** **Include images of your code coverage report.** If there are any anomalies, discuss
+
 > those._
 The controller tier had an anomaly where in the customer class, it was missing tests for a branch. Otherwise for the class that we had fully flashed out were mostly (75-100%) covered by the unit testing.
 ![Controller Tier](image1.png)
 ![Model Tier](image2.png)
 ![Persistence Tier](image3.png)
+ 

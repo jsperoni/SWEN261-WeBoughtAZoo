@@ -1,0 +1,38 @@
+<div *ngIf="animal">
+    <h2>{{animal.name | uppercase}} Details</h2>
+    <div><span>id: </span>{{animal.id}}</div>
+    <span *ngIf="isAdmin()">
+    <div>
+      <label for="animal-name">Animal name: </label>
+      <input id="animal-name" [(ngModel)]="animal.name" placeholder="Animal name"/>
+    </div>
+    <div>
+        <label for="animal-species">Species: </label>
+        <input id="animal-species" [(ngModel)]="animal.species" placeholder="Animal species"/>
+      </div>
+    
+    <div>
+        <label for="animal-price">Price: </label>
+        <input id="animal-price" [(ngModel)]="animal.price" placeholder="Animal price"/>
+      </div>
+    
+    </span>
+
+    <span *ngIf="!isAdmin()">
+        <div><span>Name: </span>{{animal.name}}</div>
+
+          <div><span>Species: </span>{{animal.species}}</div>
+          
+          <div><span>Price: </span>{{animal.price}}</div>
+
+          <span *ngIf="isUser()"><button type="button" (click)="add()">Add to Shopping Cart</button></span>
+
+          <span *ngIf="isUser()"><button type="button" (click)="remove()">Remove from Shopping Cart</button></span>
+          <br>
+          <span *ngIf="cartAction">{{message}}</span>
+          <br>
+    </span>
+
+    <button type="button" (click)="goBack()">go back</button>
+    <span *ngIf="isAdmin()"><button type="button" (click)="save()">save</button></span>
+  </div>

@@ -39,7 +39,7 @@ public class AnimalControlerTest {
     @Test
     public void testGetAnimal() throws IOException {  // getAnimal may throw IOException
         // Setup
-        Animal animal = new Animal(99,"Galactic Agent");
+        Animal animal = new Animal(99,"Galactic Agent", "mongoose", 20);
         // When the same id is passed in, our mock Animal DAO will return the Animal object
         when(mockAnimalDAO.getAnimal(animal.getId())).thenReturn(animal);
 
@@ -88,7 +88,7 @@ public class AnimalControlerTest {
     @Test
     public void testCreateAnimal() throws IOException {  // createAnimal may throw IOException
         // Setup
-        Animal animal = new Animal(99,"Wi-Fire");
+        Animal animal = new Animal(99,"Wi-Fire", "monkey", 10);
         // when createAnimal is called, return true simulating successful
         // creation and save
         when(mockAnimalDAO.createAnimal(animal)).thenReturn(animal);
@@ -104,7 +104,7 @@ public class AnimalControlerTest {
     @Test
     public void testCreateAnimalFailed() throws IOException {  // createAnimal may throw IOException
         // Setup
-        Animal animal = new Animal(99,"Bolt");
+        Animal animal = new Animal(99,"Bolt", "dog", 79 );
         // when createAnimal is called, return false simulating failed
         // creation and save
         when(mockAnimalDAO.createAnimal(animal)).thenReturn(null);
@@ -119,7 +119,7 @@ public class AnimalControlerTest {
     @Test
     public void testCreateAnimalHandleException() throws IOException {  // createAnimal may throw IOException
         // Setup
-        Animal animal = new Animal(99,"Ice Gladiator");
+        Animal animal = new Animal(99,"Ice Gladiator", "dog", 79);
 
         // When createAnimal is called on the Mock Animal DAO, throw an IOException
         doThrow(new IOException()).when(mockAnimalDAO).createAnimal(animal);
@@ -134,7 +134,7 @@ public class AnimalControlerTest {
     @Test
     public void testUpdateAnimal() throws IOException { // updateAnimal may throw IOException
         // Setup
-        Animal animal = new Animal(99,"Wi-Fire");
+        Animal animal = new Animal(99,"Wi-Fire", "dog", 79);
         // when updateAnimal is called, return true simulating successful
         // update and save
         when(mockAnimalDAO.updateAnimal(animal)).thenReturn(animal);
@@ -152,7 +152,7 @@ public class AnimalControlerTest {
     @Test
     public void testUpdateAnimalFailed() throws IOException { // updateAnimal may throw IOException
         // Setup
-        Animal animal = new Animal(99,"Galactic Agent");
+        Animal animal = new Animal(99,"Galactic Agent", "dog", 79);
         // when updateAnimal is called, return true simulating successful
         // update and save
         when(mockAnimalDAO.updateAnimal(animal)).thenReturn(null);
@@ -167,7 +167,7 @@ public class AnimalControlerTest {
     @Test
     public void testUpdateAnimalHandleException() throws IOException { // updateAnimal may throw IOException
         // Setup
-        Animal animal = new Animal(99,"Galactic Agent");
+        Animal animal = new Animal(99,"Galactic Agent", "dog", 79);
         // When updateAnimal is called on the Mock Animal DAO, throw an IOException
         doThrow(new IOException()).when(mockAnimalDAO).updateAnimal(animal);
 
@@ -182,8 +182,8 @@ public class AnimalControlerTest {
     public void testGetAnimales() throws IOException { // getAnimales may throw IOException
         // Setup
         Animal[] animales = new Animal[2];
-        animales[0] = new Animal(99,"Bolt");
-        animales[1] = new Animal(100,"The Great Iguana");
+        animales[0] = new Animal(99,"Bolt", "dog", 79);
+        animales[1] = new Animal(100,"The Great Iguana", "Iguana", 79);
         // When getAnimales is called return the animales created above
         when(mockAnimalDAO.getAnimals()).thenReturn(animales);
 
@@ -211,10 +211,10 @@ public class AnimalControlerTest {
     @Test
     public void testSearchAnimales() throws IOException { // findAnimales may throw IOException
         // Setup
-        String searchString = "la";
+        String searchString = "Mon";
         Animal[] animales = new Animal[2];
-        animales[0] = new Animal(99,"Galactic Agent");
-        animales[1] = new Animal(100,"Ice Gladiator");
+        animales[0] = new Animal(25,"Monkey", "dog", 79);
+        animales[1] = new Animal(26,"Mongoose", "dog", 79);
         // When findAnimales is called with the search string, return the two
         /// animales above
         when(mockAnimalDAO.findAnimals(searchString)).thenReturn(animales);

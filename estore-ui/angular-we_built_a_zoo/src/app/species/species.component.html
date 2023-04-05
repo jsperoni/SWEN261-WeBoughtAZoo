@@ -1,0 +1,38 @@
+<app-species-search></app-species-search>
+<h2>Species Care List</h2>
+<span *ngIf="isAdmin()">
+<div>
+  <label for="new-species">Species name: </label>
+  <input id="new-species" #speciesName />
+
+  <label for="new-species">Species info(add 1 tip): </label>
+  <input id="new-species" #speciesInfo />
+
+  <!-- (click) passes input value to add() and then clears the input -->
+  <button type="button" class="add-button" (click)="add(speciesName.value, speciesInfo.value); speciesName.value=''; speciesInfo.value=''">
+    Add species
+  </button>
+</div>
+</span>
+    <ul class="species">
+        <span *ngIf="isUser()">
+            <label for="targets">Based on Your Purchase History:</label>
+            <li *ngFor="let target of speciesBought" id="targets">
+                <a routerLink="/species-detail/{{target}}">
+                    {{target}}
+                </a>
+            </li>
+            <br>
+        </span>
+    <label for="species-list">Species Care:</label>
+    <li *ngFor="let species of speciesList" id="species-list">
+        <a routerLink="/species-detail/{{species.name}}">
+             {{species.name}}
+        </a>
+        <span *ngIf="isAdmin()">
+            <button type="button" class="delete" title="delete species"
+                (click)="delete(species)">x</button>
+        </span>
+    </li>
+
+</ul>
