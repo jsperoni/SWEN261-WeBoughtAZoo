@@ -69,6 +69,11 @@ In the domain model the customers can order the product through using the websit
 ## Architecture and Design
 
 This section describes the application architecture.
+![animal](AnimalUML.png)
+![customer](CustomerUML.png)
+![shoppingcart](ShoppingCartUML.png)
+![species](SpeciesUML.png)
+
 
 ### Summary
 
