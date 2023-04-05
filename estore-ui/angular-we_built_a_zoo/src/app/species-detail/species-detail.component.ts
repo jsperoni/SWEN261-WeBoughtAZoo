@@ -19,6 +19,7 @@ export class SpeciesDetailComponent implements OnInit {
   username?: string = instance.customer?.username;
   container = document.getElementById('input-cont');
   inps: number = 0;
+  show: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -60,6 +61,10 @@ export class SpeciesDetailComponent implements OnInit {
 
   isAdmin() : boolean {
     return instance.customer?.username === 'admin';
+  }
+
+  isSpecies() : boolean {
+    return this.species?.name == null;
   }
 
 nameInputs(){

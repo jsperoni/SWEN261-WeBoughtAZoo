@@ -15,7 +15,7 @@ export class AppComponent {
       return instance.customer.username;
     }
     else{
-      return "Anonymous";
+      return "Guest";
     }
   }
 }
