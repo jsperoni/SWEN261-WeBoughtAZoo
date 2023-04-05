@@ -99,7 +99,7 @@ public class SpeciesFileDAO implements SpeciesDAO {
         ArrayList<Species> SpeciesArrayList = new ArrayList<>();
 
         for (Species species : speciesList.values()) {
-            if (containsText == null || species.getName().contains(containsText)) {
+            if (containsText == null || species.getName().toLowerCase().contains(containsText)) {
                 SpeciesArrayList.add(species);
             }
         }

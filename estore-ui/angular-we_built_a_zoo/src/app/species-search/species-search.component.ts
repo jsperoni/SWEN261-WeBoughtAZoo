@@ -6,19 +6,19 @@ import {
    debounceTime, distinctUntilChanged, switchMap
  } from 'rxjs/operators';
 
-import { Animal } from '../animals';
-import { AnimalService } from '../animal.service';
+import { Species } from '../species';
+import { SpeciesService } from '../species.service';
 
 @Component({
-  selector: 'app-animal-search',
-  templateUrl: './animal-search.component.html',
-  styleUrls: [ './animal-search.component.css' ]
+  selector: 'app-species-search',
+  templateUrl: './species-search.component.html',
+  styleUrls: [ './species-search.component.css' ]
 })
-export class AnimalSearchComponent implements OnInit {
-  animals$!: Observable<Animal[]>;
+export class SpeciesSearchComponent implements OnInit {
+  species$!: Observable<Species[]>;
   private searchTerms = new Subject<string>();
 
-  constructor(private animalService: AnimalService) {}
+  constructor(private speciesService: SpeciesService) {}
 
   // Push a search term into the observable stream.
   search(term: string): void {
@@ -26,7 +26,7 @@ export class AnimalSearchComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.animals$ = this.searchTerms.pipe(
+    this.species$ = this.searchTerms.pipe(
       // wait 300ms after each keystroke before considering the term
       debounceTime(300),
 
@@ -34,7 +34,7 @@ export class AnimalSearchComponent implements OnInit {
       distinctUntilChanged(),
 
       // switch to new search observable each time the term changes
-      switchMap((term: string) => this.animalService.searchAnimals(term.toLowerCase())),
+      switchMap((term: string) => this.speciesService.searchSpecies(term.toLowerCase())),
     );
   }
 }

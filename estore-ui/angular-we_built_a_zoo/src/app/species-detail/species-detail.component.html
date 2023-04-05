@@ -8,10 +8,14 @@
     <div>
         <br>
         <label for="species-info">Care Information: </label>
-        <li *ngFor="let info of species.info">
-            <input id="species-info" value= {{info}} #speciesInfo/>
-            <span *ngIf="isAdmin()"><button type="button" (click)="save(speciesInfo.value)">save</button></span>
-        </li>
+        <form id="info" class="info">
+            <li *ngFor="let info of species.info">
+                <input id="species-info" value= {{info}}/>
+            </li>
+        </form>
+        <div id="dynamicCheck">
+            <span *ngIf = "isAdmin()"><button type="button" (click)="createNewElement();">Add new info</button></span>
+         </div>
       </div>
     
     </span>
@@ -19,9 +23,17 @@
     <span *ngIf="!isAdmin()">
         <div><span>Species: </span>{{species.name}}</div>
 
-          <div><span>Information: </span>{{species.info}}</div>
+        <div>
+            <br>
+            <label for="species-info">Care Information: </label>
+            <form id="info">
+                <li *ngFor="let info of species.info">
+                    {{info}}
+                </li>
+            </form>
+        </div>
     </span>
 
     <button type="button" (click)="goBack()">go back</button>
-    <!--<span *ngIf="isAdmin()"><button type="button" (click)="save()">save</button></span>-->
+    <span *ngIf="isAdmin()"><button type="button" (click)="save()">save</button></span>
   </div>

@@ -3,6 +3,11 @@ label {
     color: #435960;
     font-weight: bold;
   }
+  li {
+    position: relative;
+    cursor: pointer;
+    list-style-type: none;
+  }
   input {
     font-size: 1em;
     padding: .5rem;
@@ -14,11 +19,22 @@ label {
     margin: 1rem 0;
     box-sizing: border-box;
   }
-  button {
-    margin-top: 20px;
+  button#saveButton {
+    position: absolute;
+    left: 1437px;
+    top: 3px;
+    margin-top: 1px;
     margin-right: .5rem;
     background-color: #eee;
-    padding: 1rem;
+    padding: .25rem;
+    border-radius: 4px;
+    font-size: 1rem;
+  }
+  button {
+    margin-top: 1px;
+    margin-right: .5rem;
+    background-color: #eee;
+    padding: .25rem;
     border-radius: 4px;
     font-size: 1rem;
   }
@@ -29,4 +45,22 @@ label {
     background-color: #eee;
     color: #ccc;
     cursor: auto;
+  }
+  .info{
+    font-size: 1em;
+    padding: .5rem;
+    display: block;
+    width: 100%;
+    padding: .5rem;
+    margin: 1rem 0;
+    box-sizing: border-box;
+  }
+  .dynamic-input{
+    font-size: 1em;
+    padding: .5rem;
+    display: block;
+    width: 100%;
+    padding: .5rem;
+    margin: 1rem 0;
+    box-sizing: border-box;
   }
