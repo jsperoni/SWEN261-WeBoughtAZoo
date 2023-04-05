@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Species } from '../species';
 import { SpeciesService } from '../species.service';
 import { instance } from '../login/login.component';
+import { CustomerService } from '../customer.service';
 
 @Component({
   selector: 'app-species',
@@ -11,11 +12,21 @@ import { instance } from '../login/login.component';
 })
 export class SpeciesComponent implements OnInit {
   speciesList: Species[] = [];
+  speciesBought: string[] = [];
 
-  constructor(private speciesService: SpeciesService) { }
+  constructor(private speciesService: SpeciesService, 
+              private customerService: CustomerService) { }
 
   ngOnInit(): void {
+    this.getTargets();
     this.getSpeciess();
+  }
+
+  getTargets(): void{
+    if(instance.customer?.id){
+      this.customerService.getCustomerSpeciesHistory(instance.customer?.id)
+        .subscribe(speciesBought => this.speciesBought = speciesBought);
+    }
   }
 
   getSpeciess(): void {
