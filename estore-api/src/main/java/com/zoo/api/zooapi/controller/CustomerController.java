@@ -153,7 +153,7 @@ public class CustomerController {
         }
     }
 
-    @GetMapping("/history/{customerId}/{animalId}")
+    @PostMapping("/history/{customerId}/{animalId}")
     public ResponseEntity<Customer> addToProductHistory(@PathVariable int customerId, @PathVariable int animalId){
         try {
             Customer customer = customerDao.getCustomer(customerId);

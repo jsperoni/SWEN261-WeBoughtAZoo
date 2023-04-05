@@ -113,7 +113,7 @@ export class CustomerService {
   }
 
   addToCustomerHistory(id: number, animalId: number): Observable<any> {
-    return this.http.post(`${this.customerUrl}/history/${id}`, animalId, this.httpOptions).pipe(
+    return this.http.post(`${this.customerUrl}/history/${id}/${animalId}`, null, this.httpOptions).pipe(
       tap(val => {
         this.log(`added animal id=${animalId} to customer id=${id} history`);
       }),
