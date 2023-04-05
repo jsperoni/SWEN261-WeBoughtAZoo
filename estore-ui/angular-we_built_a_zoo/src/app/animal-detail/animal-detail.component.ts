@@ -54,7 +54,7 @@ export class AnimalDetailComponent implements OnInit {
   }
 
   add(): void {
-    console.log("attempted to add to shopping cart");
+    
     this.shoppingCartService.addToCart(instance.customer?.id ? instance.customer?.id : 9999, this.animal ? this.animal.id : 9999).subscribe(() => {});
   }
 

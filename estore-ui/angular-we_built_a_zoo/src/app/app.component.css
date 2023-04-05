@@ -51,3 +51,9 @@ h1 {
   nav b:active {
     background-color: black;
   }
+  span {
+    position: absolute;
+    top: 8px;
+    right: 16px;
+    font-size: 18px;
+  }

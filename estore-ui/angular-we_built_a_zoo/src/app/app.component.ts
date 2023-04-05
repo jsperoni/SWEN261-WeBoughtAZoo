@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { instance } from './login/login.component';
 
 @Component({
   selector: 'app-root',
@@ -8,4 +9,13 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'We Bought a Zoo';
   user = 'User1';
+
+  getUsername(): string {
+    if(instance.customer?.username){
+      return instance.customer.username;
+    }
+    else{
+      return "Anonymous";
+    }
+  }
 }
