@@ -13,15 +13,21 @@
   </button>
 </div>
 </span>
-
 <ul class="species">
-  <li *ngFor="let species of speciesList">
-    <a routerLink="/species-detail/{{species.name}}">
-      <span class="badge">{{species.name}}</span> {{species.name}}
-    </a>
-    <span *ngIf="isAdmin()">
-    <button type="button" class="delete" title="delete species"
-      (click)="delete(species)">x</button>
-    </span>
-  </li>
+        <label for="targets">Based on Your Purchase History:</label>
+        <li *ngFor="let target of speciesBought" id="targets">
+            <a routerLink="/species-detail/{{target}}">
+                {{target}}
+            </a>
+        </li>
+    <label for="species-list">Species Care:</label>
+    <li *ngFor="let species of speciesList" id="species-list">
+        <a routerLink="/species-detail/{{species.name}}">
+            <span class="badge">{{species.name}}</span> {{species.name}}
+        </a>
+        <span *ngIf="isAdmin()">
+            <button type="button" class="delete" title="delete species"
+                (click)="delete(species)">x</button>
+        </span>
+    </li>
 </ul>
