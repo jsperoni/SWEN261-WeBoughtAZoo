@@ -125,7 +125,10 @@ with the e-store application.
 > _At appropriate places as part of this narrative provide **one** or more updated and **properly labeled**
 > static models (UML class diagrams) with some details such as critical attributes and methods._
 > 
-![Replace with your ViewModel Tier class diagram 1, etc.](model-placeholder.png)
+![Animal UML Diagram](AnimalUML.png)
+![Customer UML Diagram](CustomerUML.png)
+![RSpecies UML Diagram](SpeciesUML.png)
+![Shopping Cart UML Diagram](ShoppingCartUML.png)
 
 ### Model Tier
 > _**[Sprint 2, 3 & 4]** Provide a summary of this tier of your architecture. This
