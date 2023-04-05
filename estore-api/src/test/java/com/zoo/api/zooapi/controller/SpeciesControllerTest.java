@@ -19,7 +19,7 @@ import static org.mockito.Mockito.*;
  * @author SWEN Faculty
  */
 @Tag("Controller-tier")
-public class SpeciesControlerTest {
+public class SpeciesControllerTest {
     private SpeciesController speciesController;
     private SpeciesDAO mockSpeciesDAO;
 
@@ -69,8 +69,8 @@ public class SpeciesControlerTest {
         String speciesId = "test";
         // When the same id is passed in, our mock Species DAO will return null, simulating
         // no species found
-        when(mockSpeciesDAO.getSpecies(speciesId)).thenReturn(null);
 
+        doThrow(new IOException()).when(mockSpeciesDAO).getSpecies(speciesId);
         // Invoke
         ResponseEntity<Species> response = speciesController.getSpecies(speciesId);
 
