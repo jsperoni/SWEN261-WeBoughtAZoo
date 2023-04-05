@@ -89,4 +89,12 @@ export class ShoppingCartComponent implements OnInit {
       return false;
     }
   }
+
+  isAdmin(): boolean {
+    if(instance.customer?.username === "admin" ){
+      return true;
+    } else {
+      return false;
+    }
+  }
 }

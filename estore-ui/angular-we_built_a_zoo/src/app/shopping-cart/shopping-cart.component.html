@@ -1,12 +1,15 @@
 <h2>Shopping cart</h2>
 <span *ngIf="!isUser()">You must be signed in to access a shopping cart</span>
 <span *ngIf="isUser()">
-  <div class="shoppingcart">
+  <span *ngIf="isAdmin()">Admins do not have access to the shopping cart</span>
+  <span *ngIf="!isAdmin()">
+    <div class="shoppingcart">
     <a *ngFor="let animal of animals"
       routerLink="/detail/{{animal.id}}">
       {{animal.name}} (Species: {{animal.species}})
     </a>
     <br>
     <button (click)="checkout(); router.navigate(['/history']);">Checkout</button>
-  </div>
+     </div> 
+  </span>
 </span>
