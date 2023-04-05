@@ -17,7 +17,6 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent},
   { path: 'dashboard', component: DashboardComponent },
   { path: 'detail/:id', component: AnimalDetailComponent },
-  { path: 'animals', component: AnimalsComponent },
   { path: 'history', component: HistoryComponent },
   { path: 'shoppingCart', component: ShoppingCartComponent }, 
   { path: 'species', component: SpeciesComponent }, 
