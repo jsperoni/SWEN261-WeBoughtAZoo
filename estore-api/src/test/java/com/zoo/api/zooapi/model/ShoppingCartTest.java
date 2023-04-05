@@ -25,7 +25,7 @@ public void testSC(){
 
     // Analyze
     assertEquals(expected_id, shoppingCart.getCustomerId());
-    assertEquals(expected_animals, shoppingCart.getAnimals());
+    assertArrayEquals(expected_animals, shoppingCart.getAnimals());
 
 }
 
@@ -41,7 +41,9 @@ public void removeAnimal(){
 
     boolean expected_bool = true;
     shoppingCart.removeAnimal(1);
-    assertEquals( expected_animals, shoppingCart.getAnimals());
+
+    int[] test = shoppingCart.getAnimals();
+    assertArrayEquals(expected_animals, test);
 }
 
 @Test
@@ -67,11 +69,11 @@ public void isEmpty(){
     animals.add(2);
     animals.add(3);
     ShoppingCart shoppingCart = new ShoppingCart(expected_id, animals);
-    int[] expected_animals = {};
+    int[] expected_animals = {1,2};
 
     boolean expected_bool = false;
     boolean test = shoppingCart.containsAnimal(expected_id);
-    assertEquals( expected_animals, shoppingCart.isEmpty());
+    assertEquals( (expected_animals.length == 0), shoppingCart.isEmpty());
 }
 
 @Test
@@ -83,7 +85,7 @@ public void isEmpty(){
         animals.add(3);
         ShoppingCart shoppingCart = new ShoppingCart(expected_id, animals);
         int[] expected_animals = {};
-        String temp = "customer [id=%d, username=%s]";
+        String temp = "shopping_cart [customer_id=%s, animals=%s]";
         String expected_string = String.format(temp, expected_id, animals);
 
 
