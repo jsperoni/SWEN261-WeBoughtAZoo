@@ -21,6 +21,8 @@
     </span>
 
     <span *ngIf="!isAdmin()">
+        <span *ngIf="isSpecies()">It looks like this species doesn't have any extra infomation yet! 
+            If you have any questions feel free to contact admin</span>
         <div><span>Species: </span>{{species.name}}</div>
 
         <div>
