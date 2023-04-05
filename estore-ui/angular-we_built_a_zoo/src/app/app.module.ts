@@ -17,6 +17,7 @@ import { LoginComponent } from './login/login.component';
 import { HistoryComponent } from './history/history.component';
 import { SpeciesComponent } from './species/species.component';
 import { SpeciesDetailComponent } from './species-detail/species-detail.component';
+import { SpeciesSearchComponent } from './species-search/species-search.component';
 
 @NgModule({
   imports: [
@@ -37,7 +38,8 @@ import { SpeciesDetailComponent } from './species-detail/species-detail.componen
     LoginComponent,
     HistoryComponent,
     SpeciesComponent,
-    SpeciesDetailComponent
+    SpeciesDetailComponent,
+    SpeciesSearchComponent
   ],
   bootstrap: [ AppComponent ]
 })

@@ -81,7 +81,7 @@ public class AnimalFileDAO implements AnimalDAO {
         ArrayList<Animal> AnimalArrayList = new ArrayList<>();
 
         for (Animal Animal : animals.values()) {
-            if (containsText == null || Animal.getName().contains(containsText)) {
+            if (containsText == null || Animal.getName().toLowerCase().contains(containsText)) {
                 AnimalArrayList.add(Animal);
             }
         }
