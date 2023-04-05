@@ -3,6 +3,12 @@ h1 {
     margin-bottom: 0;
     text-align: center;
   }
+  nav {
+    display: block;
+    width: 99%;
+    padding: .5rem;
+    
+  }
   nav a {
     padding: 1rem;
     text-decoration: none;
@@ -13,6 +19,7 @@ h1 {
     background-color: #e8e8e8;
     color: #3d3d3d;
     border-radius: 4px;
+    font-weight: normal;
   }
   
   nav a:hover {
@@ -20,5 +27,27 @@ h1 {
     background-color: #42545C;
   }
   nav a:active {
+    background-color: black;
+  }
+
+  nav b {
+    padding: 1rem;
+    text-decoration: none;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 5px;
+    float: right;
+    display: inline-block;
+    background-color: #e8e8e8;
+    color: #3d3d3d;
+    border-radius: 4px;
+    font-weight: normal;
+  }
+  
+  nav b:hover {
+    color: white;
+    background-color: #42545C;
+  }
+  nav b:active {
     background-color: black;
   }
