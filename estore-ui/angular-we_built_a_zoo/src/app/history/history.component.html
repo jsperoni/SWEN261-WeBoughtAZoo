@@ -1,5 +1,15 @@
 <h2>History</h2>
 <span *ngIf="!isUser()">You must be signed in to have access to product history</span>
+<span *ngIf="isAdmin()"><h3>You are logged in as admin. Here is a sample product history that customers will see:
+  </h3>
+  <div class="animals-menu">
+    <a *ngFor="let animal of sample"
+    routerLink="/detail/{{animal.id}}">
+    {{animal.name}} <br>(Species: {{animal.species}})
+  </a>
+  </div>
+</span>
+
 <span *ngIf="isUser()">
   <div class="animals-menu">
     <a *ngFor="let animal of animals"

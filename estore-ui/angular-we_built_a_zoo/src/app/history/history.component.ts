@@ -4,6 +4,7 @@ import { CustomerService } from '../customer.service';
 import {Animal} from "../animals";
 import { instance } from '../login/login.component'
 import {Customer} from "../customer";
+import { AnimalService } from '../animal.service';
 
 @Component({
   selector: 'app-history',
@@ -12,12 +13,14 @@ import {Customer} from "../customer";
 })
 export class HistoryComponent implements OnInit {
   animals: Animal[] = [];
+  sample: Animal[] = [];
 
   ngOnInit(): void {
     this.getHistory();
+    this.getAnimals();
   }
 
-  constructor(private CustomerService: CustomerService) { }
+  constructor(private CustomerService: CustomerService, private AnimalService: AnimalService) { }
 
   getHistory(): void {
     console.log(`Customer ID for History: ${instance.getCurrentCustomer() ? (instance.getCurrentCustomer() as Customer).id : 9999}`);
@@ -32,10 +35,23 @@ export class HistoryComponent implements OnInit {
     });
   }
 
+  getAnimals(): void {
+    this.AnimalService.getAnimals()
+      .subscribe(animals => this.sample = animals);
+  }
+
   isUser(): boolean {
     if(instance.customer?.username){
       return true;
     } else{
+      return false;
+    }
+  }
+
+  isAdmin(): boolean {
+    if(instance.customer?.username == "admin" ){
+      return true;
+    } else {
       return false;
     }
   }
