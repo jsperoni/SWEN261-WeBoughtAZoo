@@ -1,3 +1,6 @@
+<div *ngIf="!species">
+    <h2>No information for this species</h2>
+</div>
 <div *ngIf="species">
     <h2>{{species.name}} Care Information</h2>
     <span *ngIf="isAdmin()">
