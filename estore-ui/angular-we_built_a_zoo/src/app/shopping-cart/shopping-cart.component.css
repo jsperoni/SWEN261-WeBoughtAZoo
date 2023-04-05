@@ -34,6 +34,7 @@ h2 {
     width: 100%;
     min-width: 70px;
     margin: .5rem auto;
+    margin-left: 0.1%;
     box-sizing: border-box;
   
     /* flexbox */

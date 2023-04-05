@@ -6,6 +6,7 @@
       routerLink="/detail/{{animal.id}}">
       {{animal.name}} (Species: {{animal.species}})
     </a>
+    <br>
     <button (click)="checkout(); router.navigate(['/history']);">Checkout</button>
   </div>
 </span>
