@@ -13,7 +13,6 @@ let instance: RegisterComponent;
 export class RegisterComponent {
   customers: Customer[] = [];
   customer?: Customer;
-  show: boolean= false;
   register: boolean=false;
 
   constructor(private customerService: CustomerService) {
@@ -35,14 +34,13 @@ export class RegisterComponent {
       .subscribe(customer => {
         this.customers.push(customer);
       });
-    this.register=true;
   }
 
-  login(username: string): void{
+  login(username: string, name: string): void{
     if (!username) { return; }
     this.customerService.login(username)
       .subscribe(customer => this.customer = customer);
-      this.show = true;
+      this.register = true;
     }
 
   getCurrentCustomer(): Customer | undefined {

@@ -3,12 +3,12 @@
     <label for="customer-username">Username: </label>
     <input id="customer-username" #username />
 
-    <label for="customer-username">Name: </label>
-    <input id="customer-username" #name />
+    <label for="customer-name">Name: </label>
+    <input id="customer-name" #name />
 
-    <button type="button" class="login-button" (click)="login(username.value); username.value=''">
+    <button type="button" class="login-button" (click)="login(username.value, name.value); username.value=''; name.value=''">
         Login
       </button>
       <br>
-    <span *ngIf="show">Registration Success!</span>
+    <span *ngIf="register">Registration Success! Please login to access your account</span>
 </div>
