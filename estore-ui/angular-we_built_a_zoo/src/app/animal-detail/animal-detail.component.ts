@@ -7,6 +7,7 @@ import { AnimalService } from '../animal.service';
 
 import { instance } from '../login/login.component';
 import { ShoppingCartService } from '../shopping-cart.service';
+import { ShoppingCart } from '../shopping-cart';
 
 let components: AnimalDetailComponent[] = [];
 
@@ -18,6 +19,9 @@ let components: AnimalDetailComponent[] = [];
 export class AnimalDetailComponent implements OnInit {
   animal: Animal | undefined;
   username?: string = instance.customer?.username;
+  cartAction: boolean = false;
+  message: string = "";
+  cart: ShoppingCart | undefined;
 
   constructor(
     private route: ActivatedRoute,
@@ -54,11 +58,20 @@ export class AnimalDetailComponent implements OnInit {
   }
 
   add(): void {
-    
+    this.cartAction = true;
+    this.message = "Added to shopping cart";
+    if(instance.customer?.id){
+      this.shoppingCartService.getShoppingCart(instance.customer?.id).subscribe(cart => this.cart = cart);
+      if(this.animal?.id && this.cart?.animals.includes(this.animal.id)){
+        this.message = "Already in shopping cart!";
+      }
+    }
     this.shoppingCartService.addToCart(instance.customer?.id ? instance.customer?.id : 9999, this.animal ? this.animal.id : 9999).subscribe(() => {});
   }
 
   remove(): void {
+    this.cartAction = true;
+    this.message = "Removed from shopping cart"
     this.shoppingCartService.removeFromCart(instance.customer?.id ? instance.customer?.id: 9999 , this.animal ? this.animal.id : 9999).subscribe(() => {});
   }
 
