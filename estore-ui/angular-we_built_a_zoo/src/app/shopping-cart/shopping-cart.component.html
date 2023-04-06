@@ -1,4 +1,5 @@
 <h2>Shopping cart</h2>
+<h3>
 <span *ngIf="!isUser()">You must be signed in to access a shopping cart</span>
 <span *ngIf="isUser()">
   <span *ngIf="isAdmin()">Admins do not have access to the shopping cart</span>
@@ -13,3 +14,4 @@
      </div> 
   </span>
 </span>
+</h3>

@@ -1,8 +1,9 @@
 <h2>Login</h2>
 <div>
-    <label for="customer-username"><b>Username: </b></label>
+  <h3>
+    <label for="customer-username">Username: </label>
     <input id="customer-username" #username />
-
+</h3>
     <button type="button" class="login-button" (click)="login(username.value); username.value=''">
         Login
       </button>

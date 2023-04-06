@@ -53,6 +53,10 @@ h2 {
      color: white;
      background-color: #3d3221;
    }
+   
+  h3{
+    font-weight: heavy;
+  }
   
   @media (min-width: 600px) {
     a {
