@@ -1,6 +1,6 @@
 /* AnimalDetailComponent's private CSS styles */
 label {
-    color: #435960;
+    color: #3d3221;
     font-weight: bold;
   }
   input {
@@ -16,7 +16,8 @@ label {
     font-size: 1rem;
   }
   button:hover {
-    background-color: #cfd8dc;
+    color: white;
+    background-color: #3d3221;
   }
   button:disabled {
     background-color: #eee;

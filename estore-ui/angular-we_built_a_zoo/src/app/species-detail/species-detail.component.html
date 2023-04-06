@@ -1,13 +1,16 @@
+<div *ngIf="!species">
+    <h2>No information for this species</h2>
+</div>
 <div *ngIf="species">
     <h2>{{species.name}} Care Information</h2>
     <span *ngIf="isAdmin()">
     <div>
-      <label for="species-name">Species name: </label>
+      <label for="species-name"><b>Species name: </b></label>
       <input id="species-name" [(ngModel)]="species.name" placeholder="Species name"/>
     </div>
     <div>
         <br>
-        <label for="species-info">Care Information: </label>
+        <label for="species-info"><b>Care Information: </b></label>
         <form id="info" class="info">
             <li *ngFor="let info of species.info">
                 <input id="species-info" value= {{info}}/>
@@ -23,11 +26,11 @@
     <span *ngIf="!isAdmin()">
         <span *ngIf="isSpecies()">It looks like this species doesn't have any extra infomation yet! 
             If you have any questions feel free to contact admin</span>
-        <div><span>Species: </span>{{species.name}}</div>
+        <div><span><b>Species: </b></span>{{species.name}}</div>
 
         <div>
             <br>
-            <label for="species-info">Care Information: </label>
+            <label for="species-info"><b>Care Information: </b></label>
             <form id="info">
                 <li *ngFor="let info of species.info">
                     {{info}}
@@ -36,6 +39,6 @@
         </div>
     </span>
 
-    <button type="button" (click)="goBack()">go back</button>
+    <button type="button" (click)="goBack()">Back</button>
     <span *ngIf="isAdmin()"><button type="button" (click)="save()">save</button></span>
   </div>

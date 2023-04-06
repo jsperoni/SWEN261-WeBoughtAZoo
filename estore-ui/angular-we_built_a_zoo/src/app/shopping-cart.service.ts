@@ -2,12 +2,11 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Observable, of } from 'rxjs';
-import { catchError, filter, map, tap } from 'rxjs/operators';
+import { catchError, map, tap } from 'rxjs/operators';
 
-import { Animal } from './animals';
 import { ShoppingCart } from './shopping-cart';
 import { MessageService } from './message.service';
-import {CustomerService} from "./customer.service";
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @Injectable({ providedIn: 'root' })
 export class ShoppingCartService {
@@ -20,7 +19,8 @@ export class ShoppingCartService {
 
   constructor(
     private http: HttpClient,
-    private messageService: MessageService) { }
+    private messageService: MessageService,
+    ) { }
 
   /** GET shopping carts from the server */
   getShoppingCarts(): Observable<ShoppingCart[]> {
@@ -108,13 +108,14 @@ export class ShoppingCartService {
       _ => this.removeFromCart(cartId, 9999));
   }
 
-  checkout(cartId: number): Observable<any> {
+  async checkout(cartId: number): Promise<Observable<any>> {
+    this.log(`checking out cart id=${cartId}`);
     // add all animals in cart to customer history
-    this.getShoppingCart(cartId).subscribe(cart => {
-      for(let animal of cart.animals) {
-        this.addToCustomerHistory(cart.customer_id, animal).subscribe();
+    await this.getShoppingCart(cartId).toPromise().then(async cart => {
+      for (let animal of cart?.animals ?? []) {
+        await this.addToCustomerHistory(cart?.customer_id ?? 9999, animal).toPromise();
       }
-    })
+    });
 
     return this.http.post(`${this.shoppingCartUrl}/checkout/${cartId}`, "nothing goes here").pipe(
       tap(_ => this.log(`checked out cart id=${cartId}`)),
@@ -123,8 +124,9 @@ export class ShoppingCartService {
   }
 
   private addToCustomerHistory(customerId: number, animal: number): Observable<any> {
-    return this.http.get(`http://localhost:8080/customers/history/${customerId}/${animal}`).pipe(
-      tap(_ => this.log(`added animal id=${animal} to customer id=${customerId}`)),
+    this.log(`adding animal id=${animal} to customer history id=${customerId}`)
+    return this.http.post(`http://localhost:8080/customers/history/${customerId}/${animal}`, null).pipe(
+      tap(_ => this.log(`added animal id=${animal} to customer history id=${customerId}`)),
       catchError(this.handleError<any>('addToCustomerHistory'))
     );
   }

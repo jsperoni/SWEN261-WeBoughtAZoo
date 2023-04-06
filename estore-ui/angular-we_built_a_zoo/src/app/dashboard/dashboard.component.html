@@ -1,3 +1,20 @@
+<span *ngIf="isAdmin()">
+  <div>
+    <label for="new-animal">Animal name: </label>
+    <input id="new-animal" #animalName />
+  
+    <label for="new-animal">Animal Species: </label>
+    <input id="new-animal" #animalSpecies />
+  
+    <label for="new-animal">Animal Price: </label>
+    <input id="new-animal" #animalPrice />
+  
+    <!-- (click) passes input value to add() and then clears the input -->
+    <button type="button" class="add-button" (click)="add(animalName.value, animalSpecies.value, animalPrice.value); animalName.value=''; animalSpecies.value=''; animalPrice.value=''">
+      Add animal
+    </button>
+  </div>
+</span>
 <app-animal-search></app-animal-search>
 <h2>Animals</h2>
 <div class="animals-menu">

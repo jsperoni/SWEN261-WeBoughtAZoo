@@ -1,1 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+    background-image: url("zoo-background-faded.jpg");
+    background-color: #cccccc;
+    background-size: cover;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    font-family: "Trebuchet MS", Arial, sans-serif;
+   }

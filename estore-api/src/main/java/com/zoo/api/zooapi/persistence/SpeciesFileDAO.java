@@ -30,7 +30,6 @@ public class SpeciesFileDAO implements SpeciesDAO {
     private ObjectMapper objectMapper;  // Provides conversion between Species
                                         // objects and JSON text format written
                                         // to the file
-    private static int nextId;  // The next Id to assign to a new Species
     private String filename;    // Filename to read from and write to
 
     /**
@@ -52,30 +51,26 @@ public class SpeciesFileDAO implements SpeciesDAO {
         }
     }
 
+    /**
+     * Loads the Speciess from the file
+     *
+     * @return true if the file was loaded successfully, false otherwise
+     * @throws IOException when file cannot be accessed or read from
+     */
     private boolean load() throws IOException {
         speciesList = new TreeMap<>();
-        nextId = 0;
 
-        // Deserializes the JSON objects from the file into an array of Speciess
+        // Deserializes the JSON objects from the file into an array of Species
         // readValue will throw an IOException if there's an issue with the file
         // or reading from the file
         Species[] SpeciesArray = objectMapper.readValue(new File(filename), Species[].class);
 
-        // Add each Species to the tree map and keep track of the greatest id
+        // Add each Species to the tree map
         for (Species Species : SpeciesArray) {
             speciesList.put(Species.getName(),Species);
         }
-        // Make the next id one greater than the maximum from the file
-        ++nextId;
         return true;
     }
-
-    /**
-     * Generates the next id for a new {@linkplain Species Species}
-     *
-     * @return The next id
-     */
-   
 
     /**
      * Generates an array of {@linkplain Species Speciess} from the tree map

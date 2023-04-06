@@ -9,13 +9,14 @@ geometry: margin=1in
 > and appear in the generated PDF in italics._
 
 ## Team Information
-* Team name: We Bought A Zoe
+
+* Team name: 6F We Bought a Zoo
 * Team members
-  * Jack
-  * Krysta
-  * Joe
-  * Bobby
-  * Aayan
+  * Krysta Lestico
+  * Aayan Sayed
+  * Jack Speroni
+  * Joseph O'Neil
+  * Bobby Dhanoolal
 
 ## Executive Summary
 
@@ -68,6 +69,11 @@ In the domain model the customers can order the product through using the websit
 ## Architecture and Design
 
 This section describes the application architecture.
+![animal](AnimalUML.png)
+![customer](CustomerUML.png)
+![shoppingcart](ShoppingCartUML.png)
+![species](SpeciesUML.png)
+
 
 ### Summary
 
@@ -119,7 +125,10 @@ with the e-store application.
 > _At appropriate places as part of this narrative provide **one** or more updated and **properly labeled**
 > static models (UML class diagrams) with some details such as critical attributes and methods._
 > 
-![Replace with your ViewModel Tier class diagram 1, etc.](model-placeholder.png)
+![Animal UML Diagram](AnimalUML.png)
+![Customer UML Diagram](CustomerUML.png)
+![RSpecies UML Diagram](SpeciesUML.png)
+![Shopping Cart UML Diagram](ShoppingCartUML.png)
 
 ### Model Tier
 > _**[Sprint 2, 3 & 4]** Provide a summary of this tier of your architecture. This
@@ -155,7 +164,7 @@ Dependency Injection:
 
 Single Responsibility:
 
-	Single responsibility is also a part of the SOLID design principles. It is the principle that states that a class should only have one responsibility. This leads to smaller classes which can lead to larger coupling with relationships between the classes. But this will mean that it will be easier to understand the scope of a change in a class and to manage modifications. In our API the Controller is only responsible for using a try catch mechanism with its individual and calling the functions from DAO to fulfill the user queries. It is not concerned with the management of the data of the products in the webstore and will delegate this responsibility to the Dao class. If the controller did not use single responsibility there would be limited use of the functionality of the functions with the data of the products. Unit testing would also be not possible. 
+	Single responsibility is also a part of the SOLID design principles. It is the principle that states that a class should only have one responsibility. This leads to smaller classes which can lead to larger coupling with relationships between the classes. But this will mean that it will be easier to understand the scope of a change in a class and to manage modifications. In our API the Controller is only responsible for using a try catch mechanism with its individual and calling the functions from DAO to fulfill the user queries. It is not concerned with the management of the data of the products in the webstore and will delegate this responsibility to the AnimalDao class. If the controller did not use single responsibility there would be limited use of the functionality of the functions with the data of the products. Unit testing would also be not possible. 
 
 Controller:
 
@@ -184,6 +193,14 @@ Controller:
 > criteria tests failing, and the number of user stories that
 > have not had any testing yet. Highlight the issues found during
 > acceptance testing and if there are any concerns._
+Controller: The Animal and Customer controllers are well covered, missing only a single line in a single branch. The shopping cart and owner controllers are not nearly as well covered. Coverage for these classes in the controller tier will be significantly expanded and finished in sprint 3.
+
+Model: The Animal and Customer classes are well covered by line and instruction count, but the customer class contains a branch which is not covered by testing. This branch is the case in the equals method where the other object is not a Customer, which simply returns false, but was not tested. The Shopping Cart and Owner classes are much less rigorously tested, and their testing will be expanded upon in sprint 3.
+
+Persistence: All currently implemented DAOs are fairly well tested, missing only a few instructions and 6 branches out of 68. The OwnerFileDAO class is currently only stubbed out and does not yet have tests written.
+
+We were able to meet the acceptence criteria for the owner account where we have a seperate frontend for a user and a admin.
+We also meet the requirment for adding a product, removing a product, editing an existing product from the inventory. We also fullfied the critera for the individual customer and have their personal information. We were not able to complete a checkout proccess or handling each customers billing information and address.
 
 We were able to meet the acceptence criteria for the owner account where we have a seperate frontend for a user and a admin.
 We also meet the requirment for adding a product, removing a product, editing an existing product from the inventory. We also fullfied the critera for the individual customer and have their personal information. We were not able to complete a checkout proccess or handling each customers billing information and address.
@@ -195,4 +212,10 @@ We also meet the requirment for adding a product, removing a product, editing an
 > code coverage met your targets._
 
 >_**[Sprint 2 & 4]** **Include images of your code coverage report.** If there are any anomalies, discuss
-> those. 
+
+> those._
+The controller tier had an anomaly where in the customer class, it was missing tests for a branch. Otherwise for the class that we had fully flashed out were mostly (75-100%) covered by the unit testing.
+![Controller Tier](image1.png)
+![Model Tier](image2.png)
+![Persistence Tier](image3.png)
+ 

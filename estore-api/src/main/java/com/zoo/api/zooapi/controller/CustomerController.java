@@ -24,10 +24,19 @@ public class CustomerController {
     private static final Logger Log = Logger.getLogger(CustomerController.class.getName());
     private CustomerDAO customerDao;
 
+    /**
+     * Constructor for CustomerController. Takes in a CustomerDAO object.
+     * @param customerDao CustomerDAO object to be used by the controller. Accepts any object implementing the CustomerDAO interface.
+     */
     public CustomerController(CustomerDAO customerDao) {
         this.customerDao = customerDao;
     }
 
+    /**
+     * GET /customers/{id} - Returns a customer with the given id.
+     * @param id The id of the customer to be returned.
+     * @return A ResponseEntity containing the customer with the given id, or a 404 if no customer with the given id exists.
+     */
     @GetMapping("/by_id/{id}")
     public ResponseEntity<Customer> getCustomer(@PathVariable int id) {
          try {
@@ -43,6 +52,10 @@ public class CustomerController {
         }
     }
 
+    /**
+     * GET /customers - Returns all customers.
+     * @return A ResponseEntity containing an array of all customers.
+     */
     @GetMapping("/")
     public ResponseEntity<Customer[]> getCustomers() {
         Log.info("GET /customers");
@@ -59,6 +72,11 @@ public class CustomerController {
 
 
 
+    /**
+     * POST /customers - Creates a new customer.
+     * @RequestParam customer The customer to be created.
+     * @return A ResponseEntity containing the newly created customer.
+     */
     @GetMapping("")
     public ResponseEntity<Customer> searchCustomer(@RequestParam(value="name") String containsText) {
         Log.info("GET /customers/?name="+containsText);
@@ -74,6 +92,12 @@ public class CustomerController {
         }
     }
 
+    /**
+     * POST /customers - Creates a new customer.
+     * @RequestParam username The username of the customer to log in as or create.
+     * @RequestParam password The password of the customer to log in as or create.
+     * @return A ResponseEntity containing the newly created customer.
+     */
     @GetMapping("login")
     public ResponseEntity<Customer> login(@RequestParam String username, @RequestParam(required = false, defaultValue = "") String password) {
         Log.info("GET /customers/login?username="+ username +"&password="+ password);
@@ -95,6 +119,11 @@ public class CustomerController {
         }
     }
 
+    /**
+     * POST /customers - Creates a new customer.
+     * @RequestBody customer The customer to be created.
+     * @return A ResponseEntity containing the newly created customer.
+     */
     @PostMapping("")
     public ResponseEntity<Customer> createCustomer(@RequestBody Customer customer) {
         Log.info("POST /customers " + customer);
@@ -118,6 +147,11 @@ public class CustomerController {
         }
     }
 
+    /**
+     * PUT /customers - Updates an existing customer.
+     * @RequestBody customer The customer to be updated.
+     * @return A ResponseEntity containing the updated customer.
+     */
     @PutMapping("")
     public ResponseEntity<Customer> updateCustomer(@RequestBody Customer customer) {
         Log.info("PUT /customers " + customer);
@@ -137,6 +171,11 @@ public class CustomerController {
         }
     }
 
+    /**
+     * DELETE /customers/{id} - Deletes a customer with the given id.
+     * @param id The id of the customer to be deleted.
+     * @return A ResponseEntity containing the deleted customer.
+     */
     @DeleteMapping("/by_id/{id}")
     public ResponseEntity<Boolean> deleteCustomer(@PathVariable int id) {
         Log.info("DELETE /customers/" + id);
@@ -153,7 +192,13 @@ public class CustomerController {
         }
     }
 
-    @GetMapping("/history/{customerId}/{animalId}")
+    /**
+     * POST /customers/history/{customerId}/{animalId} - Adds an animal to the customer's history.
+     * @param customerId The id of the customer to add the animal to.
+     * @param animalId The id of the animal to add to the customer's history.
+     * @return A ResponseEntity containing the updated customer.
+     */
+    @PostMapping("/history/{customerId}/{animalId}")
     public ResponseEntity<Customer> addToProductHistory(@PathVariable int customerId, @PathVariable int animalId){
         try {
             Customer customer = customerDao.getCustomer(customerId);
@@ -172,6 +217,11 @@ public class CustomerController {
         }
     }
 
+    /**
+     * GET /customers/history/{customerId} - Gets the customer's history.
+     * @param customerId The id of the customer to get the history of.
+     * @return A ResponseEntity containing the customer's history.
+     */
     @GetMapping("/history/{customerId}")
     public ResponseEntity<int[]> getProductHistory(@PathVariable int customerId){
         try {

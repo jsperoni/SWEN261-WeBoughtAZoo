@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 
 import { Animal } from '../animals';
@@ -27,7 +27,8 @@ export class AnimalDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private animalService: AnimalService,
     private shoppingCartService: ShoppingCartService,
-    private location: Location
+    private location: Location,
+    public router: Router
   ) {
 
   }
@@ -58,7 +59,6 @@ export class AnimalDetailComponent implements OnInit {
   }
 
   add(): void {
-    this.cartAction = true;
     this.message = "Added to shopping cart";
     if(instance.customer?.id){
       this.shoppingCartService.getShoppingCart(instance.customer?.id).subscribe(cart => this.cart = cart);
@@ -67,12 +67,17 @@ export class AnimalDetailComponent implements OnInit {
       }
     }
     this.shoppingCartService.addToCart(instance.customer?.id ? instance.customer?.id : 9999, this.animal ? this.animal.id : 9999).subscribe(() => {});
+    this.cartAction = true;
   }
 
   remove(): void {
-    this.cartAction = true;
     this.message = "Removed from shopping cart"
     this.shoppingCartService.removeFromCart(instance.customer?.id ? instance.customer?.id: 9999 , this.animal ? this.animal.id : 9999).subscribe(() => {});
+    this.cartAction = true;
+  }
+
+  delete(animal: Animal): void {
+    this.animalService.deleteAnimal(animal.id).subscribe();
   }
 
   isUser(): boolean {

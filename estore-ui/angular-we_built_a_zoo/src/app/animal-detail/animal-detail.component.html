@@ -1,6 +1,5 @@
 <div *ngIf="animal">
-    <h2>{{animal.name | uppercase}} Details</h2>
-    <div><span>id: </span>{{animal.id}}</div>
+    <h2>{{animal.name}} Details</h2>
     <span *ngIf="isAdmin()">
     <div>
       <label for="animal-name">Animal name: </label>
@@ -19,20 +18,24 @@
     </span>
 
     <span *ngIf="!isAdmin()">
-        <div><span>Name: </span>{{animal.name}}</div>
-
-          <div><span>Species: </span>{{animal.species}}</div>
-          
-          <div><span>Price: </span>{{animal.price}}</div>
+        <div><span><b>Name: </b></span>{{animal.name}}</div>
+        <br>
+          <div><span><b>Species: </b></span>{{animal.species}}</div>
+          <br>
+          <div><span><b>Price: </b></span>{{animal.price}}</div>
 
           <span *ngIf="isUser()"><button type="button" (click)="add()">Add to Shopping Cart</button></span>
 
           <span *ngIf="isUser()"><button type="button" (click)="remove()">Remove from Shopping Cart</button></span>
           <br>
-          <span *ngIf="cartAction">{{message}}</span>
+          <span *ngIf="cartAction"><b>{{message}}</b></span>
           <br>
     </span>
 
-    <button type="button" (click)="goBack()">go back</button>
+    <button type="button" (click)="goBack()">Back</button>
     <span *ngIf="isAdmin()"><button type="button" (click)="save()">save</button></span>
+    <span *ngIf="isAdmin()">
+      <button type="button" class="delete" title="delete animal"
+        (click)="delete(animal); router.navigate(['/dashboard']);">Delete Animal</button>
+    </span>
   </div>

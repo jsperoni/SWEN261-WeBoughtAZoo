@@ -68,6 +68,10 @@
     }
   }
   
+  h3{
+    font-weight: heavy;
+  }
+
   a:hover {
     background-color: black;
   }
@@ -102,7 +106,7 @@
   
   .add-button:hover {
     color: white;
-    background-color: #42545C;
+    background-color: #324a20;
   }
   
   button.delete {
