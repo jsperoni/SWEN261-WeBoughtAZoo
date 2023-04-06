@@ -68,6 +68,10 @@
     }
   }
   
+  h3{
+    font-weight: heavy;
+  }
+
   a:hover {
     background-color: black;
   }

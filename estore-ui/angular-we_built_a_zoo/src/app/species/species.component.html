@@ -2,12 +2,13 @@
 <h2>Species Care List</h2>
 <span *ngIf="isAdmin()">
 <div>
+    <h3>
   <label for="new-species">Species name: </label>
   <input id="new-species" #speciesName />
 
   <label for="new-species">Species info(add 1 tip): </label>
   <input id="new-species" #speciesInfo />
-
+</h3>
   <!-- (click) passes input value to add() and then clears the input -->
   <button type="button" class="add-button" (click)="add(speciesName.value, speciesInfo.value); speciesName.value=''; speciesInfo.value=''">
     Add species
@@ -15,6 +16,7 @@
 </div>
 </span>
     <ul class="species">
+        <h3>
         <span *ngIf="isUser()">
             <label for="targets">Based on Your Purchase History:</label>
             <li *ngFor="let target of speciesBought" id="targets">
@@ -34,5 +36,5 @@
                 (click)="delete(species)">x</button>
         </span>
     </li>
-
+</h3>
 </ul>

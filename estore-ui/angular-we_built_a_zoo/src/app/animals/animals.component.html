@@ -1,6 +1,7 @@
 <h2>In-Stock Animals</h2>
 <span *ngIf="isAdmin()">
 <div>
+  <h3>
   <label for="new-animal">Animal name: </label>
   <input id="new-animal" #animalName />
 
@@ -9,7 +10,7 @@
 
   <label for="new-animal">Animal Price: </label>
   <input id="new-animal" #animalPrice />
-
+</h3>
   <!-- (click) passes input value to add() and then clears the input -->
   <button type="button" class="add-button" (click)="add(animalName.value, animalSpecies.value, animalPrice.value); animalName.value=''; animalSpecies.value=''; animalPrice.value=''">
     Add animal

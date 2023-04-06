@@ -42,6 +42,10 @@ h2 {
     flex: 0 1 auto;
     align-self: auto;
   }
+
+  h3{
+    font-weight: heavy;
+  }
   
   @media (min-width: 600px) {
     a {
