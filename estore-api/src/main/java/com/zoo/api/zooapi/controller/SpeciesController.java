@@ -16,7 +16,7 @@ import java.util.logging.Logger;
  * {@literal @}RestController Spring annotation identifies this class as a REST API
  * method handler to the Spring framework
  * 
- * @author Group 6F
+ * @author SWEN Faculty
  */
 
 @RestController
@@ -97,8 +97,8 @@ public class SpeciesController {
      * Example: Find all Species that contain the text "ma"
      * GET http://localhost:8080/Species/?name=ma
      */
-    @GetMapping("/")
-    public ResponseEntity<Species[]> searchSpeciess(@RequestParam String name) {
+    @GetMapping("/{name}")
+    public ResponseEntity<Species[]> searchSpeciess(@PathVariable String name) {
         LOG.info("GET /Species/?name="+name);
 
         try{
