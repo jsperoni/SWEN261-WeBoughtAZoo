@@ -160,17 +160,16 @@ Law of Demeter
 Dependency Injection:
 
   Dependency injection is a form of the SOLID design principles created to make the use of object oriented programming easier to use and understand code. The purpose of the dependency inversion principle is to provide loser coupling between dependent entities. It uses abstractions between a low level module that will be dependent on the high level abstraction. 
-  It is used in our spring framework for our webstore API. It starts off by creating an AnimalFileDao object which gets injected into the AnimalController when that gets instantiated. The controller only deals with the higher level Dao abstraction and this also creates an area that allows for independent testing of the controller, its functions, and the Dao classes. 
+  It is used in our spring framework for our webstore API. It starts off by creating an FileDao object which gets injected into the Controller when that gets instantiated. The controller only deals with the higher level Dao abstraction and this also creates an area that allows for independent testing of the controller, its functions, and the Dao classes. 
 
 Single Responsibility:
-
 
 	Single responsibility is also a part of the SOLID design principles. It is the principle that states that a class should only have one responsibility. This leads to smaller classes which can lead to larger coupling with relationships between the classes. But this will mean that it will be easier to understand the scope of a change in a class and to manage modifications. In our API the Controller is only responsible for using a try catch mechanism with its individual and calling the functions from DAO to fulfill the user queries. It is not concerned with the management of the data of the products in the webstore and will delegate this responsibility to the AnimalDao class. If the controller did not use single responsibility there would be limited use of the functionality of the functions with the data of the products. Unit testing would also be not possible. 
 
 Controller:
 
   The controller separates the concerns between the UI tier and other system tiers. It assigns responsibilities to receive and coordinate a system operation to a class outside of the UI tier. The controller is part of the GRASP principles which is a set of design principles created to standardize the use of object oriented programming. The controller coordinates all of the system operations, in our particular webstore, it currently controls the following operations: get one item, get all items, search an item, create an item, update an item, and delete an item. 
-  For each of the methods in the controller, it pulls from its imported AnimalDAO file the corresponding method created to support that method in the controller file. The controller in our case also has the responsibility of catching the errors that may come from implementing the methods in a try-catch statement and uses the imported functions to output what the user requests using the curl functionality. 
+  For each of the methods in the controller, it pulls from its imported DAO file the corresponding method created to support that method in the controller file. The controller in our case also has the responsibility of catching the errors that may come from implementing the methods in a try-catch statement and uses the imported functions to output what the user requests using the curl functionality. 
   Our current implementation of the design principle is relatively simple with only using one class to fulfill the responsibilities of the controller. As we implement more of the user stories the controller will also get more complex. We will have to start working through a subsystem of classes in order to fulfill the more complex requests from the user. This will be working entirely through the API tier rather than pulling from both the model tier and the API tier in the current simple design.
 
 
