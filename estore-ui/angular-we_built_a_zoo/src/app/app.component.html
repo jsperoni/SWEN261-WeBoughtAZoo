@@ -1,7 +1,6 @@
 <h1>{{title}}</h1>
 <nav>
   <a routerLink="/dashboard">Animals</a>
-  <a routerLink="/animals">Animal Stock</a>
   <a routerLink="/history">Product History</a>
   <a routerLink="/species">Species Care</a>
   <b routerLink="/shoppingCart">Shopping Cart</b>
@@ -10,5 +9,5 @@
   <b *ngIf="loggedIn()" routerLink="/login">Logout</b>
 </nav>
 <router-outlet></router-outlet>
-<span >Logged in as user: {{getUsername()}}</span>
+<span ><b>Logged in as user: {{getUsername()}}</b></span>
 <app-messages></app-messages>

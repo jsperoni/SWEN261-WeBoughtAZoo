@@ -6,6 +6,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 
 import { ShoppingCart } from './shopping-cart';
 import { MessageService } from './message.service';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @Injectable({ providedIn: 'root' })
 export class ShoppingCartService {
@@ -18,7 +19,8 @@ export class ShoppingCartService {
 
   constructor(
     private http: HttpClient,
-    private messageService: MessageService) { }
+    private messageService: MessageService,
+    ) { }
 
   /** GET shopping carts from the server */
   getShoppingCarts(): Observable<ShoppingCart[]> {

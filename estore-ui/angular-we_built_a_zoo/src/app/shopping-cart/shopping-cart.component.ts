@@ -19,8 +19,7 @@ export class ShoppingCartComponent implements OnInit {
   animals: Animal[] = [];
 
   constructor(private shoppingCartService: ShoppingCartService,
-    private animalSerivce: AnimalService, public router: Router) {
-  }
+    private animalSerivce: AnimalService, public router: Router) {}
 
   ngOnInit(): void {
     this.getShoppingCarts();
