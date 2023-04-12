@@ -25,6 +25,7 @@ We Bought a Zoo is working on the premise of a webstore where customers will be 
 ### Purpose
 >  _**[Sprint 2 & 4]** Provide a very brief statement about the project and the most
 > important user group and user goals._
+
 A webstore that allows customers to view and rent out animals and owner to add and edit animals at will.
 
 ### Glossary and Acronyms
@@ -45,15 +46,18 @@ This section describes the features of the application.
 
 ### Definition of MVP
 > _**[Sprint 2 & 4]** Provide a simple description of the Minimum Viable Product._
+
 The minimum viable product will have the customers being able to view basic information about the animals (name), the owner to be able to change the animals that are listed in the product list and for both owner and customer to be able to log in with their username and not be able to see the other's side of the webstore.
 
 ### MVP Features
 >  _**[Sprint 4]** Provide a list of top-level Epics and/or Stories of the MVP._
-The animal or product
+
+The animal or product, customer, owner, species, shopping cart
 
 ### Enhancements
 > _**[Sprint 4]** Describe what enhancements you have implemented for the project._
 
+Our enhancement for this project was the addition of species care information. For every animal that is listed in the product list, there will be a species care information for the species of that animal available for customer to look over. Owners will have the ability to add, remove, and update species as needed and this includes their specific care information as well. The owner can add as many or as little tidbits that is needed in order to allow the customer the ability to care for the animals well. There is also the ability for the customers to see a targeted list of species that is based off of their purchase history so that they can see care information for every species that they have bought. 
 
 ## Application Domain
 
@@ -64,15 +68,16 @@ This section describes the application domain.
 > _**[Sprint 2 & 4]** Provide a high-level overview of the domain for this application. You
 > can discuss the more important domain entities and their relationship
 > to each other._
+
 In the domain model the customers can order the product through using the website. The owner/store admin can view can manage the website which will show the product.
 
 ## Architecture and Design
 
 This section describes the application architecture.
-![animal](AnimalUML.png)
+<!-- ![animal](AnimalUML.png)
 ![customer](CustomerUML.png)
 ![shoppingcart](ShoppingCartUML.png)
-![species](SpeciesUML.png)
+![species](SpeciesUML.png) -->
 
 
 ### Summary
@@ -127,7 +132,7 @@ with the e-store application.
 > 
 ![Animal UML Diagram](AnimalUML.png)
 ![Customer UML Diagram](CustomerUML.png)
-![RSpecies UML Diagram](SpeciesUML.png)
+![Species UML Diagram](SpeciesUML.png)
 ![Shopping Cart UML Diagram](ShoppingCartUML.png)
 
 ### Model Tier
@@ -146,7 +151,7 @@ The model tier is responsible for controlling the data structure and updating th
 
 Law of Demeter
 
-  The law of Demeter or the principle of least knowledge is an important design guideline for developing software. The guidelines outline how the different units of the software should interact with each other.
+  The law of Demeter or the principle of least knowledge is an important design guideline for developing software. The guidelines outline how the different units of the software should interact with each other. It is part of the GRASP design principles which are designed to standardize the use of object oriented programming. Law of Demeter in specific deals with the range that a class can talk too and make sure that it is not reaching too far.
 
   Each unit should only know what it absolutely needs to function
   Limiting the knowledge each unit knows about others it allows for a more secure backend.
@@ -155,8 +160,10 @@ Law of Demeter
 
   The Law Of Demeter follows the principle of “information hiding” where each individual assumes as little as possible about the other units of the application. It boils down to each unit possessing only the information and resources necessary for their task.
 
-  This principle is applied to our project because there is a similar level of information hiding with the controller, the model approach. There are interfaces that abstract the objects and keep things on a need-to-know basis. By using this principle as we move forward and making sure units are kept secure.
+  This principle is applied to our project because there is a similar level of information hiding with the controller, the model approach. There are interfaces that abstract the objects and keep things on a need-to-know basis. By using this principle as we move forward and making sure units are kept secure. This design principle could improve our design if we consider the reach the Store Administrator may have with the Customer. While in our current design they have no direct relationship we may want to include one if we find out that the Customer needs to get ahold of the Store Admin for any reason such as discussing the Products available, how the status usually updates and changes, and managing their own user site if they find any issues with using it. 
 
+
+ 
 Dependency Injection:
 
   Dependency injection is a form of the SOLID design principles created to make the use of object oriented programming easier to use and understand code. The purpose of the dependency inversion principle is to provide loser coupling between dependent entities. It uses abstractions between a low level module that will be dependent on the high level abstraction. 
@@ -164,7 +171,7 @@ Dependency Injection:
 
 Single Responsibility:
 
-	Single responsibility is also a part of the SOLID design principles. It is the principle that states that a class should only have one responsibility. This leads to smaller classes which can lead to larger coupling with relationships between the classes. But this will mean that it will be easier to understand the scope of a change in a class and to manage modifications. In our API the Controller is only responsible for using a try catch mechanism with its individual and calling the functions from DAO to fulfill the user queries. It is not concerned with the management of the data of the products in the webstore and will delegate this responsibility to the AnimalDao class. If the controller did not use single responsibility there would be limited use of the functionality of the functions with the data of the products. Unit testing would also be not possible. 
+	Single responsibility is also a part of the SOLID design principles. It is the principle that states that a class should only have one responsibility. This leads to smaller classes which can lead to larger coupling with relationships between the classes. But this will mean that it will be easier to understand the scope of a change in a class and to manage modifications. In our API the Controller is only responsible for using a try catch mechanism with its individual and calling the functions from DAO to fulfill the user queries. It is not concerned with the management of the data of the products in the webstore and will delegate this responsibility to the Dao class. If the controller did not use single responsibility there would be limited use of the functionality of the functions with the data of the products. Unit testing would also be not possible. 
 
 Controller:
 
@@ -183,6 +190,12 @@ Controller:
 
 > _**[Sprint 4]** Discuss **future** refactoring and other design improvements your team would explore if the team had additional time._
 
+Our original plan for the 10% feature was to create a scheduling manager that would allow the owner to see when each animal was rented out and when they would be back. It would also allow customers to see when certain animals would be back. This was the reason why inventory was never implemented in our design. Because we would always have that animal in inventory the only difference would be whether or not it was available for rent. It would not be taken out until the owner took out that animal. 
+
+Given our current 10% feature we would have liked to implement an inventory in order to take out animals from the stock when a customer checks out with that animal. Otherwise, at this point, there is now way to tell if an animal is available or not without the owner going through and deleting that animal. 
+
+Another feature we would have liked to fully implement is the register and login page. While they both work, if a new user puts in a username into the login page it will automatically set them up with that username and does not give them a chance to change any of their information. The login page should redirect to the register page if someone attempts to login with a new username. Included with this is that customers are currently not able to change any of their personal information after registration. 
+
 ## Testing
 > _This section will provide information about the testing performed
 > and the results of the testing._
@@ -193,17 +206,13 @@ Controller:
 > criteria tests failing, and the number of user stories that
 > have not had any testing yet. Highlight the issues found during
 > acceptance testing and if there are any concerns._
-Controller: The Animal and Customer controllers are well covered, missing only a single line in a single branch. The shopping cart and owner controllers are not nearly as well covered. Coverage for these classes in the controller tier will be significantly expanded and finished in sprint 3.
 
-Model: The Animal and Customer classes are well covered by line and instruction count, but the customer class contains a branch which is not covered by testing. This branch is the case in the equals method where the other object is not a Customer, which simply returns false, but was not tested. The Shopping Cart and Owner classes are much less rigorously tested, and their testing will be expanded upon in sprint 3.
+We have a total of 22 acceptance criteria for our project. Of those 22, 2.5 acceptance criteria fail and 2 we decided not to implement during this project. The 2.5 that failed was the product not being taken out of inventory when a customer bought that item. Due to the nature of our project, each item should have had a stock of one automatically when the owner puts it in and that should have gone down to 0 when a customer checks out with it. This was never implemented. Another issue with the acceptance criteria failing is where the customer is not able to change any of their information after they register an account. The 0.5 comes from the customer being able to create their own account and input their own information, this is possible on the register page but if they put in a username on the login page they will not be redirected to the register page. The 2 that we decided not to implement had to do with shipping details. It exists on the backend but we decided that it would take away from the MVP and feature we wanted and it was not necessary for this project to function. 
 
-Persistence: All currently implemented DAOs are fairly well tested, missing only a few instructions and 6 branches out of 68. The OwnerFileDAO class is currently only stubbed out and does not yet have tests written.
+We were able to meet all other acceptance criteria when it came to the customer/admin users, animals, species, and shopping cart. The customer is able to login with their username, create their own username, add item to cart, go back to their cart, see all available animals, and see the history of what they bought before. The customer can checkout with the items in their shopping cart.
+The admin can login with their specific username, manage and update the animal products, add, and remove an animal. The admin does not have access to the customer's information and cannot change any of htat information as was planned.
 
-We were able to meet the acceptence criteria for the owner account where we have a seperate frontend for a user and a admin.
-We also meet the requirment for adding a product, removing a product, editing an existing product from the inventory. We also fullfied the critera for the individual customer and have their personal information. We were not able to complete a checkout proccess or handling each customers billing information and address.
-
-We were able to meet the acceptence criteria for the owner account where we have a seperate frontend for a user and a admin.
-We also meet the requirment for adding a product, removing a product, editing an existing product from the inventory. We also fullfied the critera for the individual customer and have their personal information. We were not able to complete a checkout proccess or handling each customers billing information and address.
+For the species acceptance criteria, the admin can add, update, and remove a species from the species care list. As well as add, update, and remove any specific care information under each species. The customer can see the entire list of species available for sale, as well as a targeted list based off of their product history so that they can see care information for all of the animals they purchased.
 
 ### Unit Testing and Code Coverage
 > _**[Sprint 4]** Discuss your unit testing strategy. Report on the code coverage
@@ -213,9 +222,15 @@ We also meet the requirment for adding a product, removing a product, editing an
 
 >_**[Sprint 2 & 4]** **Include images of your code coverage report.** If there are any anomalies, discuss
 
-> those._
-The controller tier had an anomaly where in the customer class, it was missing tests for a branch. Otherwise for the class that we had fully flashed out were mostly (75-100%) covered by the unit testing.
-![Controller Tier](image1.png)
-![Model Tier](image2.png)
-![Persistence Tier](image3.png)
+Overall our model classes had the most coverage when it came to unit testing, going from 79% to 94% with a couple of branches missing in customer with the object equals method. For the other two tiers there are issues in the species tests since they were copied over from the animals test and not properly reformatted. All instances of animals were not changed to species which accounts for the extreme low in both the persistence and controller tier when it came to the testing. Across all tiers, animal being our longest working object, had the most coverage when it came to the testing, it is consistently above 90% with only a few missing branches or instructions.
+
+Controller: The Animal and Species controllers are well covered, missing only a single branch in one function. The customer and shopping cart controllers are not nearly as well covered. It appears that there are significant branches missed in customer controller tests, specifically in getting product history which was just added this sprint. As for the Shopping cart controller, two of the tests that add and remove invalid items had to be taken out in order to complete the code coverage since those tests failed. The branches in the shopping cart that were not tested were checkout function, get shopping cart, and get multiple shopping carts.
+
+Model: The animal, shopping cart, and species model were all well covered by the testing. They were each missing one to two branches. However, customer was missing the most amount of branches despite having a high coverage. It was missing a total of 7 branches, most of which is due to not fully testing the Object equals method. The customer class contains a branch which is not covered by testing. This branch is the case in the equals method where the other object is not a Customer, which simply returns false, but was not tested. If that is taken out of the equation, it would be 10 of 12 branches that have been tested. 
+
+Persistence: The Animal File Dao, and what should have been the Species File Dao had the best coverage. There was an issue with the Species File Dao due to it being copied over from the animal file dao test and not being implemented correctly. Since animal and species are so similar, Species File Dao should have had close to the amount of coverage that animal did. As for customer and shopping cart file daos, they are both moderately covered. The customer is a missing test for logging in, adding to product history, search customer, nextID, and create customer with a total of 8 missed branches. Shopping cart missed 7 branches in checkout, decrement animal (this was supposed to be in regards to inventory which we never implemented), and get shopping cart. 
+
+![Controller Tier](controller.png)
+![Model Tier](model.png)
+![Persistence Tier](persistence.png)
  
