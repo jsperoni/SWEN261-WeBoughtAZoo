@@ -119,11 +119,16 @@ The user is first greeted with a login screen. When they log in it will notify t
 > responsibilities.  This should be a narrative description, i.e. it has
 > a flow or "story line" that the reader can follow._
 
+The UI uses a router and routerlinks to redirect the user between the main pages. When on the animal page it makes a get request to get the list fo all the animals, and a get request for each individual animal when you go to their page. The product history makes a get request for the customers product history. Finally the species care makes a get request for the species care information and the product history. The shopping cart also makes a get request for the shopping cart. When a user adds something to the shopping cart it makes post request, and when you delete it it will make a delete request. When the owner adds an animal or species care info, it makes a post request. When the owner tried to update either it makes a put request. Finally, when the owner deleted any of these it will make a delete request.
+
 > _**[Sprint 4]** You must  provide at least **2 sequence diagrams** as is relevant to a particular aspects 
 > of the design that you are describing.  For example, in e-store you might create a 
 > sequence diagram of a customer searching for an item and adding to their cart. 
 > As these can span multiple tiers, be sure to include an relevant HTTP requests from the client-side to the server-side 
 > to help illustrate the end-to-end flow._
+
+![sequenceDiagramPost](sequence-diagram-post.png)
+![sequenceDiagramGet](sequence-diagram-get.png)
 
 > _**[Sprint 4]** To adequately show your system, you will need to present the **class diagrams** where relevant in your design. Some additional tips:_
  >* _Class diagrams only apply to the **ViewModel** and **Model** Tier_
@@ -145,7 +150,7 @@ The ViewModel allows us to manipulate the data objects the web application uses.
 ![animalViewModel](AnimalViewModel.png)
 ![customerViewModel](CustomerViewModel.png)
 ![shoppingcartViewModel](ShoppingCartViewModel.png)
-![speciesViewModel](SpeciesViewModel.png) -->
+![speciesViewModel](SpeciesViewModel.png)
 
 ### Model Tier
 > _**[Sprint 2, 3 & 4]** Provide a summary of this tier of your architecture. This
@@ -160,7 +165,7 @@ The model tier is responsible for controlling the data structure and updating th
 ![animalModel](AnimalModel.png)
 ![customerModel](CustomerModel.png)
 ![shoppingcartModel](ShoppingCartModel.png)
-![speciesModel](SpeciesModel.png) -->
+![speciesModel](SpeciesModel.png)
 
 ## OO Design Principles
 > _**[Sprint 2, 3 & 4]** Discuss at least **4 key OO Principles** in your current design. This should be taken from your work in "Adherence to Architecture and Design Principles" that you have completed in a previous Sprint. Be sure to include any diagrams (or clearly refer to ones elsewhere in your Tier sections above) to support your claims._
