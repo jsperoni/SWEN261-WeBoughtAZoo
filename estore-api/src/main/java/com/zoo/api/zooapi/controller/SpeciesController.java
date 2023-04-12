@@ -97,7 +97,7 @@ public class SpeciesController {
      * Example: Find all Species that contain the text "ma"
      * GET http://localhost:8080/Species/?name=ma
      */
-    @GetMapping("/{name}")
+    @GetMapping("/")
     public ResponseEntity<Species[]> searchSpeciess(@PathVariable String name) {
         LOG.info("GET /Species/?name="+name);
 
