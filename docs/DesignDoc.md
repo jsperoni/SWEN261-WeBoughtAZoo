@@ -128,10 +128,16 @@ with the e-store application.
 > section will follow the same instructions that are given for the View
 > Tier above._
 
+The ViewModel allows us to manipulate the data objects the web application uses. We have basic CRUD functionality for all of our data objects meaning create, read ,update , and delete. Some particular objects like the shopping cart also had more specilized functionality when needing to do more complex tasks.
+
 > _At appropriate places as part of this narrative provide **one** or more updated and **properly labeled**
 > static models (UML class diagrams) with some details such as critical attributes and methods._
 > 
 
+![animalViewModel](AnimalViewModel.png)
+![customerViewModel](CustomerViewModel.png)
+![shoppingcartViewModel](ShoppingCartViewModel.png)
+![speciesViewModel](SpeciesViewModel.png) -->
 
 ### Model Tier
 > _**[Sprint 2, 3 & 4]** Provide a summary of this tier of your architecture. This
