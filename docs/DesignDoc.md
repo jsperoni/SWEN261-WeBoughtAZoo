@@ -20,7 +20,7 @@ geometry: margin=1in
 
 ## Executive Summary
 
-We Bought a Zoo is working on the premise of a webstore where customers will be able to go into the store and rent out animals for their events. Idealistically the owner of the webstore will have a contract with the zoos in order to rent out their animals. The owner will then be able to go into the webstore and edit, add, delete animals into the webstore so that the customers can view and rent. The Customers will be able to login to the webstore and view the products, add it to shopping cart, and checkout with their information. For an additional feature there is a scheduling manager where the owner can see which days each animal will be rented out. 
+We Bought a Zoo is working on the premise of a webstore where customers will be able to go into the store and rent out animals for their events. Ideally the owner of the webstore will have a contract with the zoos in order to rent out their animals. The owner will then be able to go into the webstore and edit, add, delete animals into the webstore so that the customers can view and rent. The Customers will be able to login to the webstore and view the products, add it to shopping cart, and checkout with their information. For an additional feature there is a species care list where owners can add, remove, and update species and their information as needed. Customers are able to see the full list of species available and how to care for them before purchasing. 
 
 ### Purpose
 >  _**[Sprint 2 & 4]** Provide a very brief statement about the project and the most
@@ -47,12 +47,13 @@ This section describes the features of the application.
 ### Definition of MVP
 > _**[Sprint 2 & 4]** Provide a simple description of the Minimum Viable Product._
 
-The minimum viable product will have the customers being able to view basic information about the animals (name), the owner to be able to change the animals that are listed in the product list and for both owner and customer to be able to log in with their username and not be able to see the other's side of the webstore.
+The minimum viable product will have the customers being able to view basic information about the animals (name, price, species), the owner to be able to change the animals that are listed in the product list and for both owner and customer to be able to log in with their username and not be able to see the other's side of the webstore. The customers are able to checkout with the items in their shopping cart. 
 
 ### MVP Features
 >  _**[Sprint 4]** Provide a list of top-level Epics and/or Stories of the MVP._
 
-The animal or product, customer, owner, species, shopping cart
+ Epics: animal or product, customer, owner, species, shopping cart
+  Top-Level Stories: Checkout, add/remove/update product, browse products, product history, targeted species care information 
 
 ### Enhancements
 > _**[Sprint 4]** Describe what enhancements you have implemented for the project._
