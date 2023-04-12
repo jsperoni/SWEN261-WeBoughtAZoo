@@ -20,13 +20,13 @@ geometry: margin=1in
 
 ## Executive Summary
 
-We Bought a Zoo is working on the premise of a webstore where customers will be able to go into the store and rent out animals for their events. Ideally the owner of the webstore will have a contract with the zoos in order to rent out their animals. The owner will then be able to go into the webstore and edit, add, delete animals into the webstore so that the customers can view and rent. The Customers will be able to login to the webstore and view the products, add it to shopping cart, and checkout with their information. For an additional feature there is a species care list where owners can add, remove, and update species and their information as needed. Customers are able to see the full list of species available and how to care for them before purchasing. 
+We Bought a Zoo is working on the premise of a webstore where customers will be able to go into the store and buy animals. Ideally the owner of the webstore will have a contract with the zoos in order to purchase animals ethically. The owner will then be able to go into the webstore and edit, add, and delete animals from the inventory so that the customers can view and purchase. The customers will be able to login to the webstore and view the products, add it to shopping cart, and checkout. For an additional feature there is a species care list where owners can add, remove, and update species and their information as needed. Customers are able to see the full list of species available and how to care for them before purchasing. 
 
 ### Purpose
 >  _**[Sprint 2 & 4]** Provide a very brief statement about the project and the most
 > important user group and user goals._
 
-A webstore that allows customers to view and rent out animals and owner to add and edit animals at will.
+A webstore for a service that allows customers to buy animals and allows the owner to be able to add new animals, delete animals, and edit animals at will.
 
 ### Glossary and Acronyms
 > _**[Sprint 2 & 4]** Provide a table of terms and acronyms._
@@ -43,6 +43,13 @@ This section describes the features of the application.
 > _In this section you do not need to be exhaustive and list every
 > story.  Focus on top-level features from the Vision document and
 > maybe Epics and critical Stories._
+The application must allow the user to browse and search through the catalog of animals.
+The application must allow the user to add animals to the shopping cart in order to checkout with them.
+The application must allow the user to login using a username.
+The application must store changes so that data is consistent between users and consistent between logins.
+The application must allow the owner to add, delete, and edit animals in the inventory.
+The application must allow the user to browse the species care information.
+The application must show the user the species care information for the animals they have purchased.
 
 ### Definition of MVP
 > _**[Sprint 2 & 4]** Provide a simple description of the Minimum Viable Product._
@@ -52,7 +59,7 @@ The minimum viable product will have the customers being able to view basic info
 ### MVP Features
 >  _**[Sprint 4]** Provide a list of top-level Epics and/or Stories of the MVP._
 
- Epics: animal or product, customer, owner, species, shopping cart
+ Epics: animal, customer, owner, species, shopping cart
   Top-Level Stories: Checkout, add/remove/update product, browse products, product history, targeted species care information 
 
 ### Enhancements
@@ -78,7 +85,7 @@ This section describes the application architecture.
 ![animal](AnimalUML.png)
 ![customer](CustomerUML.png)
 ![shoppingcart](ShoppingCartUML.png)
-![species](SpeciesUML.png) -->
+![species](SpeciesUML.png)
 
 
 ### Summary
@@ -103,6 +110,7 @@ with the e-store application.
 
 > _Provide a summary of the application's user interface.  Describe, from
 > the user's perspective, the flow of the pages in the web application._
+The user is first greeted with a login screen. When they log in it will notify them that th login was successful. The user is able to select from 5 tabs where they can view the list of animals, the product history, the species care information, the login page, and the shopping cart. Before the user is logged in they may also go to the registration page to create a new user. The animal page will have a list of animals. Clicking on these animals will go to a page where the user can see the animal's name, species, and price. An admin can add animals in the list of animals page and is able to edit the animals on the individual animal page. A user may also add or remove it from the shopping cart here. The product history displays the list of all animals bought by this user. The species care page will display all of the species care information, and at the top, display the ones that are from the user's product history. Finally the shopping cart will display all the animals in this user's shopping cart. The user may checkout, this will update the product history for this user and clear the shopping cart. It will also redirect back to the animals page.
 
 
 ### View Tier
